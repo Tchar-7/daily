@@ -1,6 +1,7 @@
 <template>
   <div class="login-wrap">
     <div class="ms-title">每日一报系统</div>
+    <div class="ms-content">浙江工业大学<br>防疫期间<br>签到销假系统</div>
     <div class="ms-login">
       <el-form :model="param" :rules="rules" ref="login" label-width="30px" class="ms-content" >
 
@@ -20,6 +21,12 @@
           </el-input>
         </el-form-item>
 
+        <el-radio-group v-model="radio">
+          <el-radio :label="1">学生</el-radio>
+          <el-radio :label="2">教职工</el-radio>
+          <el-radio :label="3">管理员</el-radio>
+        </el-radio-group>
+
         <div class="login-btn">
           <el-button type="primary" @click="submitForm()">登录</el-button>
         </div>
@@ -30,13 +37,7 @@
 </template>
 <script>
 export default {
-name: "Login",
-  watch: {
-    // eslint-disable-next-line no-unused-vars
-    '$route' (to, from) {
-      this.$router.go(0);
-    }
-  },
+  name: "Login",
   data: function() {
     return {
       param: {
@@ -55,7 +56,7 @@ name: "Login",
         if (valid) {
           this.$message.success('登录成功');
           localStorage.setItem('ms_username', this.param.username);
-          this.$router.push('/main');
+          this.$router.push('/');
         } else {
           this.$message.error('请输入账号和密码');
           console.log('error submit!!');
@@ -71,8 +72,8 @@ name: "Login",
 .login-wrap {
   position: relative;
   width: 100%;
-  height: 100%;
-
+  height: 1000px;
+  background:url("../assets/img/login-bg.jpg");
   background-size: 100%;
 }
 .ms-title {
@@ -93,6 +94,7 @@ name: "Login",
 }
 .ms-content {
   padding: 30px 30px;
+  font-size: 30px;
 }
 .login-btn {
   text-align: center;
