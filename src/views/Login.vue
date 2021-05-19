@@ -31,6 +31,12 @@
 <script>
 export default {
 name: "Login",
+  watch: {
+    // eslint-disable-next-line no-unused-vars
+    '$route' (to, from) {
+      this.$router.go(0);
+    }
+  },
   data: function() {
     return {
       param: {
@@ -49,7 +55,7 @@ name: "Login",
         if (valid) {
           this.$message.success('登录成功');
           localStorage.setItem('ms_username', this.param.username);
-          this.$router.push('/');
+          this.$router.push('/main');
         } else {
           this.$message.error('请输入账号和密码');
           console.log('error submit!!');

@@ -28,6 +28,7 @@
 
 <script>
 export default {
+  inject:['routerRefresh'],   //在子组件中注入在父组件中创建的属性
     data: function() {
         return {
             param: {
@@ -40,6 +41,12 @@ export default {
             },
         };
     },
+  watch: {
+    // eslint-disable-next-line no-unused-vars
+    '$route' (to, from) {
+      this.$router.go(0);
+    }
+  },
     methods: {
         submitForm() {
             this.$refs.login.validate(valid => {
