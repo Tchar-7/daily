@@ -1,6 +1,5 @@
 <template>
     <div class="login-wrap">
-
         <div class="ms-login">
             <div class="ms-title">后台管理系统</div>
             <el-form :model="param" :rules="rules" ref="login" label-width="0px" class="ms-content">
@@ -14,8 +13,7 @@
                         type="password"
                         placeholder="password"
                         v-model="param.password"
-                        @keyup.enter.native="submitForm()"
-                    >
+                        @keyup.enter.native="submitForm()">
                         <el-button slot="prepend" icon="el-icon-lx-lock"></el-button>
                     </el-input>
                 </el-form-item>

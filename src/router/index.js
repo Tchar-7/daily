@@ -4,7 +4,7 @@ import VueRouter from "vue-router";
 
 import Main from '../views/Main'
 import Login from "@/views/Login";
-import Login2 from "../views/templates/Login"
+
 
 Vue.use(VueRouter);
 
@@ -13,11 +13,8 @@ const router =  new VueRouter({
         path:'/main',
         component: Main
     },{
-        path:'/login',
+        path:'/',
         component: Login
-    },{
-        path:'/login2',
-        component: Login2
     }]
 })
 
