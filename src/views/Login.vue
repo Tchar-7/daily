@@ -20,12 +20,14 @@
             <el-button slot="prepend" icon="el-icon-lx-lock"></el-button>
           </el-input>
         </el-form-item>
+        <el-form-item>
+          <el-radio-group v-model="param.radio">
+            <el-radio :label="1">学生</el-radio>
+            <el-radio :label="2">教职工</el-radio>
+            <el-radio :label="3">管理员</el-radio>
+          </el-radio-group>
+        </el-form-item>
 
-        <el-radio-group v-model="radio">
-          <el-radio :label="1">学生</el-radio>
-          <el-radio :label="2">教职工</el-radio>
-          <el-radio :label="3">管理员</el-radio>
-        </el-radio-group>
 
         <div class="login-btn">
           <el-button type="primary" @click="submitForm()">登录</el-button>
@@ -40,9 +42,11 @@ export default {
   name: "Login",
   data: function() {
     return {
+
       param: {
         username: '',
         password: '',
+        radio: '1',
       },
       rules: {
         username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
@@ -51,6 +55,7 @@ export default {
     };
   },
   methods: {
+
     submitForm() {
       this.$refs.login.validate(valid => {
         if (valid) {
