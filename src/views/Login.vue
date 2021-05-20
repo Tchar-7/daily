@@ -42,7 +42,6 @@ export default {
   name: "Login",
   data: function() {
     return {
-
       param: {
         username: '',
         password: '',
