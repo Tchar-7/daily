@@ -4,6 +4,8 @@ import VueRouter from "vue-router";
 
 import Main from '../views/Main'
 import Login from "@/views/Login";
+import Menu from "../../../src/views/Menu";
+
 // 解决ElementUI导航栏中的vue-router在3.0版本以上重复点菜单报错问题
 
 Vue.use(VueRouter);
@@ -15,6 +17,9 @@ const router =  new VueRouter({
     },{
         path:'/',
         component: Login
+    },{
+        path:'/Menu',
+        component: Menu
     }]
 })
 
