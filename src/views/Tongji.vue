@@ -9,9 +9,22 @@
                         :value="item.value">
                 </el-option>
             </el-select>
+            <el-form-item label="班级">
+                <el-input></el-input>
+            </el-form-item>
         </el-tab-pane>
         <el-tab-pane label="成员查询" name="second">
-
+            <el-select v-model="value" placeholder="请选择">
+            <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+            </el-option>
+            </el-select>
+            <el-form-item label="学号">
+                <el-input></el-input>
+            </el-form-item>
         </el-tab-pane>
     </el-tabs>
 </template>
