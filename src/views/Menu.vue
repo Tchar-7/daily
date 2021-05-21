@@ -20,7 +20,7 @@
                 <el-menu-item index="2-1">销假</el-menu-item>
                 <el-menu-item index="2-2" @click="Chuxiao()">出校申请</el-menu-item>
             </el-submenu>
-
+            <button v-on:click="logOut()">登出</button>
     </el-menu>
     <div class="info">
     <el-tabs v-model="activeName" @tab-click="handleClick">
@@ -116,12 +116,15 @@
 </template>
 
 <script>
+    import router from "@/router";
+
     export default {
         name:"Menu",
         data() {
             return {
                 activeIndex2: '1',
-                activeName: 'second'
+                activeName: 'second',
+                tableData: []
             };
 
         },
@@ -142,6 +145,11 @@
             },
             Qiandao() {
                 this.$router.push('/Qiandao');
+            },
+            logOut(){
+              localStorage.removeItem('userID');
+              localStorage.removeItem('userIdentity');
+              router.push('/');
             }
         }
     }
@@ -167,10 +175,8 @@
 }
 .el-row {
     margin-bottom: 20px;
-&:last-child {
-     margin-bottom: 0;
- }
 }
+
 .el-col {
     border-radius: 4px;
 }

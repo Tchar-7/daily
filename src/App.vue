@@ -4,8 +4,20 @@
   </div>
 </template>
 <script>
+import router from "@/router";
+
 export default {
   name: 'App',
+
+  created:function (){
+      var ID = localStorage.getItem('userID')
+      // var identity = localStorage.getItem('userIdentity')
+    if(ID !=null){
+        router.push('/Menu')
+    }else{
+      router.push('/')
+    }
+  }
 }
 </script>
 
@@ -19,3 +31,8 @@ export default {
 <!--  margin-top: 60px;-->
 <!--}-->
 <!--</style>-->
+<style>
+  body{
+    margin: 0;
+  }
+</style>

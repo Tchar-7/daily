@@ -58,16 +58,6 @@ export default {
 
     submitForm() {
       this.$refs.login.validate(valid => {
-        // if (valid) {
-        //   this.$message.success('登录成功');
-        //   localStorage.setItem('ms_username', this.param.username);
-        //   this.$router.push('/');
-        // } else {
-        //   this.$message.error('请输入学/工号和密码');
-        //   console.log('error submit!!');
-        //   return false;
-        // }
-
         if(valid){
             this.axios({
               method:"post",
@@ -89,14 +79,17 @@ export default {
               console.log(valid.data[0].psw);
               if(valid.data !='用户名或密码错误'){
                 this.$message.success('登录成功');
-                // localStorage.setItem('ms_username', this.param.username);
-                // setTimeout(valid=> {
-                //   this.$router.push('/')
-                // }, 600);
+
+                localStorage.setItem('userID', valid.data[0].ID);
+                localStorage.setItem('userIdentity',valid.data[0].identity+'')
+                // eslint-disable-next-line no-unused-vars
+                setTimeout(valid=> {
+                  this.$router.push('/Menu')
+                }, 600);
 
               }
               else {
-                this.$message.success('用户名或密码错误,请重新输入!');
+                this.$message.error('用户名或密码错误,请重新输入!');
               }
 
             })
