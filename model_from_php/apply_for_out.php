@@ -5,7 +5,7 @@ if($conn->connect_error){
     die("数据库连接失败".mysqli_connect_error());
 }
 $name=$_GET["name"];
-$identity=localStorage.getItem('userIdentity');
+$identity=$_GET["identity"];
 $sex=$_GET["sex"];
 $userID=$_GET["userID"];
 $start=$_GET["start"];
@@ -20,9 +20,6 @@ $phone=$_GET["phone"];
 $color=$_GET["color"];
 $time=$_SERVER['REQUEST_TIME'];
 
-if(strcmp($reason,"其他" )==0){
-    $reason=$reason2;
-}
 
 $sql="insert into apply_for_out values('$userID','$name','$sex','$identity','$phone','$start','$finish','$left','$reason','$stay','$time')";
 

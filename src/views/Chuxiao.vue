@@ -96,7 +96,7 @@
 
                         <el-form-item>
                             <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-                            <el-button @click="resetForm('ruleForm')">重置</el-button>
+                            <el-button @click="resetForm()">重置</el-button>
                         </el-form-item>
                     </el-form>
 
@@ -147,12 +147,13 @@
             if(valid){
               this.axios({
                 method:"post",
-                url:'http://localhost:63342/daily/model_from_php/apply_for_out.php',
+                url:'/daily/model_from_php/apply_for_out.php',
 
                 headers:{
                   'Content-type': 'application/x-www-form-urlencoded'
                 },
                 params: {
+                  'identity':localStorage.getItem('userIdentity'),
                   'name':this.ruleForm.name,
                   'sex':this.ruleForm.sex,
                   'userID':this.ruleForm.userID,
