@@ -13,7 +13,7 @@
             <el-submenu index="2">
                 <template slot="title">每日一报</template>
                 <el-menu-item index="2-1" @click="Tianbao()">信息填报</el-menu-item>
-                <el-menu-item index="2-2" @click="Qiandao()">签到信息</el-menu-item>
+                <el-menu-item index="2-2" @click="Qiandao()">个人签到信息</el-menu-item>
             </el-submenu>
             <el-submenu index="3">
                 <template slot="title">其他</template>

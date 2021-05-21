@@ -84,7 +84,7 @@ export default {
                 localStorage.setItem('userIdentity',valid.data[0].identity+'')
                 // eslint-disable-next-line no-unused-vars
                 setTimeout(valid=> {
-                  this.$router.push('/Menu')
+                  this.$router.push('/Admin_menu')
                 }, 600);
 
               }
