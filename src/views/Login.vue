@@ -5,8 +5,8 @@
     <div class="ms-login">
       <el-form :model="param" :rules="rules" ref="login" label-width="30px" class="ms-content" >
 
-        <el-form-item prop="username">
-          <el-input v-model="param.username" placeholder="username">
+        <el-form-item prop="userID">
+          <el-input v-model="param.userID" placeholder="请输入学/工号">
             <el-button slot="prepend" icon="el-icon-lx-people"></el-button>
           </el-input>
         </el-form-item>
@@ -14,7 +14,7 @@
         <el-form-item prop="password">
           <el-input
               type="password"
-              placeholder="password"
+              placeholder="请输入密码"
               v-model="param.password"
               @keyup.enter.native="submitForm()">
             <el-button slot="prepend" icon="el-icon-lx-lock"></el-button>
@@ -43,12 +43,13 @@ export default {
   data: function() {
     return {
       param: {
-        username: '',
+        userID: '',
         password: '',
-        radio: '1',
+        radio: 1,
+        users: []
       },
       rules: {
-        username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
+        userID: [{ required: true, message: '请输入学/工号', trigger: 'blur' }],
         password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
       },
     };
@@ -57,14 +58,52 @@ export default {
 
     submitForm() {
       this.$refs.login.validate(valid => {
-        if (valid) {
-          this.$message.success('登录成功');
-          localStorage.setItem('ms_username', this.param.username);
-          this.$router.push('/');
-        } else {
-          this.$message.error('请输入账号和密码');
-          console.log('error submit!!');
-          return false;
+        // if (valid) {
+        //   this.$message.success('登录成功');
+        //   localStorage.setItem('ms_username', this.param.username);
+        //   this.$router.push('/');
+        // } else {
+        //   this.$message.error('请输入学/工号和密码');
+        //   console.log('error submit!!');
+        //   return false;
+        // }
+
+        if(valid){
+            this.axios({
+              method:"post",
+              url:'/daily/model_from_php/lgoInCheck.php',
+
+              headers:{
+                'Content-type': 'application/x-www-form-urlencoded'
+              },
+              params: {
+                'userID': this.param.userID,
+                'password':this.param.password,
+                'identity':this.param.radio
+              }
+            })
+            .then((valid) => {
+              this.users = valid.data;    //将PHP返回数组的值付给users
+              console.log('success');      //打印结果
+              console.log(this.users);
+              console.log(valid.data[0].psw);
+              if(valid.data !='用户名或密码错误'){
+                this.$message.success('登录成功');
+                // localStorage.setItem('ms_username', this.param.username);
+                // setTimeout(valid=> {
+                //   this.$router.push('/')
+                // }, 600);
+              }
+              else {
+                this.$message.success('用户名或密码错误,请重新输入!');
+              }
+
+            })
+        }else {
+          this.$message.error('请输入学/工号和密码');
+            console.log('error submit!!');
+            return false;
+
         }
       });
     },
