@@ -71,7 +71,7 @@ export default {
         if(valid){
             this.axios({
               method:"post",
-              url:'http://localhost:63342/daily/model_from_php/lgoInCheck.php',
+              url:'http://localhost:63342/daily/model_from_php/logInCheck.php',
 
               headers:{
                 'Content-type': 'application/x-www-form-urlencoded'
@@ -86,8 +86,8 @@ export default {
               this.users = valid.data;    //将PHP返回数组的值付给users
               console.log('success');      //打印结果
               console.log(this.users);
-              console.log(valid.data[0].psw);
-              if(valid.data !=''){
+              console.log(valid.data[0]);
+              if(valid.data !='用户名或密码错误'){
                 this.$message.success('登录成功');
                 // localStorage.setItem('ms_username', this.param.username);
                 // setTimeout(valid=> {
@@ -95,7 +95,7 @@ export default {
                 // }, 600);
               }
               else {
-                this.$message.success('用户名或密码错误,请重新输入!');
+                this.$message.error('用户名或密码错误,请重新输入!');
               }
 
             })
