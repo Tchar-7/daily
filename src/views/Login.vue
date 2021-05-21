@@ -87,7 +87,7 @@ export default {
               console.log('success');      //打印结果
               console.log(this.users);
               console.log(valid.data[0].psw);
-              if(valid.data !=''){
+              if(valid.data !='用户名或密码错误'){
                 this.$message.success('登录成功');
                 // localStorage.setItem('ms_username', this.param.username);
                 // setTimeout(valid=> {
