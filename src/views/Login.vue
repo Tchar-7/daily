@@ -5,8 +5,8 @@
     <div class="ms-login">
       <el-form :model="param" :rules="rules" ref="login" label-width="30px" class="ms-content" >
 
-        <el-form-item prop="userID">
-          <el-input v-model="param.userID" placeholder="请输入学/工号">
+        <el-form-item prop="username">
+          <el-input v-model="param.username" placeholder="username">
             <el-button slot="prepend" icon="el-icon-lx-people"></el-button>
           </el-input>
         </el-form-item>
@@ -14,20 +14,18 @@
         <el-form-item prop="password">
           <el-input
               type="password"
-              placeholder="请输入密码"
+              placeholder="password"
               v-model="param.password"
               @keyup.enter.native="submitForm()">
             <el-button slot="prepend" icon="el-icon-lx-lock"></el-button>
           </el-input>
         </el-form-item>
-        <el-form-item>
-          <el-radio-group v-model="param.radio">
-            <el-radio :label="1">学生</el-radio>
-            <el-radio :label="2">教职工</el-radio>
-            <el-radio :label="3">管理员</el-radio>
-          </el-radio-group>
-        </el-form-item>
 
+        <el-radio-group v-model="radio">
+          <el-radio :label="1">学生</el-radio>
+          <el-radio :label="2">教职工</el-radio>
+          <el-radio :label="3">管理员</el-radio>
+        </el-radio-group>
 
         <div class="login-btn">
           <el-button type="primary" @click="submitForm()">登录</el-button>
@@ -39,71 +37,30 @@
 </template>
 <script>
 export default {
-  name: "Login",
+name: "Login",
   data: function() {
     return {
       param: {
-        userID: '',
+        username: '',
         password: '',
-        radio: 1,
-        users: []
       },
       rules: {
-        userID: [{ required: true, message: '请输入学/工号', trigger: 'blur' }],
+        username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
         password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
       },
     };
   },
   methods: {
-
     submitForm() {
       this.$refs.login.validate(valid => {
-        // if (valid) {
-        //   this.$message.success('登录成功');
-        //   localStorage.setItem('ms_username', this.param.username);
-        //   this.$router.push('/');
-        // } else {
-        //   this.$message.error('请输入学/工号和密码');
-        //   console.log('error submit!!');
-        //   return false;
-        // }
-
-        if(valid){
-            this.axios({
-              method:"post",
-              url:'/daily/model_from_php/lgoInCheck.php',
-
-              headers:{
-                'Content-type': 'application/x-www-form-urlencoded'
-              },
-              params: {
-                'userID': this.param.userID,
-                'password':this.param.password,
-                'identity':this.param.radio
-              }
-            })
-            .then((valid) => {
-              this.users = valid.data;    //将PHP返回数组的值付给users
-              console.log('success');      //打印结果
-              console.log(this.users);
-              console.log(valid.data[0].psw);
-              if(valid.data !='用户名或密码错误'){
-                this.$message.success('登录成功');
-                // localStorage.setItem('ms_username', this.param.username);
-                // setTimeout(valid=> {
-                //   this.$router.push('/')
-                // }, 600);
-              }
-              else {
-                this.$message.success('用户名或密码错误,请重新输入!');
-              }
-
-            })
-        }else {
-          this.$message.error('请输入学/工号和密码');
-            console.log('error submit!!');
-            return false;
-
+        if (valid) {
+          this.$message.success('登录成功');
+          localStorage.setItem('ms_username', this.param.username);
+          this.$router.push('/Menu');
+        } else {
+          this.$message.error('请输入账号和密码');
+          console.log('error submit!!');
+          return false;
         }
       });
     },
@@ -113,9 +70,9 @@ export default {
 
 <style scoped>
 .login-wrap {
-  position: relative;
+  position: absolute;
   width: 100%;
-  height: 1000px;
+  height: 100%;
   background:url("../assets/img/login-bg.jpg");
   background-size: 100%;
 }
@@ -127,7 +84,7 @@ export default {
   border-bottom: 1px solid #ddd;
 }
 .ms-login {
-  margin: 0 auto;
+  margin-left: 700px;
   /*text-align: center;*/
   width: 400px;
   /*margin: -190px 0 0 -175px;*/
@@ -138,6 +95,7 @@ export default {
 .ms-content {
   padding: 30px 30px;
   font-size: 30px;
+
 }
 .login-btn {
   text-align: center;
