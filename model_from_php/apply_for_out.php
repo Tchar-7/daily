@@ -18,9 +18,14 @@ $stay=$_GET["stay"];
 $address=$_GET["address"];
 $phone=$_GET["phone"];
 $color=$_GET["color"];
-$time=$_SERVER['REQUEST_TIME'];
+$time=date("Y-m-d H:i:s",time());
+
+if(strcmp($reason,"其他")){
+    $reason=$reason2;
+}
 
 
-$sql="insert into apply_for_out values('$userID','$name','$sex','$identity','$phone','$start','$finish','$left','$reason','$stay','$time')";
-
-echo $sql;
+$sql="insert into apply_for_out values('$userID','$name','$sex','$identity','$phone','$start','$finish','$left','$reason','$stay','$color','$time')";
+$result = $conn->query($sql);
+$conn->close();
+?>

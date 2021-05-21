@@ -140,10 +140,16 @@
         },
 
       methods: {
-
+        formateDate:function (datetime) {
+          function addDateZero(num) {
+            return (num < 10 ? '0' + num : num)
+          }
+          const d = new Date(datetime)
+          const formatdatetime = d.getFullYear() + '-' + addDateZero(d.getMonth() + 1) + '-' + addDateZero(d.getDate()) + ' ' + addDateZero(d.getHours()) + ':' + addDateZero(d.getMinutes()) + ':' + addDateZero(d.getSeconds())
+          return formatdatetime
+        },
         submitForm() {
           this.$refs.ruleForm.validate(valid => {
-
             if(valid){
               this.axios({
                 method:"post",
@@ -157,7 +163,7 @@
                   'name':this.ruleForm.name,
                   'sex':this.ruleForm.sex,
                   'userID':this.ruleForm.userID,
-                  'start':this.ruleForm.start,
+                  'start':this.formateDate(this.ruleForm.start),
                   'finish':this.ruleForm.finish,
                   'category':this.ruleForm.category,
                   'left':this.ruleForm.left,
@@ -169,27 +175,12 @@
                   'color':this.ruleForm.color
                 }
               })
+                  // eslint-disable-next-line no-unused-vars
                   .then((valid) => {
-                    this.users = valid.data;    //将PHP返回数组的值付给users
-                    console.log('success');      //打印结果
-                    console.log(this.users);
-                    console.log(valid.data[0].psw);
 
-                    //if(valid.data !='用户名或密码错误'){
-                    //  this.$message.success('登录成功');
-                    //  // localStorage.setItem('ms_username', this.param.username);
-                    //  // setTimeout(valid=> {
-                    //  //   this.$router.push('/')
-                    //  // }, 600);
-//
-                    //}
-                    //else {
-                    //  this.$message.success('用户名或密码错误,请重新输入!');
-                    //}
-//
                   })
             }else {
-              this.$message.error('请输入学/工号和密码');
+              this.$message.error('请填写正确信息');
               console.log('error submit!!');
               return false;
 
