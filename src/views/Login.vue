@@ -61,7 +61,7 @@ export default {
         if(valid){
             this.axios({
               method:"post",
-              url:'/daily/model_from_php/lgoInCheck.php',
+              url:'/daily/model_from_php/logInCheck.php',
 
               headers:{
                 'Content-type': 'application/x-www-form-urlencoded'
@@ -81,7 +81,7 @@ export default {
                 localStorage.setItem('userIdentity',valid.data[0].identity+'')
                 // eslint-disable-next-line no-unused-vars
                 setTimeout(valid=> {
-                  this.$router.push('/Admin_menu')
+                  this.$router.push('/menu')
                 }, 600);
 
               }

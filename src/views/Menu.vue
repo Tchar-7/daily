@@ -118,14 +118,17 @@
 <script>
     import router from "@/router";
     // import axios from 'axios';
+    import Qs from 'qs'
+
+    var data = Qs.stringify({'userID': localStorage.getItem('userID')});
 
     export default {
         name:"Menu",
         data() {
             return {
                 activeIndex2: '1',
-                activeName: 'first',
-                uName:'11',
+                activeName: 'second',
+                uName:'',
                 department:'',
                 uID:'',
                 mail:'',
@@ -162,23 +165,42 @@
               router.push('/');
             },
             getInfo:function (){
-              var userIDt = localStorage.getItem('userID')
-              // console.log(userIDt)
-              this.axios.post('/daily/model_from_php/getPInfo.php',{
-                  'userID': userIDt
-              }).then(response=>{
-                console.log('response.message');
+              this.axios.post('/daily/model_from_php/getPInfo.php',data,{
+                headers:{'Content-Type':'application/x-www-form-urlencoded'}
+              })
+                  .then(response=>{
                 if (response.status >= 200 && response.status < 300) {
+                  this.uName = response.data[0].name
+                  this.department = response.data[0].department
                   this.uID = response.data[0].ID
-                  console.log(response.data)
-                  // localStorage.setItem('temp',response.data)
-                  console.log('1');
+                  this.mail = response.data[0].mail
+                  this.phone = response.data[0].phone
+                  this.sex = response.data[0].sex
+
                 } else {
-                  console.log('2');
                   console.log(response.message);
                 }
               })
+                  .catch(function (error) {
+                console.log(error);
+              })
+            },
+            getApply:function (){
 
+              this.axios.post('/daily/model_from_php/getPInfo.php',data,{
+                headers:{'Content-Type':'application/x-www-form-urlencoded'}
+              })
+                  .then(response=>{
+                if (response.status >= 200 && response.status < 300) {
+                  console.log(response.data)
+
+                } else {
+                  console.log(response.message);
+                }
+              })
+                  .catch(function (error) {
+                console.log(error);
+              })
             }
         }
 
