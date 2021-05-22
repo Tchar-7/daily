@@ -111,13 +111,17 @@
                             </el-radio-group>
                         </el-form-item>
 
+                      <el-form-item v-if="ruleForm.inside=='已返乡'">
+
+                        <p>若未返乡请勿填写</p>
+
                         <el-form-item label="返乡时间">
-                            <el-date-picker
-                                    v-model="ruleForm.back"
-                                    type="datetime"
-                                    placeholder="选择日期时间"
-                                    default-time="12:00:00">
-                            </el-date-picker>
+                          <el-date-picker
+                              v-model="ruleForm.back"
+                              type="datetime"
+                              placeholder="选择日期时间"
+                              default-time="12:00:00">
+                          </el-date-picker>
                         </el-form-item>
 
                         <el-form-item label="乘坐何种交通工具（请填写相应的班号、车牌号）">
@@ -136,6 +140,10 @@
                             <el-input v-model="ruleForm.other" v-if="isInArray(ruleForm.traffic,'其他')"></el-input>
                           </el-checkbox-group>
                         </el-form-item>
+
+                      </el-form-item>
+
+
 
                     </el-form>
 
@@ -417,15 +425,110 @@
             handleClick(tab, event) {
                 console.log(tab, event);
             },
-            submitForm(formName) {
-                this.$refs[formName].validate((valid) => {
-                    if (valid) {
-                        alert('submit!');
-                    } else {
-                        console.log('error submit!!');
-                        return false;
+            travel1(){
+                var str="";
+                if(this.isInArray(this.ruleForm.traffic,"飞机")){
+                  str=str+"飞机："+this.ruleForm.plane+"   ";
+                }
+                if(this.isInArray(this.ruleForm.traffic,"火车")){
+                  str=str+"火车："+this.ruleForm.train+"   ";
+                }
+                if(this.isInArray(this.ruleForm.traffic,"客车")){
+                  str=str+"客车："+this.ruleForm.bus+"   ";
+                }
+                if(this.isInArray(this.ruleForm.traffic,"轮船")){
+                  str=str+"轮船："+this.ruleForm.ship+"   ";
+                }
+                if(this.isInArray(this.ruleForm.traffic,"自驾车")){
+                  str=str+"自驾车："+this.ruleForm.car+"   ";
+                }
+                if(this.isInArray(this.ruleForm.traffic,"其他")){
+                  str=str+"其他："+this.ruleForm.bus+"   ";
+                }
+                return str;
+            },
+            travel2(){
+              var str="";
+              if(this.isInArray(this.ruleForm.traffic2,"飞机")){
+                str=str+"飞机："+this.ruleForm.plane2+"   ";
+              }
+              if(this.isInArray(this.ruleForm.traffic2,"火车")){
+                str=str+"火车："+this.ruleForm.train2+"   ";
+              }
+              if(this.isInArray(this.ruleForm.traffic2,"客车")){
+                str=str+"客车："+this.ruleForm.bus2+"   ";
+              }
+              if(this.isInArray(this.ruleForm.traffic2,"轮船")){
+                str=str+"轮船："+this.ruleForm.ship2+"   ";
+              }
+              if(this.isInArray(this.ruleForm.traffic2,"自驾车")){
+                str=str+"自驾车："+this.ruleForm.car2+"   ";
+              }
+              if(this.isInArray(this.ruleForm.traffic2,"其他")){
+                str=str+"其他："+this.ruleForm.bus2+"   ";
+              }
+              return str;
+            },
+            submitForm() {
+              this.$refs.ruleForm.validate(valid => {
+                if(valid){
+                  this.axios({
+                    method:"post",
+                    url:'/daily/model_from_php/Tianbao.php',
+
+                    headers:{
+                      'Content-type': 'application/x-www-form-urlencoded'
+                    },
+                    params: {
+                      'name': this.ruleForm.name,
+                      'userID':this.ruleForm.userID,
+                      'sex':this.ruleForm.sex,
+                      'campus':this.ruleForm.campus,
+                      'category':this.ruleForm.category,
+                      'departments':this.ruleForm.departments,
+                      'location1':this.ruleForm.location1,
+                      'location2':this.ruleForm.location2,
+                      'phone':this.ruleForm.phone,
+                      'inside':this.ruleForm.inside,
+                      'health':this.ruleForm.health,
+                      'temperature':this.ruleForm.temperature,
+                      'color':this.ruleForm.color,
+                      'back':this.ruleForm.back,
+                      'traffic1':this.travel1(),
+                      'traffic2':this.travel2(),
+                      'name2':this.ruleForm.name2,
+                      'phone2':this.ruleForm.phone2,
+                      'address':this.ruleForm.address,
+                      'risk':this.ruleForm.risk,
+                      'isolation':this.ruleForm.isolation,
+                      'isolationplace':this.ruleForm.isolationplace,
+                      'confirm':this.ruleForm.confirm,
+                      'like':this.ruleForm.like,
+                      'test':this.ruleForm.test,
+                      'like2':this.ruleForm.like2,
+                      'touch':this.ruleForm.touch,
+                      'likeinf':this.ruleForm.likeinf,
+                      'like2inf':this.ruleForm.like2inf,
+                      'touchinf':this.ruleForm.touchinf,
+                      'gotorisk':this.ruleForm.gotorisk,
+                      'gotoriskinf':this.ruleForm.gotoriskinf,
+                      'backfrom':this.ruleForm.backfrom,
+                      'backfromtime':this.ruleForm.backfromtime,
+                      'country':this.ruleForm.country,
+                      'agree':this.ruleForm.agree
                     }
-                });
+                  })
+                      // eslint-disable-next-line no-unused-vars
+                      .then((valid) => {
+
+                      })
+                }else {
+                  this.$message.error('请填写正确信息');
+                  console.log('error submit!!');
+                  return false;
+
+                }
+              });
             },
             resetForm(formName) {
                 this.$refs[formName].resetFields();

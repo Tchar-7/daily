@@ -25,7 +25,10 @@ if(strcmp($reason,"其他")){
 }
 
 
-$sql="insert into apply_for_out values('$userID','$name','$sex','$identity','$phone','$start','$finish','$left','$reason','$stay','$color','$time')";
-$result = $conn->query($sql);
+$sql1="insert into apply_for_out values('$userID','$name','$sex','$identity','$phone','$start','$finish','$left','$reason','$stay','$color','$time')";
+$sql2="insert into apply_recording values(recordID,'$userID','$name','$time',2,'')";
+
+$result1 = $conn->query($sql1);
+$result2 = $conn->query($sql2);
 $conn->close();
 ?>
