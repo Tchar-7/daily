@@ -63,6 +63,7 @@ $sql2="insert into back_info values('$userID','$backfrom','$backfromtime','$coun
 $sql3="insert into additional_info values('$name2','$phone2','$address','$risk','$isolation','$confirm','$like','$test','$like2','$touch','$gotorisk','$time')";
 $sql4="insert into daily_info values('$userID','$inside','$health','$temperature','$color','$back','$traffic1','$time')";
 
+
 $result1 = $conn->query($sql1);
 $result2 = $conn->query($sql2);
 $result3 = $conn->query($sql3);
