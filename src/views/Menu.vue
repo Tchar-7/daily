@@ -221,7 +221,7 @@
                   console.log(error);
                 })
           },
-            getApply2:function (){
+             getApply2:function (){
               this.axios.post('/daily/model_from_php/getApply2.php',data,{
                 headers:{'Content-Type':'application/x-www-form-urlencoded'}
               })

@@ -87,10 +87,16 @@ export default {
                     this.$router.push('/menu')
                   }, 600);
                 }
+              else if(localStorage.getItem('userIdentity') == '1'){
+                  // eslint-disable-next-line no-unused-vars
+                  setTimeout(valid => {
+                    this.$router.push('/TeacherMenu')
+                  }, 600);
+                }
                 else {
                   // eslint-disable-next-line no-unused-vars
                   setTimeout(valid => {
-                    this.$router.push('/Admin_menu')
+                    this.$router.push('/AdminMenu')
                   }, 600);
                 }
               }

@@ -13,13 +13,15 @@ export default {
       var ID = localStorage.getItem('userID')
       var identity = localStorage.getItem('userIdentity')
     if(ID !=null){
-
-      if(identity =='1'){
-        router.push('/Menu')
-      }
-      else {
-        router.push('/Admin_menu')
-      }
+        if(identity =='1'){
+          router.push('/Menu')
+        }
+        else if(identity =='2'){
+          router.push('/TeacherMenu')
+        }
+        else {
+          router.push('/AdminMenu')
+        }
     }else{
       router.push('/')
     }
