@@ -93,7 +93,7 @@
                             <el-radio-group v-model="ruleForm.health">
                                 <el-radio label="正常"></el-radio><br>
                                 <el-radio label="不适"></el-radio>
-                                <el-input></el-input>
+                                <el-input v-if="ruleForm.health=='不适'" v-model="ruleForm.healthinf"></el-input>
                             </el-radio-group>
                         </el-form-item>
 
@@ -247,35 +247,39 @@
                             </el-radio-group>
                         </el-form-item>
 
+                      <el-form-item v-if="ruleForm.backfrom=='是'">
                         <el-form-item label="境外回国时间">
-                            <el-date-picker
-                                    v-model="ruleForm.backfromtime"
-                                    type="datetime"
-                                    placeholder="选择日期时间"
-                                    default-time="12:00:00">
-                            </el-date-picker>
+                          <el-date-picker
+                              v-model="ruleForm.backfromtime"
+                              type="datetime"
+                              placeholder="选择日期时间"
+                              default-time="12:00:00">
+                          </el-date-picker>
                         </el-form-item>
 
                         <el-form-item label="从哪个国家返回">
-                            <el-input v-model="ruleForm.country"></el-input>
+                          <el-input v-model="ruleForm.country"></el-input>
                         </el-form-item>
 
-                      <el-form-item label="乘坐何种交通工具（请填写相应的班号、车牌号）">
-                        <el-checkbox-group v-model="ruleForm.traffic2">
-                          <el-checkbox label="飞机" ></el-checkbox>
-                          <el-input v-model="ruleForm.plane2" v-if="isInArray(ruleForm.traffic2,'飞机')"></el-input><br>
-                          <el-checkbox label="火车" ></el-checkbox>
-                          <el-input v-model="ruleForm.train2" v-if="isInArray(ruleForm.traffic2,'火车')"></el-input><br>
-                          <el-checkbox label="客车" ></el-checkbox>
-                          <el-input v-model="ruleForm.bus2" v-if="isInArray(ruleForm.traffic2,'客车')"></el-input><br>
-                          <el-checkbox label="轮船" ></el-checkbox>
-                          <el-input v-model="ruleForm.ship2" v-if="isInArray(ruleForm.traffic2,'轮船')"></el-input><br>
-                          <el-checkbox label="自驾车" ></el-checkbox>
-                          <el-input v-model="ruleForm.car2" v-if="isInArray(ruleForm.traffic2,'自驾车')"></el-input><br>
-                          <el-checkbox label="其他" ></el-checkbox>
-                          <el-input v-model="ruleForm.other2" v-if="isInArray(ruleForm.traffic2,'其他')"></el-input>
-                        </el-checkbox-group>
+                        <el-form-item label="乘坐何种交通工具（请填写相应的班号、车牌号）">
+                          <el-checkbox-group v-model="ruleForm.traffic2">
+                            <el-checkbox label="飞机" ></el-checkbox>
+                            <el-input v-model="ruleForm.plane2" v-if="isInArray(ruleForm.traffic2,'飞机')"></el-input><br>
+                            <el-checkbox label="火车" ></el-checkbox>
+                            <el-input v-model="ruleForm.train2" v-if="isInArray(ruleForm.traffic2,'火车')"></el-input><br>
+                            <el-checkbox label="客车" ></el-checkbox>
+                            <el-input v-model="ruleForm.bus2" v-if="isInArray(ruleForm.traffic2,'客车')"></el-input><br>
+                            <el-checkbox label="轮船" ></el-checkbox>
+                            <el-input v-model="ruleForm.ship2" v-if="isInArray(ruleForm.traffic2,'轮船')"></el-input><br>
+                            <el-checkbox label="自驾车" ></el-checkbox>
+                            <el-input v-model="ruleForm.car2" v-if="isInArray(ruleForm.traffic2,'自驾车')"></el-input><br>
+                            <el-checkbox label="其他" ></el-checkbox>
+                            <el-input v-model="ruleForm.other2" v-if="isInArray(ruleForm.traffic2,'其他')"></el-input>
+                          </el-checkbox-group>
+                        </el-form-item>
+
                       </el-form-item>
+
                     </el-form>
 
                 </div>
@@ -290,8 +294,8 @@
                         <el-checkbox v-model="ruleForm.agree" label="同意签订承诺书"></el-checkbox>
 
                         <el-form-item>
-                            <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-                            <el-button @click="resetForm('ruleForm')">重置</el-button>
+                            <el-button type="primary" @click="submitForm()">提交</el-button>
+                            <el-button @click="resetForm()">重置</el-button>
                         </el-form-item>
 
                     </el-form>
@@ -309,19 +313,19 @@
         data() {
             return {
                 options: [{
-                    value: '选项1',
+                    value: '计算机学院',
                     label: '计算机学院'
                 }, {
-                    value: '选项2',
+                    value: '机械学院',
                     label: '机械学院'
                 }, {
-                    value: '选项3',
+                    value: '化工学院',
                     label: '化工学院'
                 }, {
-                    value: '选项4',
+                    value: '经济学院',
                     label: '经济学院'
                 }, {
-                    value: '选项5',
+                    value: '理学院',
                     label: '理学院'
                 }],
                 value: '',
@@ -344,9 +348,10 @@
                     phone:'',
                     inside:'',
                     health:'',
+                    healthinf:'',
                     temperature:'',
                     color:'',
-                    back:'',
+                    back:'NULL',
                     traffic:[],
                     plane:'',
                     train:'',
@@ -371,7 +376,7 @@
                     gotorisk:'',
                     gotoriskinf:'',
                     backfrom:'',
-                    backfromtime:'',
+                    backfromtime:'NULL',
                     country:'',
                     traffic2:[],
                     plane2:'',
@@ -403,6 +408,15 @@
               }
             }
             return false;
+          },
+
+          formateDate:function (datetime) {
+            function addDateZero(num) {
+              return (num < 10 ? '0' + num : num)
+            }
+            const d = new Date(datetime)
+            const formatdatetime = d.getFullYear() + '-' + addDateZero(d.getMonth() + 1) + '-' + addDateZero(d.getDate()) + ' ' + addDateZero(d.getHours()) + ':' + addDateZero(d.getMinutes()) + ':' + addDateZero(d.getSeconds())
+            return formatdatetime
           },
 
             getTime(){
@@ -491,9 +505,10 @@
                       'phone':this.ruleForm.phone,
                       'inside':this.ruleForm.inside,
                       'health':this.ruleForm.health,
+                      'healthinf':this.ruleForm.healthinf,
                       'temperature':this.ruleForm.temperature,
                       'color':this.ruleForm.color,
-                      'back':this.ruleForm.back,
+                      'back':this.formateDate(this.ruleForm.back),
                       'traffic1':this.travel1(),
                       'traffic2':this.travel2(),
                       'name2':this.ruleForm.name2,
@@ -513,14 +528,14 @@
                       'gotorisk':this.ruleForm.gotorisk,
                       'gotoriskinf':this.ruleForm.gotoriskinf,
                       'backfrom':this.ruleForm.backfrom,
-                      'backfromtime':this.ruleForm.backfromtime,
+                      'backfromtime':this.formateDate(this.ruleForm.backfromtime),
                       'country':this.ruleForm.country,
                       'agree':this.ruleForm.agree
                     }
                   })
                       // eslint-disable-next-line no-unused-vars
                       .then((valid) => {
-
+                        console.log(valid.data)
                       })
                 }else {
                   this.$message.error('请填写正确信息');
