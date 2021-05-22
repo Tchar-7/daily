@@ -60,15 +60,15 @@
                 <div class="applying">
                     <h4 align="center">办理中</h4>
                     <el-table
-                            :data="tableData"
+                            :data="tableData0"
                             style="width: 100%">
                         <el-table-column
-                                prop="date"
+                                prop="applyTime"
                                 label="申请时间"
                                 width="180">
                         </el-table-column>
                         <el-table-column
-                                prop="name"
+                                prop="applyName"
                                 label="办理事项"
                                 width="180">
                         </el-table-column>
@@ -77,15 +77,15 @@
                 <div class="failed">
                     <h4 align="center">办理失败</h4>
                     <el-table
-                            :data="tableData"
+                            :data="tableData1"
                             style="width: 100%">
                         <el-table-column
-                                prop="date"
+                                prop="applyTime"
                                 label="申请时间"
                                 width="180">
                         </el-table-column>
                         <el-table-column
-                                prop="name"
+                                prop="applyName"
                                 label="办理事项"
                                 width="180">
                         </el-table-column>
@@ -94,15 +94,15 @@
                 <div class="history">
                     <h4 align="center">历史办理</h4>
                     <el-table
-                            :data="tableData"
+                            :data="tableData2"
                             style="width: 100%">
                         <el-table-column
-                                prop="date"
+                                prop="applyTime"
                                 label="申请时间"
                                 width="180">
                         </el-table-column>
                         <el-table-column
-                                prop="name"
+                                prop="applyName"
                                 label="办理事项"
                                 width="180">
                         </el-table-column>
@@ -134,12 +134,17 @@
                 mail:'',
                 phone:'',
                 sex:'',
-                tableData: []
+                tableData0: [],
+                tableData1: [],
+                tableData2: []
             };
 
         },
         created() {
-        this.getInfo()
+          this.getInfo()
+          this.getApply0()
+          this.getApply1()
+          this.getApply2()
       },
         methods: {
             handleSelect(key, keyPath) {
@@ -185,15 +190,44 @@
                 console.log(error);
               })
             },
-            getApply:function (){
-
-              this.axios.post('/daily/model_from_php/getPInfo.php',data,{
+            getApply0:function (){
+            this.axios.post('/daily/model_from_php/getApply0.php',data,{
+              headers:{'Content-Type':'application/x-www-form-urlencoded'}
+            })
+                .then(response=>{
+                  if (response.status >= 200 && response.status < 300) {
+                    this.tableData0 = response.data;
+                  } else {
+                    console.log(response.message);
+                  }
+                })
+                .catch(function (error) {
+                  console.log(error);
+                })
+          },
+            getApply1:function (){
+            this.axios.post('/daily/model_from_php/getApply1.php',data,{
+              headers:{'Content-Type':'application/x-www-form-urlencoded'}
+            })
+                .then(response=>{
+                  if (response.status >= 200 && response.status < 300) {
+                    this.tableData1 = response.data;
+                  } else {
+                    console.log(response.message);
+                  }
+                })
+                .catch(function (error) {
+                  console.log(error);
+                })
+          },
+            getApply2:function (){
+              this.axios.post('/daily/model_from_php/getApply2.php',data,{
                 headers:{'Content-Type':'application/x-www-form-urlencoded'}
               })
                   .then(response=>{
                 if (response.status >= 200 && response.status < 300) {
+                  this.tableData2 = response.data;
                   console.log(response.data)
-
                 } else {
                   console.log(response.message);
                 }

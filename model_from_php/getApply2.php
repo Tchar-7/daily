@@ -7,20 +7,18 @@ if($conn->connect_error){
 }
 
 $ID = $_POST['userID'];
-$now=date("Y-m-d H:i:s",time());
-$firstDay = date('Y-m-01 00:00:00');
 
-$user = array();
+$apply = array();
 
-$sql = "select * from personal_info where ID = '$ID' and (time >'$firstDay'and time <'$now')" ;
-$result = $conn->query($sql);
+$sql1 = "select * from apply_recording where userID = '$ID' and state = 2" ;
+$result = $conn->query($sql1);
 
-if(mysqli_num_rows($result)>0){
+$applyNum1 = mysqli_num_rows($result);
+for($t = 0;$t<$applyNum1;$t++){
     $row=mysqli_fetch_assoc($result);
-    $user[]=$row;
-    echo (json_encode($user,JSON_UNESCAPED_UNICODE));
+    $apply[$t]=$row;
 }
-
+echo (json_encode($apply,JSON_UNESCAPED_UNICODE));
 $conn->close();
 ?>
 
