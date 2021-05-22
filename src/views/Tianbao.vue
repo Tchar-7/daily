@@ -3,7 +3,7 @@
     <div>
         <div>
             <p>{{nownowDateTime}}</p>
-            <a href="Menu">返回</a>
+            <a href="Menu" class="returnButton">返回</a>
         </div>
 
         <el-tabs v-model="activeName" @tab-click="handleClick">
@@ -446,4 +446,17 @@
         height:5px;
     }
 
+    .el-tabs {
+      margin-left: 35%;
+      margin-right: 30%;
+    }
+
+    .returnButton {
+      margin-left: 35%;
+    }
+
+    .el-radio {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
 </style>
