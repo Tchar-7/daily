@@ -20,6 +20,7 @@
             <el-button slot="prepend" icon="el-icon-lx-lock"></el-button>
           </el-input>
         </el-form-item>
+
         <el-form-item>
           <el-radio-group v-model="param.radio">
             <el-radio :label="1">学生</el-radio>
@@ -27,7 +28,6 @@
             <el-radio :label="3">管理员</el-radio>
           </el-radio-group>
         </el-form-item>
-
 
         <div class="login-btn">
           <el-button type="primary" @click="submitForm()">登录</el-button>

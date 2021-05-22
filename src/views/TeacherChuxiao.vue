@@ -2,7 +2,7 @@
 
     <div>
         <div>
-            <a href="Menu.vue">返回</a>
+            <a href="templates/Menu.vue">返回</a>
         </div>
 
         <el-tabs v-model="activeName">
@@ -13,7 +13,7 @@
                             <el-input v-model="ruleForm.name"></el-input>
                         </el-form-item>
 
-                        <el-form-item label="学号" prop="userID">
+                        <el-form-item label="工号" prop="userID">
                             <el-input v-model="ruleForm.userID"></el-input>
                         </el-form-item>
 
@@ -24,21 +24,13 @@
                             </el-radio-group>
                         </el-form-item>
 
-                        <el-form-item label="类别  ">
-                            <el-radio-group v-model="ruleForm.category">
-                                <el-radio label="内地本科生"></el-radio>
-                                <el-radio label="内地研究生"></el-radio>
-                                <el-radio label="港澳台学生"></el-radio>
-                                <el-radio label="留学生"></el-radio>
-                                <el-radio label="内地成教育学生"></el-radio>
-                                <el-radio label="其他"></el-radio>
-                            </el-radio-group>
-                            <el-input v-if="ruleForm.category=='其他'" v-model="ruleForm.reason2"/>
-                        </el-form-item>
-
 
                         <el-form-item label="手机号码">
                             <el-input v-model="ruleForm.phone"></el-input>
+                        </el-form-item>
+
+                        <el-form-item label="出差地址">
+                        <el-input v-model="ruleForm.phone"></el-input>
                         </el-form-item>
 
                         <el-form-item label="通行开始时间">
@@ -68,31 +60,6 @@
                             </el-radio-group>
                         </el-form-item>
 
-                        <el-form-item label="申请理由">
-                            <el-input v-model="ruleForm.reason"></el-input>
-                        </el-form-item>
-
-                        <el-form-item label="是否在外留宿">
-                            <el-radio-group v-model="ruleForm.stay">
-                                <el-radio label="是"></el-radio>
-                                <el-radio label="否"></el-radio>
-                            </el-radio-group>
-                        </el-form-item>
-
-                        <el-input
-                            v-model="ruleForm.address"
-                            v-if="ruleForm.stay=='是'"
-                            placeholder="具体地址"/>
-
-                        <el-form-item label="杭州健康码”状态">
-                            <el-radio-group v-model="ruleForm.color">
-                                <el-radio label="红码"></el-radio>
-                                <el-radio label="黄码"></el-radio>
-                                <el-radio label="绿码"></el-radio>
-                                <el-radio label="橙码"></el-radio>
-                            </el-radio-group>
-                        </el-form-item>
-
                         <el-form-item>
                             <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
                             <el-button @click="resetForm()">重置</el-button>
@@ -106,7 +73,7 @@
 
 <script>
     export default {
-        name: "Chuxiao",
+        name: "TeacherChuxiao",
         data() {
             return {
                 activeName: 'second',

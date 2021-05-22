@@ -18,8 +18,7 @@
             </el-submenu>
             <el-submenu index="3">
                 <template slot="title">其他</template>
-                <el-menu-item index="2-1">销假</el-menu-item>
-                <el-menu-item index="2-2" @click="Chuxiao()">出校申请</el-menu-item>
+                <el-menu-item index="2-1">申请审批</el-menu-item>
             </el-submenu>
             <button v-on:click="logOut()">登出</button>
         </el-menu>
@@ -120,12 +119,21 @@
     import router from "@/router";
 
     export default {
-        name:"Admin_menu",
+        name:"AdminMenu",
         data() {
             return {
                 activeIndex2: '1',
                 activeName: 'second',
-                tableData: []
+                tableData: [],
+                uName:'',
+                department:'',
+                uID:'',
+                mail:'',
+                phone:'',
+                sex:'',
+                tableData0: [],
+                tableData1: [],
+                tableData2: []
             };
 
         },
@@ -140,9 +148,8 @@
             Tianbao() {
                 this.$router.push('/Tianbao');
             },
-
-            Chuxiao() {
-                this.$router.push('/Chuxiao');
+            Tongji() {
+                this.$router.push('/Tongji');
             },
             Qiandao() {
                 this.$router.push('/Qiandao');
