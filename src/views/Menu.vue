@@ -75,14 +75,15 @@
                                 width="180">
                         </el-table-column>
                     </el-table>
+                    <div class="block">
+                        <span class="demonstration"></span>
+                        <el-pagination
+                                layout="prev, pager, next"
+                                :total="50">
+                        </el-pagination>
+                    </div>
                 </div>
-                <div class="block">
-                    <span class="demonstration">页数较少时的效果</span>
-                    <el-pagination
-                            layout="prev, pager, next"
-                            :total="50">
-                    </el-pagination>
-                </div>
+
                 <div class="failed">
                     <h4 align="center">办理失败</h4>
                     <el-table
@@ -99,7 +100,15 @@
                                 width="180">
                         </el-table-column>
                     </el-table>
+                    <div class="block">
+                        <span class="demonstration"></span>
+                        <el-pagination
+                                layout="prev, pager, next"
+                                :total="50">
+                        </el-pagination>
+                    </div>
                 </div>
+
                 <div class="history">
                     <h4 align="center">历史办理</h4>
                     <el-table
@@ -116,6 +125,13 @@
                                 width="180">
                         </el-table-column>
                     </el-table>
+                    <div class="block">
+                        <span class="demonstration"></span>
+                        <el-pagination
+                                layout="prev, pager, next"
+                                :total="50">
+                        </el-pagination>
+                    </div>
                 </div>
             </div>
         </el-tab-pane>
