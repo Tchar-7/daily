@@ -240,8 +240,10 @@
     background: #e5e9f2;
 }
 .grid-content {
+  padding: 5px 10px;
     border-radius: 4px;
     min-height: 36px;
+    margin: 0px 5px;
 }
 .applying{
     float:left;
