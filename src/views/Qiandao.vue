@@ -19,8 +19,27 @@
             </el-row>
         </div>
         <br>
-        <div class="cal">
+        <div class="cal" id="cal">
             <el-calendar v-model="value">
+              <template
+                  slot="dateCell"
+                  slot-scope="{date, data}">
+                <p>
+                  {{data.day.split('-').slice(1).join('-')}}
+                </p>
+                <div v-for="item in calendarData" :key="item">
+                  <div v-if="(item.months).indexOf(data.day.split('-').slice(1)[0])!=-1">
+                    <div v-if="(item.days).indexOf(data.day.split('-').slice(2).join('-'))!=-1">
+                      <el-tooltip :content="item.things">
+                        <div>{{item.things}}</div>
+                      </el-tooltip>
+                    </div>
+                    <div v-else></div>
+                  </div>
+                  <div v-else>
+                  </div>
+                </div>
+              </template>
             </el-calendar>
         </div>
     </div>
@@ -41,11 +60,14 @@
               uID:'',
               uName:localStorage.getItem('userName'),
               number_of_day:'',
-              number_of_queqin:''
+              number_of_queqin:'',
+              calendarData: [],
+              value: new Date(),
             };
         },
       created() {
         this.getInfo()
+        this.getKaoqinInfo()
       },
       methods: {
           getInfo:function () {
@@ -56,6 +78,26 @@
                   if (response.status >= 200 && response.status < 300) {
                     this.number_of_day = response.data[0].num_of_day
                     this.number_of_queqin = response.data[0].num_of_queqin
+                  } else {
+                    console.log(response.message);
+                  }
+                })
+                .catch(function (error) {
+                  console.log(error);
+                })
+          },
+
+          getKaoqinInfo:function () {
+            this.axios.post('/daily/model_from_php/getKaoQinInfo.php',data,{
+              headers:{'Content-Type':'application/x-www-form-urlencoded'}
+            })
+                .then(response=>{
+                  if (response.status >= 200 && response.status < 300) {
+                    for (let i = 0; i < response.data.length; i++) {
+                        let mon = response.data[i].apply_date.slice(5, 7);
+                        let day = response.data[i].apply_date.slice(8);
+                        this.calendarData.push({months:[mon],days: [day],things:'已签到'})
+                      }
                   } else {
                     console.log(response.message);
                   }
