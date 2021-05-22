@@ -15,6 +15,7 @@ $location2=$_GET['location2'];
 $phone=$_GET['phone'];
 $inside=$_GET['inside'];
 $health=$_GET['health'];
+$healthinf=$_GET['healthinf'];
 $temperature=$_GET['temperature'];
 $color=$_GET['color'];
 $back=$_GET['back'];
@@ -57,12 +58,20 @@ if($touch=='是'){
 if($gotorisk=='是'){
     $gotorisk=$gotorisk+':'+$gotoriskinf;
 }
+if($health=='不适'){
+    $health=$health+':'+$healthinf;
+}
+if($back=='NaN-NaN-NaN NaN:NaN:NaN'){
+    $back=NULL;
+}
+if($backfromtime=='NaN-NaN-NaN NaN:NaN:NaN'){
+    $backfromtime=NULL;
+}
 
-$sql1="insert into basis_info values('$userID','$name','$sex','$campus','$category','$departments','$location1','$location2')";
+$sql1="insert into basis_info values('$userID','$name','$sex','$campus','$category','$departments','$location1','$location2','$phone')";
 $sql2="insert into back_info values('$userID','$backfrom','$backfromtime','$country','$traffic2','$time')";
-$sql3="insert into additional_info values('$name2','$phone2','$address','$risk','$isolation','$confirm','$like','$test','$like2','$touch','$gotorisk','$time')";
+$sql3="insert into additional_info values('$userID','$name2','$phone2','$address','$risk','$isolation','$confirm','$like','$test','$like2','$touch','$gotorisk','$time')";
 $sql4="insert into daily_info values('$userID','$inside','$health','$temperature','$color','$back','$traffic1','$time')";
-
 
 $result1 = $conn->query($sql1);
 $result2 = $conn->query($sql2);
