@@ -29,39 +29,39 @@
                             <el-input v-model="ruleForm.phone"></el-input>
                         </el-form-item>
 
-                        <el-form-item label="出差地址">
-                        <el-input v-model="ruleForm.address"></el-input>
-                        </el-form-item>
+                        <div v-for="index in num" :key="index">
 
-                        <el-form-item label="通行开始时间">
+                          <el-form-item label="出差地址">
+                            <el-input v-model="ruleForm.address[index]"></el-input>
+                          </el-form-item>
+
+                          <el-form-item label="通行开始时间">
                             <el-date-picker
-                                    v-model="ruleForm.start"
-                                    type="datetime"
-                                    placeholder="选择日期时间"
-                                    default-time="12:00:00">
+                                v-model="ruleForm.start[index]"
+                                type="datetime"
+                                placeholder="选择日期时间"
+                                default-time="12:00:00">
                             </el-date-picker>
-                        </el-form-item>
+                          </el-form-item>
 
-                        <el-form-item label="通行结束时间">
+                          <el-form-item label="通行结束时间">
                             <el-date-picker
-                                    v-model="ruleForm.finish"
-                                    type="datetime"
-                                    placeholder="选择日期时间"
-                                    default-time="12:00:00">
+                                v-model="ruleForm.finish[index]"
+                                type="datetime"
+                                placeholder="选择日期时间"
+                                default-time="12:00:00">
                             </el-date-picker>
-                        </el-form-item>
+                          </el-form-item>
 
-                        <p v-if="ruleForm.start>ruleForm.finish">起始时间不能晚于结束时间</p>
+                          <p v-if="ruleForm.start[index]>ruleForm.finish[index]">起始时间不能晚于结束时间</p>
 
-                        <el-form-item label="是否离开杭州">
-                            <el-radio-group v-model="ruleForm.left">
-                                <el-radio label="是"></el-radio>
-                                <el-radio label="否"></el-radio>
-                            </el-radio-group>
-                        </el-form-item>
+                        </div>
+                        <el-button @click="add()">增加记录</el-button>
+                        <el-button @click="pop()">删除记录</el-button>
+
 
                         <el-form-item>
-                            <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
+                            <el-button type="primary" @click="submitForm()">提交</el-button>
                             <el-button @click="resetForm()">重置</el-button>
                         </el-form-item>
                     </el-form>
@@ -80,16 +80,17 @@ import Qs from 'qs'
         data() {
 
             return {
+                num:[0],
                 activeName: 'second',
                 ruleForm: {
                     name: '',
                     sex:'',
                     userID:'',
-                    start:'',
-                    finish:'',
+                    start:['','',''],
+                    finish:['','',''],
                     category:'',
                     left:'',
-                    address:'',
+                    address:['','',''],
                     phone: '',
                 },
                 rules: {
@@ -106,6 +107,26 @@ import Qs from 'qs'
         },
 
       methods: {
+          add(){
+            var number=this.num.length;
+            if(number<3){
+              this.num.push(number)
+            }
+          },
+
+          pop(){
+          var number=this.num.length;
+          if(number>1){
+            this.num.pop();
+          }
+        },
+
+        arraytime:function (array){
+          for(var i=0;i<array.length;i++){
+            array[i]=this.formateDate(array[i]);
+          }
+          return array;
+        },
 
         formateDate:function (datetime) {
           function addDateZero(num) {
@@ -127,12 +148,13 @@ import Qs from 'qs'
                   'Content-type': 'application/x-www-form-urlencoded'
                 },
                 params: {
+                  'num':String(this.num.length),
                   'identity':localStorage.getItem('userIdentity'),
                   'name':this.ruleForm.name,
                   'sex':this.ruleForm.sex,
                   'userID':this.ruleForm.userID,
-                  'start':this.formateDate(this.ruleForm.start),
-                  'finish':this.ruleForm.finish,
+                  'start':this.arraytime(this.ruleForm.start),
+                  'finish':this.arraytime(this.ruleForm.finish),
                   'category':this.ruleForm.category,
                   'left':this.ruleForm.left,
                   'address':this.ruleForm.address,
