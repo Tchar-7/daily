@@ -81,7 +81,7 @@ export default {
                 localStorage.setItem('userName', valid.data[0].userName);
                 localStorage.setItem('userIdentity',valid.data[0].identity)
 
-                if(this.userIdentity=='1') {
+                if(localStorage.getItem('userIdentity') == '1') {
                   // eslint-disable-next-line no-unused-vars
                   setTimeout(valid => {
                     this.$router.push('/menu')

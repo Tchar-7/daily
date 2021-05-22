@@ -7,7 +7,6 @@ if($conn->connect_error){
 }
 
 $ID = $_POST['userID'];
-$ID='201906150215';
 $apply = array();
 
 $sql = "select * from apply_recording where userID = '$ID' and state = 1" ;
