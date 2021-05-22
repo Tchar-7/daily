@@ -1,6 +1,3 @@
-// 假设要请求的接口是：http://40.00.100.100:3002/api/user/add
-// eslint-disable-next-line no-unused-vars
-const proxy = require('http-proxy-middleware');
 module.exports = {
 
     devServer:{
@@ -13,7 +10,7 @@ module.exports = {
                 changeOrigin: true,    //这里true表示实现跨域
                 secure: false, // 如果是https接口，需要配置这个参数
                 pathRewrite: {
-                    '^/daily':'/daily'  //这里理解成用‘/api’代替target里面的地址，后面组件中我们掉接口时直接用api代替 比如我要调用'http://40.00.100.100:3002/api/user/add'，直接写‘/api/user/add’即可
+                    '^/daily':'/daily' //相当于localhost/daily 变成 121.4.31.156/daily
                 }
             },
             // 假如又有一个接口是：http://40.00.100.100:3002/get/list/add

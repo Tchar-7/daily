@@ -61,7 +61,7 @@ export default {
         if(valid){
             this.axios({
               method:"post",
-              url:'/daily/model_from_php/lgoInCheck.php',
+              url:'/daily/model_from_php/logInCheck.php',
 
               headers:{
                 'Content-type': 'application/x-www-form-urlencoded'
