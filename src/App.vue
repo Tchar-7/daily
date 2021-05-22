@@ -11,9 +11,15 @@ export default {
 
   created:function (){
       var ID = localStorage.getItem('userID')
-      // var identity = localStorage.getItem('userIdentity')
+      var identity = localStorage.getItem('userIdentity')
     if(ID !=null){
+
+      if(identity =='1'){
         router.push('/Menu')
+      }
+      else {
+        router.push('/Admin_menu')
+      }
     }else{
       router.push('/')
     }

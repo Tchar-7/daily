@@ -167,6 +167,7 @@
             logOut(){
               localStorage.removeItem('userID');
               localStorage.removeItem('userIdentity');
+              localStorage.removeItem('userName');
               router.push('/');
             },
             getInfo:function (){

@@ -78,12 +78,21 @@ export default {
                 this.$message.success('登录成功');
 
                 localStorage.setItem('userID', valid.data[0].ID);
-                localStorage.setItem('userIdentity',valid.data[0].identity+'')
-                // eslint-disable-next-line no-unused-vars
-                setTimeout(valid=> {
-                  this.$router.push('/menu')
-                }, 600);
+                localStorage.setItem('userName', valid.data[0].userName);
+                localStorage.setItem('userIdentity',valid.data[0].identity)
 
+                if(this.userIdentity=='1') {
+                  // eslint-disable-next-line no-unused-vars
+                  setTimeout(valid => {
+                    this.$router.push('/menu')
+                  }, 600);
+                }
+                else {
+                  // eslint-disable-next-line no-unused-vars
+                  setTimeout(valid => {
+                    this.$router.push('/Admin_menu')
+                  }, 600);
+                }
               }
               else {
                 this.$message.error('用户名或密码错误,请重新输入!');
