@@ -12,7 +12,9 @@ $firstDay = date('Y-m-01 00:00:00');
 
 $user = array();
 
-$sql = "select * from personal_info where ID = '$ID' and (time >'$firstDay'and time <'$now')" ;
+$day =date("d",time());
+
+$sql = "select count(*) num_of_day, $day - count(*) num_of_queqin from daily_info where ID = '$ID '";
 $result = $conn->query($sql);
 
 if(mysqli_num_rows($result)>0){
