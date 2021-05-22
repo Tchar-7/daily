@@ -30,7 +30,7 @@
                         </el-form-item>
 
                         <el-form-item label="出差地址">
-                        <el-input v-model="ruleForm.phone"></el-input>
+                        <el-input v-model="ruleForm.address"></el-input>
                         </el-form-item>
 
                         <el-form-item label="通行开始时间">
@@ -72,9 +72,13 @@
 </template>
 
 <script>
-    export default {
+// import axios from 'axios';
+// eslint-disable-next-line no-unused-vars
+import Qs from 'qs'
+    export default{
         name: "TeacherChuxiao",
         data() {
+
             return {
                 activeName: 'second',
                 ruleForm: {
@@ -85,12 +89,8 @@
                     finish:'',
                     category:'',
                     left:'',
-                    reason:'',
-                    reason2:'',
-                    stay:'',
                     address:'',
                     phone: '',
-                    color:''
                 },
                 rules: {
                     name: [
@@ -106,6 +106,7 @@
         },
 
       methods: {
+
         formateDate:function (datetime) {
           function addDateZero(num) {
             return (num < 10 ? '0' + num : num)
@@ -117,9 +118,10 @@
         submitForm() {
           this.$refs.ruleForm.validate(valid => {
             if(valid){
+              const qs = require('qs');
               this.axios({
                 method:"post",
-                url:'/daily/model_from_php/apply_for_out.php',
+                url:'/daily/model_from_php/TeacherChuxiao.php',
 
                 headers:{
                   'Content-type': 'application/x-www-form-urlencoded'
@@ -133,17 +135,16 @@
                   'finish':this.ruleForm.finish,
                   'category':this.ruleForm.category,
                   'left':this.ruleForm.left,
-                  'reason':this.ruleForm.reason,
-                  'reason2':this.ruleForm.reason2,
-                  'stay':this.ruleForm.stay,
                   'address':this.ruleForm.address,
                   'phone': this.ruleForm.phone,
-                  'color':this.ruleForm.color
+                },
+                paramsSerializer: function(params) {
+                  return qs.stringify(params, {arrayFormat: 'indices'})
                 }
               })
                   // eslint-disable-next-line no-unused-vars
                   .then((valid) => {
-
+                    console.log(valid.data)
                   })
             }else {
               this.$message.error('请填写正确信息');
