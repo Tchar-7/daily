@@ -1,7 +1,7 @@
 <template>
   <div class="login-wrap">
     <div class="ms-title">每日一报系统</div>
-    <div class="ms-content">浙江工业大学<br>防疫期间<br>签到销假系统</div>
+    <div class="ms-logo">浙江工业大学<br>防疫期间<br>签到销假系统</div>
     <div class="ms-login">
       <el-form :model="param" :rules="rules" ref="login" label-width="30px" class="ms-content" >
 
@@ -103,6 +103,11 @@ export default {
 </script>
 
 <style scoped>
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .login-wrap {
   position: absolute;
   width: 100%;
@@ -117,17 +122,24 @@ export default {
   font-size: 20px;
   border-bottom: 1px solid #ddd;
 }
+.ms-logo {
+  display: inline-block;
+  margin-left: 15%;
+  font-size: 30px;
+}
 .ms-login {
-  margin-left: 700px;
+  display: inline-block;
+  margin-left: 30%;
+  margin-top: 10%;
   /*text-align: center;*/
   width: 400px;
   /*margin: -190px 0 0 -175px;*/
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.3);
-
+  text-align: center;
 }
 .ms-content {
-  padding: 30px 30px;
+  padding: 40px 30px;
   font-size: 30px;
 
 }
