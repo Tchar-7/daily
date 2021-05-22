@@ -23,7 +23,7 @@
             <button v-on:click="logOut()">登出</button>
     </el-menu>
     <div class="info">
-    <el-tabs v-model="activeName" @tab-click="handleClick">
+    <el-tabs  v-model="activeName" @tab-click="handleClick">
         <el-tab-pane label="个人信息" name="first">
             <div class="show-info"
                  >
@@ -33,23 +33,23 @@
                 <div class="detail"><!--个人信息-->
                     <el-row>
                         <el-col :span="4"><div class="grid-content bg-purple-light">姓名</div></el-col>
-                        <el-col :span="10"><div class="grid-content bg-purple">xx</div></el-col>
+                        <el-col :span="10"><div class="grid-content bg-purple">{{ uName }}</div></el-col>
                     </el-row>
                     <el-row>
                         <el-col :span="4"><div class="grid-content bg-purple-light">所在部门</div></el-col>
-                        <el-col :span="10"><div class="grid-content bg-purple">xx</div></el-col>
+                        <el-col :span="10"><div class="grid-content bg-purple">{{ department }}</div></el-col>
                     </el-row>
                     <el-row>
                         <el-col :span="4"><div class="grid-content bg-purple-light">学号/工号</div></el-col>
-                        <el-col :span="10"><div class="grid-content bg-purple">xx</div></el-col>
+                        <el-col :span="10"><div class="grid-content bg-purple">{{ uID }}</div></el-col>
                     </el-row>
                     <el-row>
                         <el-col :span="4"><div class="grid-content bg-purple-light">邮箱</div></el-col>
-                        <el-col :span="10"><div class="grid-content bg-purple">xx</div></el-col>
+                        <el-col :span="10"><div class="grid-content bg-purple">{{ mail }}</div></el-col>
                     </el-row>
                     <el-row>
                         <el-col :span="4"><div class="grid-content bg-purple-light">手机</div></el-col>
-                        <el-col :span="10"><div class="grid-content bg-purple">xx</div></el-col>
+                        <el-col :span="10"><div class="grid-content bg-purple">{{ phone }}</div></el-col>
                     </el-row>
 
                 </div>
@@ -117,17 +117,27 @@
 
 <script>
     import router from "@/router";
+    // import axios from 'axios';
 
     export default {
         name:"Menu",
         data() {
             return {
                 activeIndex2: '1',
-                activeName: 'second',
+                activeName: 'first',
+                uName:'11',
+                department:'',
+                uID:'',
+                mail:'',
+                phone:'',
+                sex:'',
                 tableData: []
             };
 
         },
+        created() {
+        this.getInfo()
+      },
         methods: {
             handleSelect(key, keyPath) {
                 console.log(key, keyPath);
@@ -150,8 +160,28 @@
               localStorage.removeItem('userID');
               localStorage.removeItem('userIdentity');
               router.push('/');
+            },
+            getInfo:function (){
+              var userIDt = localStorage.getItem('userID')
+              // console.log(userIDt)
+              this.axios.post('/daily/model_from_php/getPInfo.php',{
+                  'userID': userIDt
+              }).then(response=>{
+                console.log('response.message');
+                if (response.status >= 200 && response.status < 300) {
+                  this.uID = response.data[0].ID
+                  console.log(response.data)
+                  // localStorage.setItem('temp',response.data)
+                  console.log('1');
+                } else {
+                  console.log('2');
+                  console.log(response.message);
+                }
+              })
+
             }
         }
+
     }
 </script>
 

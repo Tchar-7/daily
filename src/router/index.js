@@ -5,7 +5,6 @@ import VueRouter from "vue-router";
 
 import Login from "@/views/Login";
 import Menu from "@/views/Menu";
-import Admin from "@/views/Admin";
 import Chuxiao from "@/views/Chuxiao";
 import Qiandao from "@/views/Qiandao";
 import Tianbao from "@/views/Tianbao";
@@ -22,8 +21,6 @@ const router =  new VueRouter({
     },{
         path:'/Menu',
         component: Menu
-    }, {path: '/Admin',
-        component: Admin
     },{
         path: '/Chuxiao',
         component: Chuxiao

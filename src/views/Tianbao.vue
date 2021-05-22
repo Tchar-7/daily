@@ -334,6 +334,8 @@
 
                 nowDateTime: '',
                 activeName: 'second',
+                checked:'1',
+                nownowDateTime:'',
                 ruleForm: {
                     name: '',
                     region: '',
@@ -392,6 +394,8 @@
             resetForm(formName) {
                 this.$refs[formName].resetFields();
             },
+          // eslint-disable-next-line vue/no-dupe-keys
+
 
         }
     }
