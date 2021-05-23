@@ -12,6 +12,7 @@ import AdminMenu from "../views/AdminMenu";
 import TeacherMenu from "../views/TeacherMenu";
 import TeacherChuxiao from "../views/TeacherChuxiao";
 import Tongji from "@/views/Tongji";
+import TeacherXiaojia from "../views/TeacherXiaojia";
 
 // 解决ElementUI导航栏中的vue-router在3.0版本以上重复点菜单报错问题
 
@@ -49,6 +50,9 @@ const router =  new VueRouter({
 
             {path: '/Qiandao1/:num',component: Qiandao}
         ]
+    }, {
+        path: '/TeacherXiaojia',
+        component: TeacherXiaojia
     }]
 
 })

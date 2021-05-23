@@ -18,7 +18,7 @@
             </el-submenu>
             <el-submenu index="3">
                 <template slot="title">其他</template>
-                <el-menu-item index="2-1">销假</el-menu-item>
+                <el-menu-item index="2-1" @click="Xiaojia()">销假</el-menu-item>
                 <el-menu-item index="2-2" @click="Chuxiao()">出差申请</el-menu-item>
             </el-submenu>
             <button v-on:click="logOut()">登出</button>
@@ -160,8 +160,11 @@ export default {
     },
 
     Chuxiao() {
-      this.$router.push('/Chuxiao');
+      this.$router.push('/TeacherChuxiao');
     },
+      Xiaojia() {
+          this.$router.push('/TeacherXiaojia');
+      },
     Qiandao() {
       this.$router.push('/Qiandao');
     },
