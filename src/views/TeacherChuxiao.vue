@@ -81,7 +81,6 @@ import Qs from 'qs'
 
             return {
                 num:[0],
-                activeName: 'second',
                 ruleForm: {
                     name: '',
                     sex:'',

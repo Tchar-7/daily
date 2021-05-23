@@ -128,7 +128,7 @@ export default {
   data() {
     return {
       activeIndex2: '1',
-      activeName: 'second',
+      activeName: 'first',
       uName:'',
       department:'',
       uID:'',

@@ -110,7 +110,6 @@
         name: "Chuxiao",
         data() {
             return {
-                activeName: 'second',
                 ruleForm: {
                     name: '',
                     sex:'',
