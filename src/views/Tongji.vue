@@ -38,31 +38,40 @@
                         <h1>请选择学院和学号</h1>
                     </div>
                     <div class="input2">
-                        <el-select v-model="value1" multiple placeholder="请选择学院">
-                            <el-option
-                                    v-for="item in options1"
-                                    :key="item.value"
-                                    :label="item.label"
-                                    :value="item.value">
-                            </el-option>
-                        </el-select>
-                        <el-input v-model="input" placeholder="请输入学号"></el-input>
+<!--                        <el-select v-model="value1" multiple placeholder="请选择学院">-->
+<!--                            <el-option-->
+<!--                                    v-for="item in options1"-->
+<!--                                    :key="item.value"-->
+<!--                                    :label="item.label"-->
+<!--                                    :value="item.value">-->
+<!--                            </el-option>-->
+<!--                        </el-select>-->
+                        <el-input v-model="idInput" placeholder="请输入学号"></el-input>
                     </div>
                 </div>
             </el-tab-pane>
         </el-tabs>
         <div class="button">
-            <el-button type="primary">查询</el-button>
+            <router-link :to=chaxun2url><el-button type="primary" v-on:click="changeURL">查询</el-button></router-link>
         </div>
+      <router-view  :key="$route.fullPath"></router-view>
     </div>
 </template>
 <script>
+
     export default {
         name: "Tongji",
-        methods: {
+      created() {
+      },
+      methods: {
             handleClick(tab, event) {
-                console.log(tab, event);
-            }
+              console.log(tab, event);
+            },
+        changeURL:function (){
+          if(this.idInput!=''){
+          this.chaxun2url = "/Qiandao1/"+this.idInput}
+          console.log(this.chaxun2url)
+        }
         },
         data() {
             return {
@@ -109,7 +118,8 @@
                 ],
                 value1: [],
                 value2: [],
-                input: ''
+                idInput: '',
+                chaxun2url:'/Tongji'
             }
         }
     }

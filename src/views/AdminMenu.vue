@@ -163,6 +163,8 @@ export default {
     },
     Qiandao() {
       this.$router.push('/Qiandao');
+    },Tongji() {
+      this.$router.push('/Tongji');
     },
     logOut(){
       localStorage.removeItem('userID');

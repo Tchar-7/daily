@@ -51,27 +51,50 @@
   // import axios from 'axios';
   import Qs from 'qs'
 
-  var data = Qs.stringify({'userID': localStorage.getItem('userID')});
+  //var data = Qs.stringify({'userID': localStorage.getItem('userID')});
 
     export default {
         name: "Qiandao",
         data() {
             return {
               uID:'',
-              uName:localStorage.getItem('userName'),
+              uName:'',
               number_of_day:'',
               number_of_queqin:'',
               calendarData: [],
               value: new Date(),
+              urldata:Qs.stringify({'userID': localStorage.getItem('userID')})
             };
         },
       created() {
+        this.checkID()
+        this.getname()
         this.getInfo()
         this.getKaoqinInfo()
       },
       methods: {
+          checkID:function (){
+            if(this.$route.params.num !=null){
+              this.urldata = Qs.stringify({'userID': this.$route.params.num})
+            }
+          },
+          getname:function (){
+            this.axios.post('/daily/model_from_php/getName.php',this.urldata,{
+              headers:{'Content-Type':'application/x-www-form-urlencoded'}
+            })
+                .then(response=>{
+                  if (response.status >= 200 && response.status < 300) {
+                    this.uName = response.data[0].name
+                  } else {
+                    console.log(response.message);
+                  }
+                })
+                .catch(function (error) {
+                  console.log(error);
+                })
+        },
           getInfo:function () {
-            this.axios.post('/daily/model_from_php/getKaoQin.php',data,{
+            this.axios.post('/daily/model_from_php/getKaoQin.php',this.urldata,{
               headers:{'Content-Type':'application/x-www-form-urlencoded'}
             })
                 .then(response=>{
@@ -88,7 +111,7 @@
           },
 
           getKaoqinInfo:function () {
-            this.axios.post('/daily/model_from_php/getKaoQinInfo.php',data,{
+            this.axios.post('/daily/model_from_php/getKaoQinInfo.php',this.urldata,{
               headers:{'Content-Type':'application/x-www-form-urlencoded'}
             })
                 .then(response=>{
