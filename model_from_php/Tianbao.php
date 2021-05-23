@@ -43,28 +43,28 @@ $traffic2=$_GET['traffic2'];
 $agree=$_GET['agree'];
 $time=date("Y-m-d H:i:s",time());
 
-if($isolation=='是'){
-    $isolation=$isolation+':'+$isolationplace;
+if(strcmp($isolation,'是')==0){
+    $isolation=$isolation.':'.$isolationplace;
 }
-if($like=='是'){
-    $like=$like+':'+$likeinf;
+if(strcmp($like,'是')==0){
+    $like=$like.':'.$likeinf;
 }
-if($like2=='是'){
-    $like2=$like2+':'+$like2inf;
+if(strcmp($like2,'是')==0){
+    $like2=$like2.':'.$like2inf;
 }
-if($touch=='是'){
-    $touch=$touch+':'+$touchinf;
+if(strcmp($touch,'是')==0){
+    $touch=$touch.':'.$touchinf;
 }
-if($gotorisk=='是'){
-    $gotorisk=$gotorisk+':'+$gotoriskinf;
+if(strcmp($gotorisk,'是')==0){
+    $gotorisk=$gotorisk.':'.$gotoriskinf;
 }
-if($health=='不适'){
-    $health=$health+':'+$healthinf;
+if(strcmp($health,'不适')==0){
+    $health=$health.':'.$healthinf;
 }
-if($back=='NaN-NaN-NaN NaN:NaN:NaN'){
+if(strcmp($back,'NaN-NaN-NaN NaN:NaN:NaN')==0){
     $back=NULL;
 }
-if($backfromtime=='NaN-NaN-NaN NaN:NaN:NaN'){
+if(strcmp($backfromtime,'NaN-NaN-NaN NaN:NaN:NaN')==0){
     $backfromtime=NULL;
 }
 

@@ -33,7 +33,7 @@
                                 <el-radio label="内地成教育学生"></el-radio>
                                 <el-radio label="其他"></el-radio>
                             </el-radio-group>
-                            <el-input v-if="ruleForm.category=='其他'" v-model="ruleForm.reason2"/>
+                            <el-input v-if="ruleForm.category=='其他'" v-model="ruleForm.other"/>
                         </el-form-item>
 
 
@@ -119,7 +119,7 @@
                     category:'',
                     left:'',
                     reason:'',
-                    reason2:'',
+                    other:'',
                     stay:'',
                     address:'',
                     phone: '',
@@ -167,7 +167,7 @@
                   'category':this.ruleForm.category,
                   'left':this.ruleForm.left,
                   'reason':this.ruleForm.reason,
-                  'reason2':this.ruleForm.reason2,
+                  'other':this.ruleForm.other,
                   'stay':this.ruleForm.stay,
                   'address':this.ruleForm.address,
                   'phone': this.ruleForm.phone,

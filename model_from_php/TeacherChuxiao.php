@@ -21,6 +21,7 @@ for($i=0;$i<$num;$i++){
     $sql="insert into teacher_out values('$name','$userID','$sex','$phone','$address[$i]','$start[$i]','$finish[$i]','$time')";
     $result = $conn->query($sql);
 }
+$sql0="insert into apply_recording values(recordID,'$userID','出差','$time',2,'')";
 
 $conn->close();
 ?>
