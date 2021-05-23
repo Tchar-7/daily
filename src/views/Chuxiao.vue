@@ -1,8 +1,9 @@
 <template>
 
     <div>
+      <h1 class="returnButton">每日信息填报</h1>
         <div>
-            <a href="Menu.vue">返回</a>
+            <a href="Menu.vue" class="returnButton">返回</a>
         </div>
 
         <el-tabs v-model="activeName">
@@ -197,5 +198,13 @@
     .el-input{
         width:500px;
         height:5px;
+    }
+    .el-tabs {
+      margin-left: 35%;
+      margin-right: 30%;
+    }
+
+    .returnButton {
+      margin-left: 35%;
     }
 </style>

@@ -1,6 +1,7 @@
 <template>
 
     <div>
+      <h1 class="returnButton">每日信息填报</h1>
         <div>
             <p>{{nownowDateTime}}</p>
             <a href="Menu" class="returnButton">返回</a>
