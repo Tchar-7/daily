@@ -42,25 +42,46 @@ $country=$_GET['country'];
 $traffic2=$_GET['traffic2'];
 $agree=$_GET['agree'];
 $time=date("Y-m-d H:i:s",time());
+$abnormal='';
 
+
+if(strcmp($health,'不适')==0){
+    $health=$health.':'.$healthinf;
+    $abnormal=$abnormal.'身体或心理不适'.$healthinf.'、';
+
+}
+if(strcmp($color,'绿码')!=0){
+    $abnormal=$abnormal.'健康码为：'.$color.'、';
+}
+if(strcmp($risk,'是')==0){
+    $abnormal=$abnormal.'当前居住地点属于中高风险区'.'、';
+}
 if(strcmp($isolation,'是')==0){
     $isolation=$isolation.':'.$isolationplace;
+    $abnormal=$abnormal.'已被隔离，位置：'.$isolationplace.'、';
+}
+if(strcmp($confirm,'已确诊')==0){
+    $abnormal=$abnormal.'已确诊且未治愈'.'、';
 }
 if(strcmp($like,'是')==0){
     $like=$like.':'.$likeinf;
+    $abnormal=$abnormal.'疑似病例：'.$likeinf.'、';
 }
 if(strcmp($like2,'是')==0){
     $like2=$like2.':'.$like2inf;
+    $abnormal=$abnormal.'家人隔离或疑似：'.$like2inf.'、';
 }
 if(strcmp($touch,'是')==0){
     $touch=$touch.':'.$touchinf;
+    $abnormal=$abnormal.'14日内与确诊人员接触：'.$touchinf.'、';
+
 }
 if(strcmp($gotorisk,'是')==0){
     $gotorisk=$gotorisk.':'.$gotoriskinf;
+    $abnormal=$abnormal.'14日内去过中高风险地区：'.$gotoriskinf.'、';
+
 }
-if(strcmp($health,'不适')==0){
-    $health=$health.':'.$healthinf;
-}
+
 if(strcmp($back,'NaN-NaN-NaN NaN:NaN:NaN')==0){
     $back=NULL;
 }
@@ -71,7 +92,7 @@ if(strcmp($backfromtime,'NaN-NaN-NaN NaN:NaN:NaN')==0){
 $sql1="insert into basis_info values('$userID','$name','$sex','$campus','$category','$departments','$location1','$location2','$phone')";
 $sql2="insert into back_info values('$userID','$backfrom','$backfromtime','$country','$traffic2','$time')";
 $sql3="insert into additional_info values('$userID','$name2','$phone2','$address','$risk','$isolation','$confirm','$like','$test','$like2','$touch','$gotorisk','$time')";
-$sql4="insert into daily_info values('$userID','$inside','$health','$temperature','$color','$back','$traffic1','$time')";
+$sql4="insert into daily_info values('$userID','$inside','$health','$temperature','$color','$back','$traffic1','$time','$abnormal')";
 
 $result1 = $conn->query($sql1);
 $result2 = $conn->query($sql2);
