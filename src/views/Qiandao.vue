@@ -3,7 +3,9 @@
         <div align="center">
             <h2>本月签到统计</h2>
         </div>
-      <a href="Menu" class="returnButton">返回</a>
+        <div class="return">
+            <a href="Menu" class="returnButton">返回</a>
+        </div>
         <div class="message">
             <el-row>
                 <el-col><div class="text">姓名</div></el-col>
@@ -123,6 +125,10 @@
         padding-top: 5%;
         padding-left: 20%;
         padding-right: 20%;
+    }
+    .return{
+        margin-left: 35%;
+        font-family: 幼圆;
     }
     .returnButton {
       margin-left: 20%;

@@ -1,14 +1,13 @@
 <template>
 
     <div>
-        <div>
-            <a href="templates/Menu.vue">返回</a>
-        </div>
-
         <el-tabs v-model="activeName">
                 <div class="1">
                     <div class="title">
-                        <h1>出差申请</h1>
+                        <h1>销假申请</h1>
+                    </div>
+                    <div class="return">
+                        <a href="Menu" class="returnButton">返回</a>
                     </div>
                     <div class="history">
                         <el-table
@@ -73,5 +72,10 @@ import Qs from 'qs'
     .el-input{
         width:500px;
         height:5px;
+    }
+    .return{
+        margin-top: -0.5%;
+        margin-left: 5%;
+        font-family: 幼圆;
     }
 </style>

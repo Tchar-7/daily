@@ -21,7 +21,12 @@
                 <template slot="title">其他</template>
                 <el-menu-item index="2-1" @click="shenpi()">申请审批</el-menu-item>
             </el-submenu>
-            <button v-on:click="logOut()">登出</button>
+
+            <div class = 'button'>
+                <el-button type="text" @click="logOut()">退出登录</el-button>
+                <!--<button v-on:click="logOut()" type="success" plain>退出登录</button>-->
+            </div>
+
         </el-menu>
       <div class="info">
         <el-tabs  v-model="activeName" @tab-click="handleClick">
@@ -29,7 +34,9 @@
             <div class="show-info"
             >
               <div class="pic"> <!--头像-->
-                <img src="../assets/img/img.jpg"/>
+                  <div class = "pic1">
+                      <img src="../assets/img/img.jpg"/>
+                  </div>
               </div>
               <div class="detail"><!--个人信息-->
                 <el-row>
@@ -263,10 +270,21 @@ export default {
     .show-info{
 
     }
+    .button{
+        display: flow;
+        margin-top: 0.5%;
+        margin-left: 85%;
+    }
     .pic{
         height:100%;
         width:30%;
         float:left;
+    }
+    .pic1{
+        margin-top: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .detail{
         height:100%;
@@ -288,8 +306,10 @@ export default {
         background: #e5e9f2;
     }
     .grid-content {
+        padding: 5px 10px;
         border-radius: 4px;
         min-height: 36px;
+        margin: 0px 5px;
     }
     .applying{
         float:left;

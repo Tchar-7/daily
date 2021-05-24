@@ -1,8 +1,8 @@
 <template>
 
     <div>
-        <div>
-            <a href="templates/Menu.vue">返回</a>
+        <div class="return">
+            <a href="Menu" class="returnButton">返回</a>
         </div>
 
         <el-tabs v-model="activeName">
@@ -59,11 +59,6 @@
                         <el-button @click="add()">增加记录</el-button>
                         <el-button @click="pop()">删除记录</el-button>
 
-
-                        <el-form-item>
-                            <el-button type="primary" @click="submitForm()">提交</el-button>
-                            <el-button @click="resetForm()">重置</el-button>
-                        </el-form-item>
                     </el-form>
 
                 </div>
@@ -185,6 +180,11 @@ import Qs from 'qs'
 <style scoped>
     .el-form-item{
         font-weight: bold;
+    }
+    .return{
+        margin-top: 2%;
+        margin-left: 1%;
+        font-family: 幼圆;
     }
     .el-input{
         width:500px;

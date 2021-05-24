@@ -21,13 +21,16 @@
           </el-input>
         </el-form-item>
 
-        <el-form-item>
-          <el-radio-group v-model="param.radio">
-            <el-radio :label="1">学生</el-radio>
-            <el-radio :label="2">教职工</el-radio>
-            <el-radio :label="3">管理员</el-radio>
-          </el-radio-group>
-        </el-form-item>
+        <div class="ra">
+          <el-form-item>
+            <el-radio-group v-model="param.radio">
+              <el-radio :label="1">学生</el-radio>
+              <el-radio :label="2">教职工</el-radio>
+              <el-radio :label="3">管理员</el-radio>
+            </el-radio-group>
+          </el-form-item>
+        </div>
+
 
         <div class="login-btn">
           <el-button type="primary" @click="submitForm()">登录</el-button>
@@ -134,13 +137,16 @@ export default {
   width: 100%;
   line-height: 50px;
   text-align: center;
-  font-size: 20px;
+  font-size: 35px;
+  color: #000099;
   border-bottom: 1px solid #ddd;
+  font-family: 黑体;
 }
 .ms-logo {
   display: inline-block;
   margin-left: 15%;
-  font-size: 30px;
+  font-size: 40px;
+  font-family: 黑体;
 }
 .ms-login {
   display: inline-block;
@@ -169,6 +175,7 @@ export default {
 .login-tips {
   font-size: 12px;
   line-height: 30px;
-  color: #fff;
+  color: #6699ff;
 }
+
 </style>
