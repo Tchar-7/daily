@@ -64,7 +64,6 @@ import Qs from 'qs'
     export default{
         name: "TeacherXiaojia",
         data() {
-
             return {
                 num:[0],
                 ruleForm: {
@@ -90,7 +89,9 @@ import Qs from 'qs'
                 }
             };
         },
-
+      created() {
+        localStorage.setItem('page','/TeacherXiaojia')
+      },
       methods: {
           add(){
             var number=this.num.length;

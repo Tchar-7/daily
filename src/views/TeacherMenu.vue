@@ -142,6 +142,7 @@ export default {
 
   },
   created() {
+    localStorage.setItem('page','/TeacherMenu')
     this.getInfo()
     this.getApply0()
     this.getApply1()

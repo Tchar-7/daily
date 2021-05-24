@@ -137,7 +137,9 @@
                 }
             };
         },
-
+      created() {
+        localStorage.setItem('page','/Chuxiao')
+      },
       methods: {
         formateDate:function (datetime) {
           function addDateZero(num) {

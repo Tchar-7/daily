@@ -141,6 +141,7 @@ export default {
 
   },
   created() {
+    localStorage.setItem('page','/AdminMenu')
     this.getInfo()
     this.getApply0()
     this.getApply1()
@@ -170,6 +171,7 @@ export default {
       localStorage.removeItem('userID');
       localStorage.removeItem('userIdentity');
       localStorage.removeItem('userName');
+      localStorage.removeItem('page');
       router.push('/');
     },
     getInfo:function (){

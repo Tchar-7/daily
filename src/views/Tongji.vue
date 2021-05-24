@@ -4,7 +4,7 @@
             <el-tab-pane label="签到情况表" name="first">
                 <div class="table1">
                     <div class="title1">
-                        <h1>请选择班级和学院</h1>
+                        <h1>请选择学院和年级</h1>
                     </div>
                     <div class="input1">
                         <el-select v-model="value1" multiple placeholder="请选择学院">
@@ -31,8 +31,9 @@
                         </el-select>
                     </div>
                     <div class="button">
-                        <router-link :to=chaxun2url><el-button type="primary" v-on:click="changeURL">查询</el-button></router-link>
+                        <router-link :to=chaxun1url><el-button type="primary" v-on:click="changeURL">查询</el-button></router-link>
                     </div>
+                  <router-view></router-view>
                 </div>
 
                 <div class="show">
@@ -116,23 +117,17 @@
                         <h1>请输入学号</h1>
                     </div>
                     <div class="input2">
-                        <!--                        <el-select v-model="value1" multiple placeholder="请选择学院">-->
-                        <!--                            <el-option-->
-                        <!--                                    v-for="item in options1"-->
-                        <!--                                    :key="item.value"-->
-                        <!--                                    :label="item.label"-->
-                        <!--                                    :value="item.value">-->
-                        <!--                            </el-option>-->
-                        <!--                        </el-select>-->
                         <el-input v-model="idInput" placeholder="请输入学号"></el-input>
                     </div>
                 </div>
                 <div class="button2">
                     <router-link :to=chaxun2url><el-button type="primary" v-on:click="changeURL">查询</el-button></router-link>
+                    <router-view  :key="$route.fullPath"></router-view>
                 </div>
+
             </el-tab-pane>
         </el-tabs>
-        <router-view  :key="$route.fullPath"></router-view>
+
     </div>
 </template>
 <script>
@@ -140,6 +135,7 @@
     export default {
         name: "Tongji",
         created() {
+          localStorage.setItem('page','/Tongji')
         },
         methods: {
             handleClick(tab, event) {
@@ -192,6 +188,7 @@
                 value1: [],
                 value2: [],
                 idInput: '',
+                chaxun1url:'/Tongji',
                 chaxun2url:'/Tongji'
             }
         }

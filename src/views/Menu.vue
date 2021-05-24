@@ -164,6 +164,7 @@
 
         },
         created() {
+          localStorage.setItem('page','/Menu')
           this.getInfo()
           this.getApply0()
           this.getApply1()

@@ -105,6 +105,9 @@ import Qs from 'qs'
             };
         },
 
+      created() {
+        localStorage.setItem('page','/TeacherChuxiao')
+      },
       methods: {
           add(){
             var number=this.num.length;

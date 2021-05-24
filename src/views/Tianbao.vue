@@ -400,8 +400,10 @@
                 }
             };
         },
-
-        methods: {
+        created() {
+          localStorage.setItem('page','/Tianbao')
+        },
+      methods: {
           isInArray(arr,value){
             for(var i = 0; i < arr.length; i++){
               if(value === arr[i]){

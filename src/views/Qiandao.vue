@@ -67,6 +67,7 @@
             };
         },
       created() {
+        localStorage.setItem('page','/Qiandao')
         this.checkID()
         this.getname()
         this.getInfo()
