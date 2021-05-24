@@ -11,8 +11,10 @@ import Tianbao from "@/views/Tianbao";
 import AdminMenu from "../views/AdminMenu";
 import TeacherMenu from "../views/TeacherMenu";
 import TeacherChuxiao from "../views/TeacherChuxiao";
-import Tongji from "@/views/Tongji";
 import TeacherXiaojia from "../views/TeacherXiaojia";
+import QiandaoTongji from "@/views/QiandaoTongji";
+import ShowForChaxunNumber from "@/views/ShowForChaxunNumber";
+import ChaxunNumber from "@/views/ChaxunNumber";
 
 // 解决ElementUI导航栏中的vue-router在3.0版本以上重复点菜单报错问题
 
@@ -44,16 +46,20 @@ const router =  new VueRouter({
         path: '/TeacherChuxiao',
         component: TeacherChuxiao
     },{
-        path:'/Tongji',
-        component: Tongji,
+        path:'/ChaxunNumber',
+        component: ChaxunNumber,
         children:[
-
-            {path: '/Qiandao1/:num',component: Qiandao}
+            {path: '/ShowForChaxunNumber1/:num',component: ShowForChaxunNumber}
         ]
+    },{
+        path:'/QiandaoTongji',
+        component: QiandaoTongji
     }, {
         path: '/TeacherXiaojia',
         component: TeacherXiaojia
-    }]
+    },{
+        path: '/ShowForChaxunNumber',
+        component: ShowForChaxunNumber}]
 
 })
 

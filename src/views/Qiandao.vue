@@ -67,33 +67,10 @@
             };
         },
       created() {
-        localStorage.setItem('page','/Qiandao')
-        this.checkID()
-        this.getname()
         this.getInfo()
         this.getKaoqinInfo()
       },
       methods: {
-          checkID:function (){
-            if(this.$route.params.num !=null){
-              this.urldata = Qs.stringify({'userID': this.$route.params.num})
-            }
-          },
-          getname:function (){
-            this.axios.post('/daily/model_from_php/getName.php',this.urldata,{
-              headers:{'Content-Type':'application/x-www-form-urlencoded'}
-            })
-                .then(response=>{
-                  if (response.status >= 200 && response.status < 300) {
-                    this.uName = response.data[0].name
-                  } else {
-                    console.log(response.message);
-                  }
-                })
-                .catch(function (error) {
-                  console.log(error);
-                })
-        },
           getInfo:function () {
             this.axios.post('/daily/model_from_php/getKaoQin.php',this.urldata,{
               headers:{'Content-Type':'application/x-www-form-urlencoded'}
