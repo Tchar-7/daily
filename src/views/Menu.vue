@@ -192,6 +192,7 @@
               localStorage.removeItem('userID');
               localStorage.removeItem('userIdentity');
               localStorage.removeItem('userName');
+              localStorage.removeItem('page');
               router.push('/');
             },
             getInfo:function (){

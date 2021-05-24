@@ -12,11 +12,11 @@ export default {
   created:function () {
     var ID = localStorage.getItem('userID')
     var identity = localStorage.getItem('userIdentity')
-    var page = localStorage.getItem('page')
-    if (page != null) {
-      router.push(page)
-    }
-    else {
+    // var page = localStorage.getItem('page')
+    // if (page != null) {
+    //   router.push(page)
+    // }
+    // else {
       if (ID != null) {
         if (identity == '1') {
           router.push('/Menu')
@@ -29,7 +29,7 @@ export default {
         router.push('/')
       }
     }
-  }
+  // }
 }
 </script>
 
