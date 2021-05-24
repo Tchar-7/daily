@@ -17,33 +17,35 @@
 <script>
 
     import Qs from "qs";
-
     export default {
         name: "ChaxunNumber",
         created() {
           localStorage.setItem('page','/Tongji')
         },
         methods: {
-            changeURL:function (){
+          changeURL:function (){
                 if(this.idInput!=''){
-                    this.chaxun2url = "/ShowForChaxunNumber1/"+this.idInput}
+                    this.chaxun2url = "/ShowForChaxunNumber1/"+this.idInput
+                    }
+                else {
+                  this.chaxun2url='/ChaxunNumber'
+                }
             },
-            checkname:function (){
+          checkname:async function (){
+            var temp = false;
               this.urldata = Qs.stringify({'userID': this.idInput})
-              this.axios.post('/daily/model_from_php/getName.php',this.urldata,{
+              await this.axios.post('/daily/model_from_php/getName.php',this.urldata,{
               headers:{'Content-Type':'application/x-www-form-urlencoded'}
             })
                 .then(response=>{
                   if (response.status >= 200 && response.status < 300) {
-                    console.log(response.data)
                     if(response.data !=''){
-                      console.log('yes')
-                      this.hasName=true
+                      temp=true
                     }
                     else {
-                      console.log('no')
-                      this.hasName=false
+                      temp=false
                     }
+
                   }
                   else {
                     console.log(response.message);
@@ -52,25 +54,27 @@
                 .catch(function (error) {
                   console.log(error);
                 })
-
+            return temp
         },
-            showInfo:function (){
-              this.checkname()
-              console.log(this.hasName)
-              if(this.hasName){
-                  this.changeURL()
-              }
-              else {
-                this.$message.error('没有该学生,请确认学号!');
-             }
+
+          showInfo:function (){
+            this.checkname().then(res=>{
+                if(res == true){
+                  null;
+                }
+                else{
+                  this.$message.error('没有该学生,请重新输入学号!');
+                  this.idInput = ''
+                }
+            })
+            this.changeURL()
           }
         },
         data() {
             return {
                 idInput: '',
                 chaxun2url:'/ChaxunNumber',
-              urldata:Qs.stringify({'userID': this.idInput}),
-              hasName:false
+                urldata:Qs.stringify({'userID': this.idInput}),
             }
         }
     }
