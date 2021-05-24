@@ -24,21 +24,6 @@
           localStorage.setItem('page','/Tongji')
         },
         methods: {
-          changeURL:function (){
-                if(this.idInput!=''){
-                  this.checkname().then(res=>{
-                    if(res == true){
-                      this.chaxun2url = "/ShowForChaxunNumber1/"+this.idInput
-                    }
-                    else{
-                      this.chaxun2url='/Kongbai1'
-                    }
-                  })
-                    }
-                else {
-                  this.chaxun2url='/Kongbai1'
-                }
-            },
           checkname:async function (){
             var temp = false;
               this.urldata = Qs.stringify({'userID': this.idInput})
@@ -72,12 +57,11 @@
                 }
                 else{
                   this.$message.error('没有该学生,请重新输入学号!');
-                  this.idInput = ''
-                  this.chaxun2url='/Kongbai1'
+                  this.idInput = '';
+                  this.chaxun2url='/Kongbai1';
                 }
                 router.push(this.chaxun2url)
             })
-            this.changeURL()
           }
         },
         data() {
