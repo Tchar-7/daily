@@ -17,6 +17,7 @@
 <script>
 
     import Qs from "qs";
+    import router from "@/router";
     export default {
         name: "ChaxunNumber",
         created() {
@@ -25,10 +26,17 @@
         methods: {
           changeURL:function (){
                 if(this.idInput!=''){
-                    this.chaxun2url = "/ShowForChaxunNumber1/"+this.idInput
+                  this.checkname().then(res=>{
+                    if(res == true){
+                      this.chaxun2url = "/ShowForChaxunNumber1/"+this.idInput
+                    }
+                    else{
+                      this.chaxun2url='/Kongbai1'
+                    }
+                  })
                     }
                 else {
-                  this.chaxun2url='/ChaxunNumber'
+                  this.chaxun2url='/Kongbai1'
                 }
             },
           checkname:async function (){
@@ -60,12 +68,14 @@
           showInfo:function (){
             this.checkname().then(res=>{
                 if(res == true){
-                  null;
+                  this.chaxun2url = "/ShowForChaxunNumber1/"+this.idInput
                 }
                 else{
                   this.$message.error('没有该学生,请重新输入学号!');
                   this.idInput = ''
+                  this.chaxun2url='/Kongbai1'
                 }
+                router.push(this.chaxun2url)
             })
             this.changeURL()
           }
@@ -73,7 +83,7 @@
         data() {
             return {
                 idInput: '',
-                chaxun2url:'/ChaxunNumber',
+                chaxun2url:'/Kongbai1',
                 urldata:Qs.stringify({'userID': this.idInput}),
             }
         }
