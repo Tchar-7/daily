@@ -7,50 +7,33 @@
 
         <el-tabs v-model="activeName">
                 <div class="1">
-
-                    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" label-position ="top">
-                        <el-form-item label="姓名" prop="name">
-                            <el-input v-model="ruleForm.name"></el-input>
-                        </el-form-item>
-
-                        <el-form-item label="工号" prop="userID">
-                            <el-input v-model="ruleForm.userID"></el-input>
-                        </el-form-item>
-
-                        <el-form-item label="性别  ">
-                            <el-radio-group v-model="ruleForm.sex">
-                                <el-radio label="男"></el-radio>
-                                <el-radio label="女"></el-radio>
-                            </el-radio-group>
-                        </el-form-item>
-
-                        <el-form-item label="手机号码">
-                            <el-input v-model="ruleForm.phone"></el-input>
-                        </el-form-item>
-
-                          <el-form-item label="返校时间">
-                            <el-date-picker
-                                v-model="ruleForm.finish[index]"
-                                type="datetime"
-                                placeholder="选择日期时间"
-                                default-time="12:00:00">
-                            </el-date-picker>
-                          </el-form-item>
-
-                        <el-form-item label="杭州健康码”状态">
-                            <el-radio-group v-model="ruleForm.color">
-                                <el-radio label="红码"></el-radio>
-                                <el-radio label="黄码"></el-radio>
-                                <el-radio label="绿码"></el-radio>
-                                <el-radio label="橙码"></el-radio>
-                            </el-radio-group>
-                        </el-form-item>
-
-                        <el-form-item>
-                            <el-button type="primary" @click="submitForm()">提交</el-button>
-                            <el-button @click="resetForm()">重置</el-button>
-                        </el-form-item>
-                    </el-form>
+                    <div class="title">
+                        <h1>出差申请</h1>
+                    </div>
+                    <div class="history">
+                        <el-table
+                                :data="tableData"
+                                style="width: 100%"
+                                max-height="250">
+                            <el-table-column
+                                    prop="jilu"
+                                    label="请假记录"
+                                    width="120">
+                            </el-table-column>
+                            <el-table-column
+                                    label="操作"
+                                    width="120">
+                                <template slot-scope="scope">
+                                    <el-button
+                                            @click.native.prevent="deleteRow(scope.$index, tableData)"
+                                            type="text"
+                                            size="small">
+                                        销假
+                                    </el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                    </div>
 
                 </div>
         </el-tabs>
@@ -64,105 +47,24 @@ import Qs from 'qs'
     export default{
         name: "TeacherXiaojia",
         data() {
-            return {
-                num:[0],
-                ruleForm: {
-                    name: '',
-                    sex:'',
-                    userID:'',
-                    start:['','',''],
-                    finish:['','',''],
-                    category:'',
-                    left:'',
-                    address:['','',''],
-                    phone: '',
-                },
-                rules: {
-                    name: [
-                        {required: true, message: '请输入姓名', trigger: 'blur'},
-                        {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
-                    ],
-                  userID: [
-                        {required: true, message: '请输入学号/工号', trigger: 'blur'},
-                        {min: 12, max: 12, message: '长度为12', trigger: 'blur'}
-                    ],
-                }
-            };
+            return{
+                tableData: [{
+                    jilu:'1233'
+                }, {
+                    jilu: '111'
+                }]
+            }
+
         },
       created() {
         localStorage.setItem('page','/TeacherXiaojia')
       },
       methods: {
-          add(){
-            var number=this.num.length;
-            if(number<3){
-              this.num.push(number)
-            }
-          },
+          delect()
+          {
 
-          pop(){
-          var number=this.num.length;
-          if(number>1){
-            this.num.pop();
           }
-        },
-
-        arraytime:function (array){
-          for(var i=0;i<array.length;i++){
-            array[i]=this.formateDate(array[i]);
-          }
-          return array;
-        },
-
-        formateDate:function (datetime) {
-          function addDateZero(num) {
-            return (num < 10 ? '0' + num : num)
-          }
-          const d = new Date(datetime)
-          const formatdatetime = d.getFullYear() + '-' + addDateZero(d.getMonth() + 1) + '-' + addDateZero(d.getDate()) + ' ' + addDateZero(d.getHours()) + ':' + addDateZero(d.getMinutes()) + ':' + addDateZero(d.getSeconds())
-          return formatdatetime
-        },
-        submitForm() {
-          this.$refs.ruleForm.validate(valid => {
-            if(valid){
-              const qs = require('qs');
-              this.axios({
-                method:"post",
-                url:'/daily/model_from_php/TeacherChuxiao.php',
-
-                headers:{
-                  'Content-type': 'application/x-www-form-urlencoded'
-                },
-                params: {
-                  'num':String(this.num.length),
-                  'identity':localStorage.getItem('userIdentity'),
-                  'name':this.ruleForm.name,
-                  'sex':this.ruleForm.sex,
-                  'userID':this.ruleForm.userID,
-                  'start':this.arraytime(this.ruleForm.start),
-                  'finish':this.arraytime(this.ruleForm.finish),
-                  'category':this.ruleForm.category,
-                  'left':this.ruleForm.left,
-                  'address':this.ruleForm.address,
-                  'phone': this.ruleForm.phone,
-                },
-                paramsSerializer: function(params) {
-                  return qs.stringify(params, {arrayFormat: 'indices'})
-                }
-              })
-                  // eslint-disable-next-line no-unused-vars
-                  .then((valid) => {
-                    console.log(valid.data)
-                  })
-            }else {
-              this.$message.error('请填写正确信息');
-              console.log('error submit!!');
-              return false;
-
-            }
-          });
-        },
-      },
+      }
     }
 </script>
 
