@@ -16,6 +16,7 @@ import QiandaoTongji from "@/views/QiandaoTongji";
 import ShowForChaxunNumber from "@/views/ShowForChaxunNumber";
 import ChaxunNumber from "@/views/ChaxunNumber";
 import Kongbai from "@/views/Kongbai";
+import Shenpi from "@/views/Shenpi";
 
 // 解决ElementUI导航栏中的vue-router在3.0版本以上重复点菜单报错问题
 
@@ -61,7 +62,11 @@ const router =  new VueRouter({
         component: TeacherXiaojia
     },{
         path: '/ShowForChaxunNumber',
-        component: ShowForChaxunNumber}]
+        component: ShowForChaxunNumber
+    },{
+        path: '/Shenpi',
+        component: Shenpi
+    }]
 
 })
 

@@ -19,7 +19,7 @@
             </el-submenu>
             <el-submenu index="3">
                 <template slot="title">其他</template>
-                <el-menu-item index="2-1">申请审批</el-menu-item>
+                <el-menu-item index="2-1" @click="shenpi()">申请审批</el-menu-item>
             </el-submenu>
             <button v-on:click="logOut()">登出</button>
         </el-menu>
@@ -159,7 +159,6 @@ export default {
     Tianbao() {
       this.$router.push('/Tianbao');
     },
-
     Chuxiao() {
       this.$router.push('/Chuxiao');
     },
@@ -170,9 +169,14 @@ export default {
       this.$router.push('/QiandaoTongji');
     },
     ChaxunNumber(){
-      this.$router.push('/ChaxunNumber')
+      this.$router.push('/ChaxunNumber');
     },
-    logOut(){
+
+      shenpi() {
+          this.$router.push('/shenpi');
+      },
+
+      logOut(){
       localStorage.removeItem('userID');
       localStorage.removeItem('userIdentity');
       localStorage.removeItem('userName');

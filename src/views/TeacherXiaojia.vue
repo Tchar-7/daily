@@ -48,11 +48,9 @@ import Qs from 'qs'
         name: "TeacherXiaojia",
         data() {
             return{
-                tableData: [{
-                    jilu:'1233'
-                }, {
-                    jilu: '111'
-                }]
+                tableData: [
+
+                ]
             }
 
         },
