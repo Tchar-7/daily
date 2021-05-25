@@ -25,8 +25,9 @@ export default {
         } else {
           router.push('/AdminMenu')
         }
-      } else {
-        router.push('/')
+      }
+      else {
+        router.push('/Login')
       }
     }
   // }

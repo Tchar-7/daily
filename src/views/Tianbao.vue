@@ -305,6 +305,7 @@
 </template>
 
 <script>
+import router from "@/router";
     export default {
         name: "Tianbao",
         data() {
@@ -574,7 +575,7 @@
                         this.$message.success('提交成功');
                         // eslint-disable-next-line no-unused-vars
                         setTimeout(valid => {
-                          this.$router.push('/')
+                          router.replace('/')
                         }, 600);
                         console.log(valid.data)
                       })

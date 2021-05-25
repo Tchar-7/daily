@@ -86,7 +86,7 @@
                   <div class="block">
                     <el-pagination
                         class="page"
-                        @size-change="handleSizeChange0"
+
                         @current-change="handleCurrentChange0"
                         :current-page="currentPage0"
                         :page-size="pagesize0"
@@ -116,7 +116,6 @@
                   <div class="block">
                     <el-pagination
                         class="page"
-                        @size-change="handleSizeChange1"
                         @current-change="handleCurrentChange1"
                         :current-page="currentPage1"
                         :page-size="pagesize1"
@@ -146,7 +145,6 @@
                   <div class="block">
                     <el-pagination
                         class="page"
-                        @size-change="handleSizeChange2"
                         @current-change="handleCurrentChange2"
                         :current-page="currentPage2"
                         :page-size="pagesize2"
