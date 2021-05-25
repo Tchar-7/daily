@@ -3,9 +3,6 @@
         <div class="title">
             <h1>申请审批</h1>
         </div>
-        <div class="return">
-            <a href="Menu" class="returnButton">返回</a>
-        </div>
         <div class="info">
             <el-table
                     :data="tableData"
@@ -43,9 +40,10 @@
 </script>
 
 <style scoped>
-    .return{
-        margin-top: -0.5%;
-        margin-left: 5%;
-        font-family: 幼圆;
+.title{
+    padding-left: 40%;
+}
+    .info{
+        padding-left:25%;
     }
 </style>

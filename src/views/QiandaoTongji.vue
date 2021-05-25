@@ -29,7 +29,7 @@
         </el-select>
       </div>
       <div class="button">
-        <el-button type="primary" v-on:click="chaxun">查询</el-button>
+        <el-button icon="el-icon-search" type="primary" v-on:click="chaxun">查询</el-button>
       </div>
     </div>
 
@@ -276,5 +276,23 @@ export default {
 </script>
 
 <style scoped>
-
+.table{
+  align: center;
+}
+  .title1{
+    padding-left: 40%;
+  }
+  .input1{
+    padding-left: 30%;
+    padding-top: 3%;
+  }
+  .button{
+    padding-left: 63%;
+  }
+  .show{
+    padding-left: 30%;
+  }
+  .block{
+    padding-left: 8%;
+  }
 </style>

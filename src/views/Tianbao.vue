@@ -2,9 +2,6 @@
 
     <div>
       <h1 class="title">每日信息填报</h1>
-        <div class="return">
-            <a href="Menu" class="returnButton">返回</a>
-        </div>
 
         <el-tabs v-model="activeName" @tab-click="handleClick">
             <el-tab-pane label="基础信息" name="first">
@@ -560,10 +557,6 @@
 <style scoped>
     .title {
         margin-left: 45%;
-    }
-    .return{
-        margin-left: 50%;
-        font-family: 幼圆;
     }
     .el-form-item{
         font-weight: bold;

@@ -1,9 +1,8 @@
 <template>
 
     <div>
-      <h1 class="returnButton">每日信息填报</h1>
-        <div class="return">
-            <a href="Menu" class="returnButton">返回</a>
+        <div class="title">
+            <h1 class="returnButton">每日信息填报</h1>
         </div>
 
         <el-tabs v-model="activeName">
@@ -205,9 +204,8 @@
       margin-right: 30%;
     }
 
-    .return{
-        margin-left: 50%;
-        font-family: 幼圆;
+    .title{
+        margin-left: 15%;
     }
     .returnButton {
       margin-left: 35%;

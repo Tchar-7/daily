@@ -1,65 +1,68 @@
 <template>
 
     <div>
-        <div class="return">
-            <a href="Menu" class="returnButton">返回</a>
-        </div>
 
         <el-tabs v-model="activeName">
                 <div class="1">
+                    <div class="title">
+                        <h1>出差申请</h1>
+                    </div>
+                    <div class="chuchai">
+                        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" label-position ="top">
+                            <el-form-item label="姓名" prop="name">
+                                <el-input v-model="ruleForm.name"></el-input>
+                            </el-form-item>
 
-                    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" label-position ="top">
-                        <el-form-item label="姓名" prop="name">
-                            <el-input v-model="ruleForm.name"></el-input>
-                        </el-form-item>
+                            <el-form-item label="工号" prop="userID">
+                                <el-input v-model="ruleForm.userID"></el-input>
+                            </el-form-item>
 
-                        <el-form-item label="工号" prop="userID">
-                            <el-input v-model="ruleForm.userID"></el-input>
-                        </el-form-item>
-
-                        <el-form-item label="性别  ">
-                            <el-radio-group v-model="ruleForm.sex">
-                                <el-radio label="男"></el-radio>
-                                <el-radio label="女"></el-radio>
-                            </el-radio-group>
-                        </el-form-item>
+                            <el-form-item label="性别  ">
+                                <el-radio-group v-model="ruleForm.sex">
+                                    <el-radio label="男"></el-radio>
+                                    <el-radio label="女"></el-radio>
+                                </el-radio-group>
+                            </el-form-item>
 
 
-                        <el-form-item label="手机号码">
-                            <el-input v-model="ruleForm.phone"></el-input>
-                        </el-form-item>
+                            <el-form-item label="手机号码">
+                                <el-input v-model="ruleForm.phone"></el-input>
+                            </el-form-item>
 
-                        <div v-for="index in num" :key="index">
+                            <div v-for="index in num" :key="index">
 
-                          <el-form-item label="出差地址">
-                            <el-input v-model="ruleForm.address[index]"></el-input>
-                          </el-form-item>
+                                <el-form-item label="出差地址">
+                                    <el-input v-model="ruleForm.address[index]"></el-input>
+                                </el-form-item>
 
-                          <el-form-item label="通行开始时间">
-                            <el-date-picker
-                                v-model="ruleForm.start[index]"
-                                type="datetime"
-                                placeholder="选择日期时间"
-                                default-time="12:00:00">
-                            </el-date-picker>
-                          </el-form-item>
+                                <el-form-item label="通行开始时间">
+                                    <el-date-picker
+                                            v-model="ruleForm.start[index]"
+                                            type="datetime"
+                                            placeholder="选择日期时间"
+                                            default-time="12:00:00">
+                                    </el-date-picker>
+                                </el-form-item>
 
-                          <el-form-item label="通行结束时间">
-                            <el-date-picker
-                                v-model="ruleForm.finish[index]"
-                                type="datetime"
-                                placeholder="选择日期时间"
-                                default-time="12:00:00">
-                            </el-date-picker>
-                          </el-form-item>
+                                <el-form-item label="通行结束时间">
+                                    <el-date-picker
+                                            v-model="ruleForm.finish[index]"
+                                            type="datetime"
+                                            placeholder="选择日期时间"
+                                            default-time="12:00:00">
+                                    </el-date-picker>
+                                </el-form-item>
 
-                          <p v-if="ruleForm.start[index]>ruleForm.finish[index]">起始时间不能晚于结束时间</p>
+                                <p v-if="ruleForm.start[index]>ruleForm.finish[index]">起始时间不能晚于结束时间</p>
 
-                        </div>
-                        <el-button @click="add()">增加记录</el-button>
-                        <el-button @click="pop()">删除记录</el-button>
+                            </div>
+                            <el-button @click="add()">增加记录</el-button>
+                            <el-button @click="pop()">删除记录</el-button>
 
-                    </el-form>
+                        </el-form>
+                    </div>
+
+
 
                 </div>
         </el-tabs>
@@ -181,13 +184,14 @@ import Qs from 'qs'
     .el-form-item{
         font-weight: bold;
     }
-    .return{
-        margin-top: 2%;
-        margin-left: 1%;
-        font-family: 幼圆;
-    }
     .el-input{
         width:500px;
         height:5px;
+    }
+    .title{
+        padding-left: 45%;
+    }
+    .chuchai{
+        padding-left: 35%;
     }
 </style>
