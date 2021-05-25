@@ -9,7 +9,10 @@
                     </div>
                 </div>
                 <div class="button2">
-                    <router-link :to=chaxun2url><el-button type="primary" v-on:click="showInfo">查询</el-button></router-link>
+                    <router-link :to=chaxun2url>
+                        <el-button icon="el-icon-search" circle v-on:click="showInfo"></el-button>
+                        <!--<el-button type="primary" v-on:click="showInfo">查询</el-button>-->
+                    </router-link>
                     <router-view  :key="$route.fullPath"></router-view>
                 </div>
     </div>
@@ -100,15 +103,15 @@
         padding-left: 10%;
     }
     .title2{
-        padding-left: 8%;
+        padding-left: 10%;
     }
     .show{
         padding-top: 30%;
         padding-left: 20%;
     }
     .button2{
-        margin-left: 20%;
-        margin-top: -15%;
+        margin-left: 15%;
+        margin-top: -16%;
     }
 
 </style>

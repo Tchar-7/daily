@@ -29,7 +29,11 @@
         </el-select>
       </div>
       <div class="button">
-        <router-link :to=chaxun1url><el-button type="primary" v-on:click="changeURL">查询</el-button></router-link>
+
+        <router-link :to=chaxun1url>
+          <el-button icon="el-icon-search" circle @click="changeURL()"></el-button>
+          <!--<el-button type="primary" v-on:click="changeURL">查询</el-button> -->
+        </router-link>
       </div>
       <router-view></router-view>
     </div>
@@ -151,7 +155,7 @@ export default {
       ],
       value1: [],
       value2: [],
-      activeName1:'2',
+      activeName1:'1',
       chaxun1url:'QiandaoTongji'
     }
   },
@@ -167,5 +171,23 @@ export default {
 </script>
 
 <style scoped>
-
+.table{
+  align: center;
+}
+  .title1{
+    padding-left: 40%;
+  }
+  .input1{
+    padding-left: 30%;
+    padding-top: 3%;
+  }
+  .button{
+    padding-left: 63%;
+  }
+  .show{
+    padding-left: 30%;
+  }
+  .block{
+    padding-left: 8%;
+  }
 </style>

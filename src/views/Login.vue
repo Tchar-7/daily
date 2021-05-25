@@ -177,5 +177,8 @@ export default {
   line-height: 30px;
   color: #6699ff;
 }
+  .el-radio{
+    color: #242f42;
+  }
 
 </style>

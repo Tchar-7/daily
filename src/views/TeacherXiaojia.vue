@@ -6,9 +6,6 @@
                     <div class="title">
                         <h1>销假申请</h1>
                     </div>
-                    <div class="return">
-                        <a href="Menu" class="returnButton">返回</a>
-                    </div>
                     <div class="history">
                         <el-table
                                 :data="tableData"
@@ -73,9 +70,10 @@ import Qs from 'qs'
         width:500px;
         height:5px;
     }
-    .return{
-        margin-top: -0.5%;
-        margin-left: 5%;
-        font-family: 幼圆;
+    .title{
+        padding-left: 45%;
+    }
+    .history{
+        padding-left: 30%;
     }
 </style>
