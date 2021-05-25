@@ -129,7 +129,7 @@
                         {required: true, message: '请输入姓名', trigger: 'blur'},
                         {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
                     ],
-                  userID: [
+                    userID: [
                         {required: true, message: '请输入学号/工号', trigger: 'blur'},
                         {min: 12, max: 12, message: '长度为12', trigger: 'blur'}
                     ],

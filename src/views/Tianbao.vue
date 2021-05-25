@@ -12,11 +12,11 @@
                             <el-input v-model="ruleForm.name"></el-input>
                         </el-form-item>
 
-                        <el-form-item label="学号/工号" prop="id">
+                        <el-form-item label="学号/工号" prop="userID">
                             <el-input v-model="ruleForm.userID"></el-input>
                         </el-form-item>
 
-                        <el-form-item label="性别  ">
+                        <el-form-item label="性别">
                             <el-radio-group v-model="ruleForm.sex">
                                 <el-radio label="男"></el-radio>
                                 <el-radio label="女"></el-radio>
@@ -382,6 +382,12 @@
                     ship2:'',
                     car2:'',
                     other2:'',
+                    plane0:'',
+                    train0:'',
+                    bus0:'',
+                    ship0:'',
+                    car0:'',
+                    other0:'',
                     agree:'',
                 },
                 rules: {
@@ -389,15 +395,15 @@
                         {required: true, message: '请输入姓名', trigger: 'blur'},
                         {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
                     ],
-                    id: [
+                    userID: [
                         {required: true, message: '请输入学号/工号', trigger: 'blur'},
-                        {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+                        {min: 12, max: 12, message: '长度为12', trigger: 'blur'}
                     ],
                 }
             };
         },
         created() {
-          localStorage.setItem('page','/Tianbao')
+          this.getInfo();
         },
       methods: {
           isInArray(arr,value){
@@ -483,6 +489,25 @@
               return str;
             },
             submitForm() {
+              if(this.isInArray(this.ruleForm.traffic2,'飞机')){
+                this.ruleForm.plane0='飞机';
+              }
+              if(this.isInArray(this.ruleForm.traffic2,'火车')){
+                this.ruleForm.plane0='火车';
+              }
+              if(this.isInArray(this.ruleForm.traffic2,'客车')){
+                this.ruleForm.plane0='客车';
+              }
+              if(this.isInArray(this.ruleForm.traffic2,'轮船')){
+                this.ruleForm.plane0='轮船';
+              }
+              if(this.isInArray(this.ruleForm.traffic2,'自驾车')){
+                this.ruleForm.plane0='自驾车';
+              }
+              if(this.isInArray(this.ruleForm.traffic2,'其他')){
+                this.ruleForm.plane0='其他';
+              }
+
               this.$refs.ruleForm.validate(valid => {
                 if(valid){
                   this.axios({
@@ -529,11 +554,28 @@
                       'backfrom':this.ruleForm.backfrom,
                       'backfromtime':this.formateDate(this.ruleForm.backfromtime),
                       'country':this.ruleForm.country,
-                      'agree':this.ruleForm.agree
+                      'agree':this.ruleForm.agree,
+                      'plane':this.ruleForm.plane0,
+                      'train':this.ruleForm.train0,
+                      'bus':this.ruleForm.bus0,
+                      'ship':this.ruleForm.ship0,
+                      'car':this.ruleForm.car0,
+                      'other':this.ruleForm.other0,
+                      'plane_inf':this.ruleForm.plane2,
+                      'train_inf':this.ruleForm.train2,
+                      'bus_inf':this.ruleForm.bus2,
+                      'ship_inf':this.ruleForm.ship2,
+                      'car_inf':this.ruleForm.car2,
+                      'other_inf':this.ruleForm.other2
                     }
                   })
                       // eslint-disable-next-line no-unused-vars
                       .then((valid) => {
+                        this.$message.success('提交成功');
+                        // eslint-disable-next-line no-unused-vars
+                        setTimeout(valid => {
+                          this.$router.push('/')
+                        }, 600);
                         console.log(valid.data)
                       })
                 }else {
@@ -544,6 +586,80 @@
                 }
               });
             },
+        getInfo:function () {
+          this.axios.post('/daily/model_from_php/Tianbao_inf.php',this.urldata,{
+            headers:{'Content-Type':'application/x-www-form-urlencoded'}
+          })
+              .then(response=>{
+                  //if(response.data[0]=='今日已经打卡'){
+                  //  this.$router.push('Yidaka.vue')
+                  //}
+                  //else{
+                    this.ruleForm.name='name'
+                    this.ruleForm.userID=response.data[0].name
+                    //this.ruleForm.sex=response.data[0].sex
+                    //this.ruleForm.campus=response.data[0].campus
+                    //this.ruleForm.category=response.data[0].category
+                    //this.ruleForm.departments=response.data[0].departments
+                    //this.ruleForm.location1=response.data[0].native_place
+                    //this.ruleForm.location2=response.data[0].registered_place
+                    //this.ruleForm.phone=response.data[0].phone
+                    //this.ruleForm.name2=response.data[0].Emergency_name
+                    //this.ruleForm.phone2=response.data[0].Emergency_phone
+                    //this.ruleForm.address=response.data[0].Current_Residence
+                    //this.ruleForm.risk=response.data[0].risk_areas
+                    //this.ruleForm.isolation=response.data[0].is_isolation
+                    //this.ruleForm.isolationplace=response.data[0].is_isolationplace
+                    //this.ruleForm.confirm=response.data[0].is_fonfirmed
+                    //this.ruleForm.like=response.data[0].is_suspected
+                    //this.ruleForm.test=response.data[0].NAT
+                    //this.ruleForm.like2=response.data[0].family
+                    //this.ruleForm.touch=response.data[0].touch_14
+                    //this.ruleForm.likeinf=response.data[0].suspected_in
+                    //this.ruleForm.like2inf=response.data[0].family_inf
+                    //this.ruleForm.touchinf=response.data[0].touch_inf
+                    //this.ruleForm.gotorisk=response.data[0].go14
+                    //this.ruleForm.gotoriskinf=response.data[0].go_inf
+                    //this.ruleForm.backfrom=response.data[0].is_14back
+                    //this.ruleForm.backfromtime=response.data[0].back_time
+                    //this.ruleForm.country=response.data[0].where_back
+                    //this.ruleForm.plane2=response.data[0].plane_inf
+                    //this.ruleForm.train2=response.data[0].train_inf
+                    //this.ruleForm.bus2=response.data[0].bus_inf
+                    //this.ruleForm.ship2=response.data[0].ship_inf
+                    //this.ruleForm.car2=response.data[0].car_inf
+                    //this.ruleForm.other2=response.data[0].other_inf
+                    //this.ruleForm.plane0=response.data[0].plane
+                    //this.ruleForm.train0=response.data[0].train
+                    //this.ruleForm.bus0=response.data[0].bus
+                    //this.ruleForm.ship0=response.data[0].ship
+                    //this.ruleForm.car0=response.data[0].car
+                    //this.ruleForm.other0=response.data[0].other
+                    //if(this.ruleForm.plane=='飞机'){
+                    //  this.ruleForm.traffic2.push('飞机')
+                    //}
+                    //if(this.ruleForm.plane=='火车'){
+                    //  this.ruleForm.traffic2.push('火车')
+                    //}
+                    //if(this.ruleForm.plane=='客车'){
+                    //  this.ruleForm.traffic2.push('客车')
+                    //}
+                    //if(this.ruleForm.plane=='轮船'){
+                    //  this.ruleForm.traffic2.push('轮船')
+                    //}
+                    //if(this.ruleForm.plane=='自驾车'){
+                    //  this.ruleForm.traffic2.push('自驾车')
+                    //}
+                    //if(this.ruleForm.plane=='其他'){
+                    //  this.ruleForm.traffic2.push('其他')
+                    //}
+                  //}
+              })
+              .catch(function (error) {
+                console.log(error);
+              })
+        },
+
             resetForm(formName) {
                 this.$refs[formName].resetFields();
             },
