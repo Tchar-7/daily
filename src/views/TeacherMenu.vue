@@ -399,4 +399,10 @@ export default {
   flex-direction: row;
   justify-content: flex-start;
 }
+.menu{
+  width: 100%;
+  height: 100%;
+  background:url("../assets/img/bg.png");
+  background-size: 100%;
+     }
 </style>
