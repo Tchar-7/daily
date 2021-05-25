@@ -6,25 +6,39 @@ if($conn->connect_error){
     die("数据库连接失败".mysqli_connect_error());
 }
 
-$ID = $_POST['userID'];
-//$date =$_POST['date'];
-$date = '2021-5-22';
+$department = $_POST['department'];
+$grade = $_POST['grade'];
+$date=date("Y-m-d",time());
+//$date = '2021-5-22';
 $users = array();
 
-$day =date("d",time());
+$where1 = '';
+$where2 = '';
+if($department != null){
+    $where1 = "department in ('$department[0]'";
+    for($t= 1; $t<count($department);$t++){
+        $where1 .=",'$department[$t]'";
+    }
+    $where1 .=") and";
+}
+if($grade != null){
+    $where2 ="(ID like'$grade[0]%'";
+    for($t= 1; $t<count($grade);$t++){
+        $where2 .=" or ID like'$grade[$t]%'";
+    }
+    $where2 .=") and";
+}
 
-$sql1="select count(*) from daily_info  where date(apply_date)='$date'";
-$sql2 = "select p.ID ,name from daily_info d, personal_info  p where date(apply_date)='$date' and d.ID= p.ID";
-$result1=$conn->query($sql1);
+$sql2 = "select ID ,name from personal_info where $where1 $where2
+ID in(select ID from daily_info  where date(apply_date)='$date');";
+
 $result2 = $conn->query($sql2);
-
-echo mysqli_fetch_assoc($result1);
 
 $Num = mysqli_num_rows($result2);
 for($t = 0;$t<$Num;$t++){
     $row=mysqli_fetch_assoc($result2);
     $users[$t]=$row;
 }
-
+echo (json_encode($users,JSON_UNESCAPED_UNICODE));
 $conn->close();
 ?>

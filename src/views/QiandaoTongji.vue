@@ -29,20 +29,19 @@
         </el-select>
       </div>
       <div class="button">
-        <router-link :to=chaxun1url><el-button type="primary" v-on:click="changeURL">查询</el-button></router-link>
+        <el-button type="primary" v-on:click="chaxun">查询</el-button>
       </div>
-      <router-view></router-view>
     </div>
 
     <div class="show">
       <el-tabs v-model="activeName1" @tab-click="handleClick">
-        <el-tab-pane label="已签到" name="1">
+        <el-tab-pane v-bind:label="'已签到'+number1" name="1">
           <el-table
-              :data="tableData"
+              :data="tableData1"
               style="width: 100%">
             <el-table-column
-                prop="Sno"
-                label="学号"
+                prop="ID"
+                label="学/工号"
                 width="180">
             </el-table-column>
             <el-table-column
@@ -59,13 +58,13 @@
             </el-pagination>
           </div>
         </el-tab-pane>
-        <el-tab-pane label="未签到" name="2">
+        <el-tab-pane v-bind:label="'未签到'+number2" name="2">
           <el-table
-              :data="tableData"
+              :data="tableData2"
               style="width: 100%">
             <el-table-column
-                prop="Sno"
-                label="学号"
+                prop="ID"
+                label="学/工号"
                 width="180">
             </el-table-column>
             <el-table-column
@@ -82,13 +81,13 @@
             </el-pagination>
           </div>
         </el-tab-pane>
-        <el-tab-pane label="签到有误" name="3">
+        <el-tab-pane v-bind:label="'签到有异常'+number3" name="3">
           <el-table
-              :data="tableData"
+              :data="tableData3"
               style="width: 100%">
             <el-table-column
-                prop="Sno"
-                label="学号"
+                prop="ID"
+                label="学/工号"
                 width="180">
             </el-table-column>
             <el-table-column
@@ -111,56 +110,166 @@
 </template>
 
 <script>
+import Qs from "qs";
+
 export default {
   name: "QiandaoTongji",
   data() {
     return {
       options1: [{
-        value: '选项1',
-        label: '计算机学院'
+        value: '计算机科学与技术学院、软件学院',
+        label: '计算机科学与技术学院、软件学院'
       }, {
-        value: '选项2',
+        value: '人文学院',
         label: '人文学院'
       }, {
-        value: '选项3',
+        value: '材料科学与工程学院',
         label: '材料科学与工程学院'
       }, {
-        value: '选项4',
+        value: '药学院',
         label: '药学院'
       }, {
-        value: '选项5',
+        value: '机械工程学院',
         label: '机械工程学院 '
       }, {
-        value: '选项6',
+        value: '信息工程学院',
         label: '信息工程学院 '
       }
       ],
       options2: [{
-        value: '选项1',
-        label: '20级'
+        value: '2020',
+        label: '2020级'
       }, {
-        value: '选项2',
-        label: '19级'
+        value: '2019',
+        label: '2019级'
       }, {
-        value: '选项3',
-        label: '18级'
+        value: '2018',
+        label: '2018级'
       }, {
-        value: '选项4',
-        label: '17级'
+        value: '2017',
+        label: '2017级'
       }
       ],
       value1: [],
       value2: [],
+      number1: '',
+      number2: '',
+      number3: '',
+      tableData1:[],
+      tableData2:[],
+      tableData3:[],
       activeName1:'2',
-      chaxun1url:'QiandaoTongji'
     }
   },
-  method:{
+  methods:{
+    handleSelect(key, keyPath) {
+      console.log(key, keyPath);
+    },
     handleClick(tab, event) {
       console.log(tab, event);
     },
-    changeurl:function (){
-
+    chaxun:function (){
+      this.chaxun1()
+      this.chaxun2()
+      this.chaxun3()
+      this.chaxun1Num()
+      this.chaxun2Num()
+      this.chaxun3Num()
+    },
+    chaxun1:function (){
+      var data = Qs.stringify({'department': this.value1, 'grade':this.value2});
+      this.axios.post('/daily/model_from_php/getTotalKaoQin.php',data,{
+        headers:{'Content-Type':'application/x-www-form-urlencoded'}
+      })
+          .then(response=>{
+            if (response.status >= 200 && response.status < 300) {
+              this.tableData1 = response.data;
+            } else {
+              console.log(response.message);
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+    },
+    chaxun2:function (){
+      var data = Qs.stringify({'department': this.value1, 'grade':this.value2});
+      this.axios.post('/daily/model_from_php/getTotalWeiKaoQin.php',data,{
+        headers:{'Content-Type':'application/x-www-form-urlencoded'}
+      })
+          .then(response=>{
+            if (response.status >= 200 && response.status < 300) {
+              this.tableData2 = response.data;
+            } else {
+              console.log(response.message);
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+    },
+    chaxun3:function (){
+      var data = Qs.stringify({'department': this.value1, 'grade':this.value2});
+      this.axios.post('/daily/model_from_php/getTotalSpecialKaoQin.php',data,{
+        headers:{'Content-Type':'application/x-www-form-urlencoded'}
+      })
+          .then(response=>{
+            if (response.status >= 200 && response.status < 300) {
+              this.tableData3 = response.data;
+            } else {
+              console.log(response.message);
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+    },
+    chaxun1Num:function (){
+      var data = Qs.stringify({'department': this.value1, 'grade':this.value2});
+      this.axios.post('/daily/model_from_php/getTotalKaoQinNum.php',data,{
+        headers:{'Content-Type':'application/x-www-form-urlencoded'}
+      })
+          .then(response=>{
+            if (response.status >= 200 && response.status < 300) {
+              this.number1 = "("+response.data +")";
+            } else {
+              console.log(response.message);
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+    },
+    chaxun2Num:function (){
+      var data = Qs.stringify({'department': this.value1, 'grade':this.value2});
+      this.axios.post('/daily/model_from_php/getTotalWeiKaoQinNum.php',data,{
+        headers:{'Content-Type':'application/x-www-form-urlencoded'}
+      })
+          .then(response=>{
+            if (response.status >= 200 && response.status < 300) {
+              this.number2 = "("+response.data +")";
+            } else {
+              console.log(response.message);
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+    },
+    chaxun3Num:function (){var data = Qs.stringify({'department': this.value1, 'grade':this.value2});
+      this.axios.post('/daily/model_from_php/getTotalSpecialKaoQinNum.php',data,{
+        headers:{'Content-Type':'application/x-www-form-urlencoded'}
+      })
+          .then(response=>{
+            if (response.status >= 200 && response.status < 300) {
+              this.number3 = "("+response.data +")";
+            } else {
+              console.log(response.message);
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
     }
   }
 }

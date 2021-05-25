@@ -30,7 +30,7 @@ if($grade != null){
 }
 
 $sql2 = "select ID ,name from personal_info where $where1 $where2
-ID not in(select ID from daily_info  where date(apply_date)='$date');";
+ID in(select ID from daily_info  where date(apply_date)='$date' and state = 1);";
 
 $result2 = $conn->query($sql2);
 

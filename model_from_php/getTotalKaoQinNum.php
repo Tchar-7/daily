@@ -10,7 +10,6 @@ $department = $_POST['department'];
 $grade = $_POST['grade'];
 $date=date("Y-m-d",time());
 //$date = '2021-5-22';
-$users = array();
 
 $where1 = '';
 $where2 = '';
@@ -28,17 +27,12 @@ if($grade != null){
     }
     $where2 .=") and";
 }
+$sql1="select count(*) num from personal_info where $where1 $where2
+ID in(select ID from daily_info  where date(apply_date)='$date');";
+$result1=$conn->query($sql1);
 
-$sql2 = "select ID ,name from personal_info where $where1 $where2
-ID not in(select ID from daily_info  where date(apply_date)='$date');";
+$number = mysqli_fetch_assoc($result1)['num'];
+echo $number;
 
-$result2 = $conn->query($sql2);
-
-$Num = mysqli_num_rows($result2);
-for($t = 0;$t<$Num;$t++){
-    $row=mysqli_fetch_assoc($result2);
-    $users[$t]=$row;
-}
-echo (json_encode($users,JSON_UNESCAPED_UNICODE));
 $conn->close();
 ?>

@@ -60,7 +60,7 @@
         data() {
             return {
               uID:'',
-              uName:'',
+              uName:localStorage.getItem('userName'),
               number_of_day:'',
               number_of_queqin:'',
               calendarData: [],
@@ -79,6 +79,7 @@
             })
                 .then(response=>{
                   if (response.status >= 200 && response.status < 300) {
+                    console.log(response.data)
                     this.number_of_day = response.data[0].num_of_day
                     this.number_of_queqin = response.data[0].num_of_queqin
                   } else {

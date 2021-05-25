@@ -7,11 +7,12 @@
                     <div class="input2">
                         <el-input v-model="idInput" placeholder="请输入学号"></el-input>
                     </div>
-                </div>
+
                 <div class="button2">
-                    <router-link :to=chaxun2url><el-button type="primary" v-on:click="showInfo">查询</el-button></router-link>
-                    <router-view  :key="$route.fullPath"></router-view>
+                    <router-link :to=chaxun2url replace><el-button type="primary" v-on:click="showInfo">查询</el-button></router-link>
                 </div>
+                </div>
+      <router-view  :key="$route.fullPath"></router-view>
     </div>
 </template>
 <script>
@@ -60,7 +61,7 @@
                   this.idInput = '';
                   this.chaxun2url='/Kongbai1';
                 }
-                router.push(this.chaxun2url)
+                router.replace(this.chaxun2url)
             })
           }
         },
