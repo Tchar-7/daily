@@ -13,8 +13,9 @@
                     </router-link>
                 </div>
                 </div>
+          <router-view :key="$route.fullPath"></router-view>
     </div>
-      <router-view  :key="$route.fullPath"></router-view>
+
 </template>
 <script>
 

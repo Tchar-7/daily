@@ -200,6 +200,7 @@ export default {
           .then(response=>{
             if (response.status >= 200 && response.status < 300) {
               this.tableData2 = response.data;
+              console.log(response.data)
             } else {
               console.log(response.message);
             }
