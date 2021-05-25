@@ -112,7 +112,6 @@ export default {
           this.$message.error('请输入学/工号和密码');
             console.log('error submit!!');
             return false;
-
         }
       });
     },

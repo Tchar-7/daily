@@ -17,6 +17,7 @@ import ShowForChaxunNumber from "@/views/ShowForChaxunNumber";
 import ChaxunNumber from "@/views/ChaxunNumber";
 import Kongbai from "@/views/Kongbai";
 import Shenpi from "@/views/Shenpi";
+import DialogForShenpi from "@/views/DialogForShenpi";
 
 // 解决ElementUI导航栏中的vue-router在3.0版本以上重复点菜单报错问题
 
@@ -66,6 +67,9 @@ const router =  new VueRouter({
     },{
         path: '/Shenpi',
         component: Shenpi
+    },{
+        path: '/DialogForShenpi',
+        component: DialogForShenpi
     }]
 
 })

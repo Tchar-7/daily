@@ -10,8 +10,6 @@ $department = $_POST['department'];
 $grade = $_POST['grade'];
 $date=date("Y-m-d",time());
 //$date = '2021-5-22';
-$users = array();
-
 $where1 = '';
 $where2 = '';
 if($department != null){

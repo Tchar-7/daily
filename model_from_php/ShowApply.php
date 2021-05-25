@@ -8,7 +8,8 @@ if($conn->connect_error){
 
 $apply = array();
 
-$sql1 = "select * from apply_recording where state = 0" ;
+$sql1 = "select a.* , p.name from apply_recording a, personal_info p
+where state = 0 and a.userID=p.ID" ;
 $result = $conn->query($sql1);
 
 $applyNum1 = mysqli_num_rows($result);
