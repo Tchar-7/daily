@@ -1,6 +1,6 @@
 <template>
 
-    <div>
+    <div class="table">
 
         <el-tabs v-model="activeName">
                 <div class="1">
@@ -193,5 +193,11 @@ import Qs from 'qs'
     }
     .chuchai{
         padding-left: 35%;
+    }
+    .table{
+        width: 100%;
+        height: 100%;
+        background:url("../assets/img/bg.png");
+        background-size: 100%;
     }
 </style>

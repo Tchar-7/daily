@@ -1,6 +1,6 @@
 <template>
 
-    <div>
+    <div class="table">
         <div class="title">
             <h1 class="returnButton">每日信息填报</h1>
         </div>
@@ -209,5 +209,11 @@
     }
     .returnButton {
       margin-left: 35%;
+    }
+    .table{
+        width: 100%;
+        height: 100%;
+        background:url("../assets/img/bg.png");
+        background-size: 100%;
     }
 </style>

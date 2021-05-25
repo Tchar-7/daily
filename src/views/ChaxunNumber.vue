@@ -81,6 +81,10 @@
     .table{
         padding-top: 5%;
         padding-left: 15%;
+        width: 100%;
+        height: 100%;
+        background:url("../assets/img/bg.png");
+        background-size: 100%;
     }
     .el-button{
         margin-left: 40%;

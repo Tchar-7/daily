@@ -1,6 +1,6 @@
 <template>
 
-    <div>
+    <div class="table">
       <h1 class="title">每日信息填报</h1>
 
         <el-tabs v-model="activeName" @tab-click="handleClick">
@@ -671,6 +671,12 @@
 </script>
 
 <style scoped>
+    .table{
+        width: 100%;
+        height: 100%;
+        background:url("../assets/img/bg.png");
+        background-size: 100%;
+    }
     .title {
         margin-left: 45%;
     }

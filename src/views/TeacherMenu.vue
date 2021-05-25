@@ -33,9 +33,9 @@
             <div class="show-info"
             >
               <div class="pic"> <!--头像-->
-                <div class = "pic1">
-                  <img src="../assets/img/img.jpg"/>
-                </div>
+                  <div class="pic1">
+                      <img src="../assets/img/img.jpg"/>
+                  </div>
               </div>
               <div class="detail"><!--个人信息-->
                 <el-row>
@@ -63,100 +63,59 @@
             </div>
           </el-tab-pane>
           <el-tab-pane label="个人申请" name="second">
-            <el-tabs  v-model="activeName2" @tab-click="handleClick">
-
-              <el-tab-pane label="办理中" name="21">
-                <div class="applying">
-
-                  <el-table
-                      :data="tableData0"
-                      style="width: 100%">
-                    <el-table-column
-                        prop="applyTime"
-                        label="申请时间"
-                        width="180">
-                    </el-table-column>
-                    <el-table-column
-                        prop="applyName"
-                        label="办理事项"
-                        width="180">
-                    </el-table-column>
-                  </el-table>
-                  <div class="block">
-                    <el-pagination
-                        class="page"
-                        @size-change="handleSizeChange0"
-                        @current-change="handleCurrentChange0"
-                        :current-page="currentPage0"
-                        :page-size="pagesize0"
-                        layout="total, prev, pager, next, jumper"
-                        :total="totals0">
-                    </el-pagination>
-                  </div>
-                </div>
-              </el-tab-pane>
-
-              <el-tab-pane label="办理失败" name="22">
-                <div class="failed">
-                  <el-table
-                      :data="tableData1"
-                      style="width: 100%">
-                    <el-table-column
-                        prop="applyTime"
-                        label="申请时间"
-                        width="180">
-                    </el-table-column>
-                    <el-table-column
-                        prop="applyName"
-                        label="办理事项"
-                        width="180">
-                    </el-table-column>
-                  </el-table>
-                  <div class="block">
-                    <el-pagination
-                        class="page"
-                        @size-change="handleSizeChange1"
-                        @current-change="handleCurrentChange1"
-                        :current-page="currentPage1"
-                        :page-size="pagesize1"
-                        layout="total, prev, pager, next, jumper"
-                        :total="totals1">
-                    </el-pagination>
-                  </div>
-                </div>
-              </el-tab-pane>
-
-              <el-tab-pane label="历史办理" name="23">
-                <div class="history">
-                  <el-table
-                      :data="tableData2"
-                      style="width: 100%">
-                    <el-table-column
-                        prop="applyTime"
-                        label="申请时间"
-                        width="180">
-                    </el-table-column>
-                    <el-table-column
-                        prop="applyName"
-                        label="办理事项"
-                        width="180">
-                    </el-table-column>
-                  </el-table>
-                  <div class="block">
-                    <el-pagination
-                        class="page"
-                        @size-change="handleSizeChange2"
-                        @current-change="handleCurrentChange2"
-                        :current-page="currentPage2"
-                        :page-size="pagesize2"
-                        layout="total, prev, pager, next, jumper"
-                        :total="totals2">
-                    </el-pagination>
-                  </div>
-                </div>
-              </el-tab-pane>
-
-            </el-tabs>
+            <div class="apply">
+              <div class="applying">
+                <h4 align="center">办理中</h4>
+                <el-table
+                    :data="tableData0"
+                    style="width: 100%">
+                  <el-table-column
+                      prop="applyTime"
+                      label="申请时间"
+                      width="180">
+                  </el-table-column>
+                  <el-table-column
+                      prop="applyName"
+                      label="办理事项"
+                      width="180">
+                  </el-table-column>
+                </el-table>
+              </div>
+              <div class="failed">
+                <h4 align="center">办理失败</h4>
+                <el-table
+                    :data="tableData1"
+                    style="width: 100%">
+                  <el-table-column
+                      prop="applyTime"
+                      label="申请时间"
+                      width="180">
+                  </el-table-column>
+                  <el-table-column
+                      prop="applyName"
+                      label="办理事项"
+                      width="180">
+                  </el-table-column>
+                </el-table>
+              </div>
+              <div class="history">
+                <h4 align="center">历史办理</h4>
+                <el-table
+                    :data="tableData2"
+                    style="width: 100%">
+                  <el-table-column
+                      prop="applyTime"
+                      label="申请时间"
+                      width="180">
+                  </el-table-column>
+                  <el-table-column
+                      prop="applyName"
+                      label="办理事项"
+                      width="180">
+                  </el-table-column>
+                </el-table>
+              </div>
+            </div>
           </el-tab-pane>
         </el-tabs>
       </div>
@@ -171,12 +130,11 @@ import Qs from 'qs'
 var data = Qs.stringify({'userID': localStorage.getItem('userID')});
 
 export default {
-  name:"Menu",
+  name:"TeacherMenu",
   data() {
     return {
       activeIndex2: '1',
       activeName: 'first',
-      activeName2:'21',
       uName:'',
       department:'',
       uID:'',
@@ -185,25 +143,16 @@ export default {
       sex:'',
       tableData0: [],
       tableData1: [],
-      tableData2: [],
-      totals0: 0, //总条数
-      currentPage0: 1, //当前页数
-      pagesize0: 10, //页大小
-      totals1: 0, //总条数
-      currentPage1: 1, //当前页数
-      pagesize1: 10, //页大小
-      totals2: 0, //总条数
-      currentPage2: 1, //当前页数
-      pagesize2: 10, //页大小
+      tableData2: []
     };
 
   },
   created() {
-    localStorage.setItem('page','/Menu')
+    localStorage.setItem('page','/TeacherMenu')
     this.getInfo()
-    this.getApply0(this.currentPage0,this.pagesize0)
-    this.getApply1(this.currentPage1,this.pagesize1)
-    this.getApply2(this.currentPage2,this.pagesize2)
+    this.getApply0()
+    this.getApply1()
+    this.getApply2()
   },
   methods: {
     handleSelect(key, keyPath) {
@@ -212,12 +161,17 @@ export default {
     handleClick(tab, event) {
       console.log(tab, event);
     },
+
     Tianbao() {
       this.$router.push('/Tianbao');
     },
+
     Chuxiao() {
-      this.$router.push('/Chuxiao');
+      this.$router.push('/TeacherChuxiao');
     },
+      Xiaojia() {
+          this.$router.push('/TeacherXiaojia');
+      },
     Qiandao() {
       this.$router.push('/Qiandao');
     },
@@ -228,7 +182,6 @@ export default {
       localStorage.removeItem('page');
       router.push('/');
     },
-
     getInfo:function (){
       this.axios.post('/daily/model_from_php/getPInfo.php',data,{
         headers:{'Content-Type':'application/x-www-form-urlencoded'}
@@ -250,16 +203,13 @@ export default {
             console.log(error);
           })
     },
-    getApply0:function (pagenum, pagesize){
+    getApply0:function (){
       this.axios.post('/daily/model_from_php/getApply0.php',data,{
         headers:{'Content-Type':'application/x-www-form-urlencoded'}
       })
           .then(response=>{
             if (response.status >= 200 && response.status < 300) {
-              this.tableData0 = response.data
-              this.totals0 = this.tableData0.length
-              this.tableData0 = this.tableData0.slice((pagenum - 1) * pagesize, pagenum * pagesize)
-              // console.log(this.tableData0)
+              this.tableData0 = response.data;
             } else {
               console.log(response.message);
             }
@@ -268,15 +218,13 @@ export default {
             console.log(error);
           })
     },
-    getApply1:function (pagenum, pagesize){
+    getApply1:function (){
       this.axios.post('/daily/model_from_php/getApply1.php',data,{
         headers:{'Content-Type':'application/x-www-form-urlencoded'}
       })
           .then(response=>{
             if (response.status >= 200 && response.status < 300) {
-              this.tableData1 = response.data
-              this.totals1 = this.tableData1.length
-              this.tableData1 = this.tableData1.slice((pagenum - 1) * pagesize, pagenum * pagesize)
+              this.tableData1 = response.data;
             } else {
               console.log(response.message);
             }
@@ -285,15 +233,14 @@ export default {
             console.log(error);
           })
     },
-    getApply2:function (pagenum, pagesize){
+    getApply2:function (){
       this.axios.post('/daily/model_from_php/getApply2.php',data,{
         headers:{'Content-Type':'application/x-www-form-urlencoded'}
       })
           .then(response=>{
             if (response.status >= 200 && response.status < 300) {
-              this.tableData2 = response.data
-              this.totals2 = this.tableData2.length
-              this.tableData2 = this.tableData2.slice((pagenum - 1) * pagesize, pagenum * pagesize)
+              this.tableData2 = response.data;
+              console.log(response.data)
             } else {
               console.log(response.message);
             }
@@ -301,29 +248,6 @@ export default {
           .catch(function (error) {
             console.log(error);
           })
-    },
-    //查看信息用
-    check(info) {
-      this.dialogVisible = true
-      this.dialogInfo = info
-    },
-    // 子组件传过来的数据
-    dialogVisibles(v) {
-      this.dialogVisible = v
-      console.log(v)
-    },
-    // 分页数据绑定
-    handleCurrentChange0(val) {
-      this.currentPage1 = val
-      this.getApply0(val, this.pagesize0)
-    },
-    handleCurrentChange1(val) {
-      this.currentPage1 = val
-      this.getApply0(val, this.pagesize1)
-    },
-    handleCurrentChange2(val) {
-      this.currentPage2 = val
-      this.getApply0(val, this.pagesize2)
     }
   }
 
@@ -331,75 +255,67 @@ export default {
 </script>
 
 <style scoped>
-.info{
-  padding-left: 200px;
-  padding-top: 100px;
-}
-.show-info{
+    .info{
+        padding-left: 200px;
+        padding-top: 100px;
+    }
+    .show-info{
 
-}
+    }
+    .button{
+        display: flow;
+        margin-top: 0.5%;
+        margin-left: 85%;
+    }
+    .pic{
+        height:100%;
+        width:30%;
+        float:left;
+    }
+    .pic1{
+        margin-top: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .detail{
+        height:100%;
+        width:70%;
+        float:left;
+    }
+    .el-row {
+        margin-bottom: 20px;
+    }
 
-.button{
-  display: flow;
-  margin-top: 0.5%;
-  margin-left: 85%;
-}
+    .el-col {
+        border-radius: 4px;
+    }
 
-.pic{
-  height:100%;
-  width:30%;
-  float:left;
-}
-.pic1{
-  margin-top: 30%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.detail{
-  height:100%;
-  width:70%;
-  float:left;
-}
-.el-row {
-  margin-bottom: 20px;
-}
-
-.el-col {
-  border-radius: 4px;
-}
-
-.bg-purple {
-  background: #d3dce6;
-}
-.bg-purple-light {
-  background: #e5e9f2;
-}
-.grid-content {
-  padding: 5px 10px;
-  border-radius: 4px;
-  min-height: 36px;
-  margin: 0px 5px;
-}
-.applying{
-  float:left;
-}
-.failed{
-  float:left;
-}
-.history{
-  float:left;
-}
-.search{
-  width: 20%;
-  padding-left: 60%;
-}
-.button{
-  padding-left: 1%;
-}
-.search1{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-}
+    .bg-purple {
+        background: #d3dce6;
+    }
+    .bg-purple-light {
+        background: #e5e9f2;
+    }
+    .grid-content {
+        padding: 5px 10px;
+        border-radius: 4px;
+        min-height: 36px;
+        margin: 0px 5px;
+    }
+    .applying{
+        float:left;
+    }
+    .failed{
+        float:left;
+    }
+    .history{
+        float:left;
+    }
+    .menu{
+        width: 100%;
+        height: 100%;
+        background:url("../assets/img/bg.png");
+        background-size: 100%;
+    }
 </style>

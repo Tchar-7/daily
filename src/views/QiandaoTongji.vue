@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="table">
     <div class="table1">
       <div class="title1">
         <h1>请选择学院和年级</h1>
@@ -295,5 +295,11 @@ export default {
   }
   .block{
     padding-left: 8%;
+  }
+  .table{
+    width: 100%;
+    height: 100%;
+    background:url("../assets/img/bg.png");
+    background-size: 100%;
   }
 </style>

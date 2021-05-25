@@ -1,6 +1,6 @@
 <template>
 
-    <div>
+    <div class="table">
         <el-tabs v-model="activeName">
                 <div class="1">
                     <div class="title">
@@ -75,5 +75,14 @@ import Qs from 'qs'
     }
     .history{
         padding-left: 30%;
+    }
+    .table{
+        width: 100%;
+        height: 100%;
+        background:url("../assets/img/bg.png");
+        background-size: 100%;
+    }
+    .el-table{
+        background-color: transparent;
     }
 </style>

@@ -127,4 +127,10 @@
     .returnButton {
       margin-left: 20%;
     }
+    .whole{
+        width: 100%;
+        height: 100%;
+        background:url("../assets/img/bg.png");
+        background-size: 100%;
+    }
 </style>
