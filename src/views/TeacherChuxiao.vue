@@ -38,18 +38,18 @@
                                 <el-form-item label="通行开始时间">
                                     <el-date-picker
                                             v-model="ruleForm.start[index]"
-                                            type="datetime"
+                                            type="date"
                                             placeholder="选择日期时间"
-                                            default-time="12:00:00">
+                                            value-format="yyyy-MM-dd">
                                     </el-date-picker>
                                 </el-form-item>
 
                                 <el-form-item label="通行结束时间">
                                     <el-date-picker
                                             v-model="ruleForm.finish[index]"
-                                            type="datetime"
+                                            type="date"
                                             placeholder="选择日期时间"
-                                            default-time="12:00:00">
+                                            value-format="yyyy-MM-dd">
                                     </el-date-picker>
                                 </el-form-item>
 
@@ -79,6 +79,7 @@
 // import axios from 'axios';
 // eslint-disable-next-line no-unused-vars
 import Qs from 'qs'
+//import router from "@/router";
     export default{
         name: "TeacherChuxiao",
         data() {
@@ -95,6 +96,7 @@ import Qs from 'qs'
                     left:'',
                     address:['','',''],
                     phone: '',
+                    urldata:Qs.stringify({'userID': localStorage.getItem('userID')})
                 },
                 rules: {
                     name: [
@@ -113,6 +115,25 @@ import Qs from 'qs'
         localStorage.setItem('page','/TeacherChuxiao')
       },
       methods: {
+        //check() {
+        //  this.axios.post('/daily/model_from_php/Teacher_out_check.php',this.ruleForm.urldata,{
+        //    headers:{'Content-Type':'application/x-www-form-urlencoded'}
+        //  })
+        //      .then(response=>{
+        //        if(response.data=='正在假期中'){
+        //          this.$message.success('正在假期中');
+        //          // eslint-disable-next-line no-unused-vars
+        //          setTimeout(valid => {
+        //            router.replace('/TeacherXiaojia')
+        //          }, 1000);
+        //          console.log(response.data)
+        //        }
+        //        else{}
+        //      })
+        //      .catch(function (error) {
+        //        console.log(error);
+        //      })
+        //},
           resetForm(){
             Object.assign(this.$data,this.$options.data())
           },
@@ -138,12 +159,12 @@ import Qs from 'qs'
           return array;
         },
 
-        formateDate:function (datetime) {
+        formateDate:function (date) {
           function addDateZero(num) {
             return (num < 10 ? '0' + num : num)
           }
-          const d = new Date(datetime)
-          const formatdatetime = d.getFullYear() + '-' + addDateZero(d.getMonth() + 1) + '-' + addDateZero(d.getDate()) + ' ' + addDateZero(d.getHours()) + ':' + addDateZero(d.getMinutes()) + ':' + addDateZero(d.getSeconds())
+          const d = new Date(date)
+          const formatdatetime = d.getFullYear() + '-' + addDateZero(d.getMonth() + 1) + '-' + addDateZero(d.getDate())
           return formatdatetime
         },
         submitForm() {
