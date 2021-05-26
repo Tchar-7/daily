@@ -29,14 +29,14 @@ $sql1="insert into apply_for_out values(ID,'$userID','$name','$sex','$identity',
 $result1 = $conn->query($sql1);
 $sql2="select max(ID) from apply_for_out";
 $result2 = $conn->query($sql2);
-if($result2->num_rows>0) {
-    while ($row = $result2->fetch_assoc()) {
-        $ID=$row['ID'];
-    }
-}
-$ID='StuOut'.$ID;
 
-$sql3="insert into apply_recording values('$ID','$userID','外出','$time',0,'')";
+$row = $result2->fetch_assoc();
+$ID=$row['ID'];
+
+$detail="";
+
+
+$sql3="insert into apply_recording values(recordID,$ID,'$userID','$name','外出','$time','$detail',0,'');";
 
 
 $conn->close();

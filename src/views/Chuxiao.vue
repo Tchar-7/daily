@@ -24,7 +24,7 @@
                             </el-radio-group>
                         </el-form-item>
 
-                        <el-form-item label="类别  ">
+                        <el-form-item label="学生类别  ">
                             <el-radio-group v-model="ruleForm.category">
                                 <el-radio label="内地本科生"></el-radio>
                                 <el-radio label="内地研究生"></el-radio>
