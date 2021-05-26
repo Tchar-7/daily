@@ -2,7 +2,7 @@
 
     <div class="table">
 
-        <el-tabs v-model="activeName">
+        <el-tabs>
                 <div class="1">
                     <div class="title">
                         <h1>出差申请</h1>
@@ -79,7 +79,7 @@
 // import axios from 'axios';
 // eslint-disable-next-line no-unused-vars
 import Qs from 'qs'
-//import router from "@/router";
+import router from "@/router";
     export default{
         name: "TeacherChuxiao",
         data() {
@@ -112,28 +112,29 @@ import Qs from 'qs'
         },
 
       created() {
+        this.check()
         localStorage.setItem('page','/TeacherChuxiao')
       },
       methods: {
-        //check() {
-        //  this.axios.post('/daily/model_from_php/Teacher_out_check.php',this.ruleForm.urldata,{
-        //    headers:{'Content-Type':'application/x-www-form-urlencoded'}
-        //  })
-        //      .then(response=>{
-        //        if(response.data=='正在假期中'){
-        //          this.$message.success('正在假期中');
-        //          // eslint-disable-next-line no-unused-vars
-        //          setTimeout(valid => {
-        //            router.replace('/TeacherXiaojia')
-        //          }, 1000);
-        //          console.log(response.data)
-        //        }
-        //        else{}
-        //      })
-        //      .catch(function (error) {
-        //        console.log(error);
-        //      })
-        //},
+        check() {
+          this.axios.post('/daily/model_from_php/Teacher_out_check.php',this.ruleForm.urldata,{
+            headers:{'Content-Type':'application/x-www-form-urlencoded'}
+          })
+              .then(response=>{
+                console.log(response.data)
+                if(response.data=='正在假期中，请先销假'){
+                  this.$message.error('正在假期中，请先销假');
+                  // eslint-disable-next-line no-unused-vars
+                  setTimeout(valid => {
+                    router.replace('/TeacherXiaojia')
+                  }, 1000);
+
+                }
+              })
+              .catch(function (error) {
+                console.log(error);
+              })
+        },
           resetForm(){
             Object.assign(this.$data,this.$options.data())
           },

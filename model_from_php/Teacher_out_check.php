@@ -5,7 +5,11 @@ mysqli_query($conn, "SET NAMES utf8");
 if($conn->connect_error){
     die("数据库连接失败".mysqli_connect_error());
 }
-$time=date("Y-m-d H:i:s",time());
+$time=date("Y-m-d",time());
 $ID = $_POST['userID'];
 
-$sql="select * from teacher_out where to_days($time)>=to_days(start_time) and to_days($time)<=to_days(end_time)";
+$sql="select * from teacher_out where state<>4 and userID='$ID'";
+$result = $conn->query($sql);
+if($result->num_rows>0) {
+    echo "正在假期中，请先销假";
+}

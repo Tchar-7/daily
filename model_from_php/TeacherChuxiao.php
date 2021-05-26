@@ -19,7 +19,7 @@ $phone=$_GET['phone'];
 $time=date("Y-m-d H:i:s",time());
 
 for($i=0;$i<$num;$i++){
-    $sql="insert into teacher_out values(ID,'$name','$userID','$sex','$phone','$address[$i]','$start[$i]','$finish[$i]','$time')";
+    $sql="insert into teacher_out values(ID,'$name','$userID','$sex','$phone','$address[$i]','$start[$i]','$finish[$i]','$time',state)";
     $result = $conn->query($sql);
     $sql2="select max(ID) from teacher_out";
     $result2 = $conn->query($sql2);
