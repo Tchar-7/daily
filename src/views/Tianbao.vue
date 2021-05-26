@@ -17,7 +17,7 @@
                         </el-form-item>
 
                         <el-form-item label="性别">
-                            <el-radio-group v-model="ruleForm.sex">
+                            <el-radio-group v-model="ruleForm.sex" prop="sex">
                                 <el-radio label="男"></el-radio>
                                 <el-radio label="女"></el-radio>
                             </el-radio-group>
@@ -402,6 +402,7 @@ import Qs from "qs";
                         {required: true, message: '请输入学号/工号', trigger: 'blur'},
                         {min: 12, max: 12, message: '长度为12', trigger: 'blur'}
                     ],
+                    sex: [{required: true, message: '请选择', trigger: 'blur'}]
                 }
             };
         },
@@ -766,7 +767,7 @@ import Qs from "qs";
                     this.$message.success('今日已经打卡');
                     // eslint-disable-next-line no-unused-vars
                     setTimeout(valid => {
-                      router.replace('/Yidaka')
+                      router.replace('/Menu')
                     }, 1000);
                     console.log(response.data)
                   }
