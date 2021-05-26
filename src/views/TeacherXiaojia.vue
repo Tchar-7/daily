@@ -7,25 +7,35 @@
                         <h1>销假申请</h1>
                     </div>
                     <div class="history">
-                        <el-table
-                                :data="tableData"
-                                style="width: 100%"
-                                max-height="250">
-                            <el-table-column
-                                    prop="jilu"
-                                    label="请假记录"
-                                    width="400%">
+                        <el-table :data="tableData" style="width: 100%" max-height="250">
+
+                            <el-table-column prop="jilu" label="请假记录ID" width="100%">
+                              <template slot-scope="scope">
+                                <span>{{scope.row.ID}}</span>
+                              </template>
                             </el-table-column>
-                            <el-table-column
-                                    label="操作"
-                                    width="100%">
+
+                          <el-table-column prop="address" label="出差地点" width="100%">
+                            <template slot-scope="scope">
+                              <span>{{scope.row.business_address}}</span>
+                            </template>
+                          </el-table-column>
+
+                          <el-table-column prop="time" label="开始时间" width="100%">
+                            <template slot-scope="scope">
+                              <span>{{scope.row.start_time}}</span>
+                            </template>
+                          </el-table-column>
+
+                          <el-table-column prop="time" label="结束时间" width="100%">
+                            <template slot-scope="scope">
+                              <span>{{scope.row.end_time}}</span>
+                            </template>
+                          </el-table-column>
+
+                            <el-table-column label="操作" width="100%">
                                 <template slot-scope="scope">
-                                    <el-button
-                                            @click.native.prevent="deleteRow(scope.$index, tableData)"
-                                            type="text"
-                                            size="small">
-                                        销假
-                                    </el-button>
+                                  <el-button @click="check(scope.row)">申请销假</el-button>
                                 </template>
                             </el-table-column>
                         </el-table>

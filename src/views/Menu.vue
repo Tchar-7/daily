@@ -84,29 +84,48 @@
           <el-tabs  v-model="activeName2" @tab-click="handleClick">
 
             <el-tab-pane label="办理中" name="21">
-                <div class="applying">
+                <div class="applying" style="width: 80%">
+                    <el-table :data="tableData0" style="width: 100%">
 
-                    <el-table
-                            :data="tableData0"
-                            style="width: 100%">
-                        <el-table-column
-                                prop="applyTime"
-                                label="申请时间"
-                                width="180">
-                        </el-table-column>
-                        <el-table-column
-                                prop="applyName"
-                                label="办理事项"
-                                width="180">
-                        </el-table-column>
+                      <el-table-column prop="name" label="流水号" width="180">
+                        <template slot-scope="scope">
+                          <span>{{scope.row.recordID}}</span>
+                        </template>
+                      </el-table-column>
+
+                      <el-table-column prop="name" label="申请人" width="180">
+                        <template slot-scope="scope">
+                          <span>{{scope.row.userName}}</span>
+                        </template>
+                      </el-table-column>
+
+                      <el-table-column prop="applyName" label="申请事项" width="180">
+                        <template slot-scope="scope">
+                          <span>{{scope.row.applyName}}</span>
+                        </template>
+                      </el-table-column>
+
+                      <el-table-column prop="ID" label="申请时间" width="180">
+                        <template slot-scope="scope">
+                          <span>{{scope.row.applyTime}}</span>
+                        </template>
+                      </el-table-column>
+
+                      <el-table-column label="操作">
+                        <template slot-scope="scope">
+                          <el-button @click="check(scope.row)">查看详情</el-button>
+                        </template>
+                      </el-table-column>
                     </el-table>
                   <div class="block">
                     <el-pagination
                         class="page"
+                        @size-change="handleSizeChange0"
                         @current-change="handleCurrentChange0"
                         :current-page="currentPage0"
+                        :page-sizes="[10, 20, 30]"
                         :page-size="pagesize0"
-                        layout="total, prev, pager, next, jumper"
+                        layout="total,sizes, prev, pager, next, jumper"
                         :total="totals0">
                     </el-pagination>
                   </div>
@@ -114,57 +133,95 @@
             </el-tab-pane>
 
             <el-tab-pane label="办理失败" name="22">
-                <div class="failed">
-                    <el-table
-                            :data="tableData1"
-                            style="width: 100%">
-                        <el-table-column
-                                prop="applyTime"
-                                label="申请时间"
-                                width="180">
-                        </el-table-column>
-                        <el-table-column
-                                prop="applyName"
-                                label="办理事项"
-                                width="180">
-                        </el-table-column>
+                <div class="failed" style="width: 80%">
+                    <el-table :data="tableData1" style="width: 100%">
+                      <el-table-column prop="name" label="流水号" width="180">
+                        <template slot-scope="scope">
+                          <span>{{scope.row.recordID}}</span>
+                        </template>
+                      </el-table-column>
+
+                      <el-table-column prop="name" label="申请人" width="180">
+                        <template slot-scope="scope">
+                          <span>{{scope.row.userName}}</span>
+                        </template>
+                      </el-table-column>
+
+                      <el-table-column prop="applyName" label="申请事项" width="180">
+                        <template slot-scope="scope">
+                          <span>{{scope.row.applyName}}</span>
+                        </template>
+                      </el-table-column>
+
+                      <el-table-column prop="ID" label="申请时间" width="180">
+                        <template slot-scope="scope">
+                          <span>{{scope.row.applyTime}}</span>
+                        </template>
+                      </el-table-column>
+
+                      <el-table-column label="操作">
+                        <template slot-scope="scope">
+                          <el-button @click="check(scope.row)">查看详情</el-button>
+                        </template>
+                      </el-table-column>
                     </el-table>
                   <div class="block">
                     <el-pagination
                         class="page"
+                        @size-change="handleSizeChange1"
                         @current-change="handleCurrentChange1"
                         :current-page="currentPage1"
+                        :page-sizes="[10, 20, 30]"
                         :page-size="pagesize1"
-                        layout="total, prev, pager, next, jumper"
+                        layout="total,sizes, prev, pager, next, jumper"
                         :total="totals1">
                     </el-pagination>
-                  </div>
+                </div>
                 </div>
             </el-tab-pane>
 
             <el-tab-pane label="历史办理" name="23">
-                <div class="history">
-                    <el-table
-                            :data="tableData2"
-                            style="width: 100%">
-                        <el-table-column
-                                prop="applyTime"
-                                label="申请时间"
-                                width="180">
-                        </el-table-column>
-                        <el-table-column
-                                prop="applyName"
-                                label="办理事项"
-                                width="180">
-                        </el-table-column>
+                <div class="history" style="width: 80%">
+                    <el-table :data="tableData2" style="width: 100%">
+                      <el-table-column prop="name" label="流水号" width="180">
+                        <template slot-scope="scope">
+                          <span>{{scope.row.recordID}}</span>
+                        </template>
+                      </el-table-column>
+
+                      <el-table-column prop="name" label="申请人" width="180">
+                        <template slot-scope="scope">
+                          <span>{{scope.row.userName}}</span>
+                        </template>
+                      </el-table-column>
+
+                      <el-table-column prop="applyName" label="申请事项" width="180">
+                        <template slot-scope="scope">
+                          <span>{{scope.row.applyName}}</span>
+                        </template>
+                      </el-table-column>
+
+                      <el-table-column prop="ID" label="申请时间" width="180">
+                        <template slot-scope="scope">
+                          <span>{{scope.row.applyTime}}</span>
+                        </template>
+                      </el-table-column>
+
+                      <el-table-column label="操作">
+                        <template slot-scope="scope">
+                          <el-button @click="check(scope.row)">查看详情</el-button>
+                        </template>
+                      </el-table-column>
                     </el-table>
                   <div class="block">
                     <el-pagination
                         class="page"
+                        @size-change="handleSizeChange2"
                         @current-change="handleCurrentChange2"
                         :current-page="currentPage2"
+                        :page-sizes="[10, 20, 30]"
                         :page-size="pagesize2"
-                        layout="total, prev, pager, next, jumper"
+                        layout="total,sizes, prev, pager, next, jumper"
                         :total="totals2">
                     </el-pagination>
                   </div>
@@ -172,6 +229,7 @@
             </el-tab-pane>
 
           </el-tabs>
+          <component-dialog :dialogVisible="dialogVisible" :dialogInfo="dialogInfo" @update:dialogVisible="dialogVisibles"></component-dialog>
         </el-tab-pane>
     </el-tabs>
     </div>
@@ -182,11 +240,16 @@
     import router from "@/router";
     // import axios from 'axios';
     import Qs from 'qs'
+    import componentDialog from './DialogForApplyDetail'
+
 
     var data = Qs.stringify({'userID': localStorage.getItem('userID')});
 
     export default {
         name:"Menu",
+        components: {
+          componentDialog
+        },
         data() {
             return {
                 activeIndex2: '1',
@@ -211,6 +274,10 @@
                 totals2: 0, //总条数
                 currentPage2: 1, //当前页数
                 pagesize2: 10, //页大小
+                // 控制弹窗 显示
+               dialogVisible: false,
+                // 点击查看按钮 这条数据详细信息
+                dialogInfo: {},
             };
 
         },
@@ -345,7 +412,7 @@
             },
           // 分页数据绑定
           handleCurrentChange0(val) {
-            this.currentPage1 = val
+            this.currentPage0 = val
             this.getApply0(val, this.pagesize0)
           },
           handleCurrentChange1(val) {
@@ -355,6 +422,18 @@
           handleCurrentChange2(val) {
             this.currentPage2 = val
             this.getApply0(val, this.pagesize2)
+          },
+          handleSizeChange0(val){
+            this.pagesize0 = val
+            this.getApply0(this.currentPage0, val)
+          },
+          handleSizeChange1(val){
+            this.pagesize1 = val
+            this.getApply1(this.currentPage1, val)
+          },
+          handleSizeChange2(val){
+            this.pagesize2 = val
+            this.getApply2(this.currentPage2, val)
           }
         }
 
