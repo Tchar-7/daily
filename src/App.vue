@@ -11,20 +11,14 @@ export default {
 
   created:function () {
     var ID = localStorage.getItem('userID')
-    var identity = localStorage.getItem('userIdentity')
+    // var identity = localStorage.getItem('userIdentity')
     // var page = localStorage.getItem('page')
     // if (page != null) {
     //   router.push(page)
     // }
     // else {
       if (ID != null) {
-        if (identity == '1') {
           router.push('/Menu')
-        } else if (identity == '2') {
-          router.push('/TeacherMenu')
-        } else {
-          router.push('/AdminMenu')
-        }
       }
       else {
         router.push('/Login')

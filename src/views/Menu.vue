@@ -9,20 +9,39 @@
             text-color="#fff"
             active-text-color="#ffd04b">
 
+            <template>
             <el-menu-item index="1">个人中心</el-menu-item>
-            <el-submenu index="2">
+
+            <el-submenu index="2" v-if="identity!=3">
                 <template slot="title">每日一报</template>
                 <el-menu-item index="2-1" @click="Tianbao()">信息填报</el-menu-item>
                 <el-menu-item index="2-2" @click="Qiandao()">个人签到信息</el-menu-item>
             </el-submenu>
-            <el-submenu index="3">
+            <el-submenu index="2" v-if="identity==3">
+                <template slot="title">每日一报</template>
+                <el-menu-item index="2-1" @click="Tianbao()">信息填报</el-menu-item>
+                <el-menu-item index="2-2" @click="Qiandao()">个人签到信息</el-menu-item>
+                <el-menu-item index="2-3" @click="QiandaoTongji()">签到信息统计</el-menu-item>
+                <el-menu-item index="2-4" @click="ChaxunNumber()">学生查询</el-menu-item>
+              </el-submenu>
+
+            <el-submenu index="3" v-if="identity== 1">
                 <template slot="title">其他</template>
                 <el-menu-item index="2-1" @click="Chuxiao()">出校申请</el-menu-item>
             </el-submenu>
+            <el-submenu index="3" v-if="identity== 2">
+                <template slot="title">其他</template>
+                <el-menu-item index="2-1" @click="TeacherXiaojia()">销假</el-menu-item>
+                <el-menu-item index="2-2" @click="TeacherChuxiao()">出差申请</el-menu-item>
+              </el-submenu>
+            <el-submenu index="3" v-if="identity== 3">
+                <template slot="title">其他</template>
+                <el-menu-item index="2-1" @click="shenpi()">申请审批</el-menu-item>
+            </el-submenu>
 
+            </template>
         <div class = 'button'>
             <el-button type="text" @click="logOut()">退出登录</el-button>
-            <!--<button v-on:click="logOut()" type="success" plain>退出登录</button>-->
         </div>
 
     </el-menu>
@@ -179,6 +198,7 @@
                 mail:'',
                 phone:'',
                 sex:'',
+                identity:localStorage.getItem('userIdentity'),
                 tableData0: [],
                 tableData1: [],
                 tableData2: [],
@@ -217,12 +237,27 @@
             Qiandao() {
                 this.$router.push('/Qiandao');
             },
+            TeacherXiaojia(){
+            this.$router.push('/TeacherXiaojia');
+            },
+            TeacherChuxiao() {
+              this.$router.push('/TeacherChuxiao');
+            },
+            QiandaoTongji(){
+              this.$router.push('/QiandaoTongji');
+            },
+            ChaxunNumber(){
+              this.$router.push('/ChaxunNumber');
+            },
+            shenpi(){
+              this.$router.push('/Shenpi');
+            },
             logOut(){
               localStorage.removeItem('userID');
               localStorage.removeItem('userIdentity');
               localStorage.removeItem('userName');
               localStorage.removeItem('page');
-              router.push('/');
+              router.push('/Login');
             },
 
             getInfo:function (){

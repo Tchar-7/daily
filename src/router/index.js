@@ -8,8 +8,6 @@ import Menu from "@/views/Menu";
 import Chuxiao from "@/views/Chuxiao";
 import Qiandao from "@/views/Qiandao";
 import Tianbao from "@/views/Tianbao";
-import AdminMenu from "../views/AdminMenu";
-import TeacherMenu from "../views/TeacherMenu";
 import TeacherChuxiao from "../views/TeacherChuxiao";
 import TeacherXiaojia from "../views/TeacherXiaojia";
 import QiandaoTongji from "@/views/QiandaoTongji";
@@ -43,12 +41,6 @@ const router =  new VueRouter({
     },{
         path: '/Tianbao',
         component: Tianbao
-    },{
-        path: '/AdminMenu',
-        component: AdminMenu
-    },{
-        path: '/TeacherMenu',
-        component: TeacherMenu
     },{
         path: '/TeacherChuxiao',
         component: TeacherChuxiao

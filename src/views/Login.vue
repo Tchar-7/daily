@@ -84,24 +84,10 @@ export default {
                 localStorage.setItem('userName', valid.data[0].userName);
                 localStorage.setItem('userIdentity',valid.data[0].identity)
 
-                if(localStorage.getItem('userIdentity') == '1') {
                   // eslint-disable-next-line no-unused-vars
                   setTimeout(valid => {
                     this.$router.push('/menu')
                   }, 600);
-                }
-              else if(localStorage.getItem('userIdentity') == '1'){
-                  // eslint-disable-next-line no-unused-vars
-                  setTimeout(valid => {
-                    this.$router.push('/TeacherMenu')
-                  }, 600);
-                }
-                else {
-                  // eslint-disable-next-line no-unused-vars
-                  setTimeout(valid => {
-                    this.$router.push('/AdminMenu')
-                  }, 600);
-                }
               }
               else {
                 this.$message.error('用户名或密码错误,请重新输入!');
