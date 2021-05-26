@@ -58,7 +58,6 @@ import Qs from 'qs'
 
         },
       created() {
-        // localStorage.setItem('page','/TeacherXiaojia')
         this.show()
       },
       methods: {
@@ -78,6 +77,7 @@ import Qs from 'qs'
                 .catch(function (error) {
                   console.log(error);
                 })
+            this.show()
           },
           show(){
             var data = Qs.stringify({'userID': localStorage.getItem('userID')})

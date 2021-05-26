@@ -282,13 +282,13 @@
 
         },
         created() {
-          localStorage.setItem('page','/Menu')
           this.getInfo()
           this.getApply0(this.currentPage0,this.pagesize0)
           this.getApply1(this.currentPage1,this.pagesize1)
           this.getApply2(this.currentPage2,this.pagesize2)
+
       },
-        methods: {
+      methods: {
             handleSelect(key, keyPath) {
                 console.log(key, keyPath);
             },
@@ -434,7 +434,8 @@
           handleSizeChange2(val){
             this.pagesize2 = val
             this.getApply2(this.currentPage2, val)
-          }
+          },
+
         }
 
     }

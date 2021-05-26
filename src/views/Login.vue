@@ -41,6 +41,8 @@
   </div>
 </template>
 <script>
+import router from "@/router";
+
 export default {
   name: "Login",
   data: function() {
@@ -86,7 +88,8 @@ export default {
 
                   // eslint-disable-next-line no-unused-vars
                   setTimeout(valid => {
-                    this.$router.push('/menu')
+                    // this.$router.push('/Menu')
+                    router.go(0)
                   }, 600);
               }
               else {

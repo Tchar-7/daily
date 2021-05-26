@@ -22,7 +22,8 @@ $time=date("Y-m-d H:i:s",time());
 $detail = $info['detail'];
 
 $sql3="insert into apply_recording values(recordID,$ID,'$userID','$name','销假申请','$time','$detail',0,'');";
-$conn->query(sql3);
+$conn->query($sql3);
 
+//echo $sql3;
 $conn->close();
 ?>
