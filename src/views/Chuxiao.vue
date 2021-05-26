@@ -103,6 +103,7 @@
 
 <script>
     import router from "@/router";
+    import Qs from "qs";
 
     export default {
         name: "Chuxiao",
@@ -121,7 +122,8 @@
                     stay:'',
                     address:'',
                     phone: '',
-                    color:''
+                    color:'',
+                    urldata:Qs.stringify({'userID': localStorage.getItem('userID')})
                 },
                 rules: {
                     name: [
@@ -136,9 +138,29 @@
             };
         },
       created() {
+        this.check()
         localStorage.setItem('page','/Chuxiao')
       },
       methods: {
+        check() {
+          this.axios.post('/daily/model_from_php/Chuxiao_check.php',this.ruleForm.urldata,{
+            headers:{'Content-Type':'application/x-www-form-urlencoded'}
+          })
+              .then(response=>{
+                console.log(response.data)
+                if(response.data=='在假期中'){
+                  this.$message.error('在假期中请勿重复请假');
+                  // eslint-disable-next-line no-unused-vars
+                  setTimeout(valid => {
+                    router.replace('/Menu')
+                  }, 1000);
+
+                }
+              })
+              .catch(function (error) {
+                console.log(error);
+              })
+        },
         resetForm(){
           Object.assign(this.$data,this.$options.data())
         },
@@ -180,7 +202,7 @@
                   // eslint-disable-next-line no-unused-vars
                   .then((valid) => {
                     this.$message.success('填报成功');
-                      router.push('/Menr')
+                      router.push('/Menu')
                   })
             }else {
               this.$message.error('请填写正确信息');
