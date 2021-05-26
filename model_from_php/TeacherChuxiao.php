@@ -20,16 +20,17 @@ $time=date("Y-m-d H:i:s",time());
 for($i=0;$i<$num;$i++){
     $sql="insert into teacher_out values('$name','$userID','$sex','$phone','$address[$i]','$start[$i]','$finish[$i]','$time')";
     $result = $conn->query($sql);
-    $sql1="select max(ID) from teacher_out";
-    $result1 = $conn->query($sql1);
-    if($result1->num_rows>0) {
-        while ($row = $result1->fetch_assoc()) {
-            $ID=$row['ID'];
-        }
-    }
-    $ID='TeaOut'.$ID;
-    $sql2="insert into apply_recording values('$ID','$userID','出差','$time',0,'')";
+    $sql2="select max(ID) from apply_for_out";
     $result2 = $conn->query($sql2);
+
+    $row = $result2->fetch_assoc();
+    $ID=$row['ID'];
+
+    $detail="手机:".$phone."<br>"."出差地址:".$address[$i]."<br>"."开始时间:".$start[$i]."<br>"."结束时间:".$finish[$i]."<br>";
+
+
+    $sql3="insert into apply_recording values(recordID,$ID,'$userID','$name','教师出差','$time','$detail',0,'');";
+    $result3 = $conn->query($sql3);
 }
 
 

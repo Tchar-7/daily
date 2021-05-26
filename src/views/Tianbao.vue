@@ -291,7 +291,7 @@
                         <el-checkbox v-model="ruleForm.agree" label="同意签订承诺书"></el-checkbox>
 
                         <el-form-item>
-                            <el-button type="primary" @click="submitForm()">提交</el-button>
+                            <el-button type="primary" @click="check">提交</el-button>
                             <el-button @click="resetForm()">重置</el-button>
                         </el-form-item>
 
@@ -308,7 +308,7 @@
 import router from "@/router";
 import Qs from "qs";
     export default {
-        name: "Tianbao",
+        name: "ruleForm",
         data() {
             return {
                 options: [{
@@ -409,6 +409,175 @@ import Qs from "qs";
           this.getInfo();
         },
       methods: {
+          check(){
+            if(
+                this.ruleForm.name=='' ||
+                this.ruleForm.userID=='' ||
+                this.ruleForm.sex=='' ||
+                this.ruleForm.campus=='' ||
+                this.ruleForm.category=='' ||
+                this.ruleForm.departments=='' ||
+                this.ruleForm.location1=='' ||
+                this.ruleForm.location2=='' ||
+                this.ruleForm.phone=='' ||
+                this.ruleForm.inside=='' ||
+                this.ruleForm.health=='' ||
+                this.ruleForm.temperature=='' ||
+                this.ruleForm.color=='' ||
+                this.ruleForm.name2=='' ||
+                this.ruleForm.phone2=='' ||
+                this.ruleForm.address=='' ||
+                this.ruleForm.risk=='' ||
+                this.ruleForm.isolation=='' ||
+                this.ruleForm.confirm=='' ||
+                this.ruleForm.like=='' ||
+                this.ruleForm.test=='' ||
+                this.ruleForm.like2=='' ||
+                this.ruleForm.touch=='' ||
+                this.ruleForm.gotorisk=='' ||
+                this.ruleForm.backfrom=='' ||
+                this.ruleForm.agree==''
+            ){
+              this.$message.error('信息不能为空');
+            }
+            else if(
+                (
+                    this.ruleForm.health=='不适'
+                    &&
+                    this.ruleForm.healthinf==''
+                )
+                ||
+                (
+                    this.ruleForm.inside=='已返乡'
+                    &&
+                    (
+                        this.ruleForm.back==''
+                        ||
+                        this.ruleForm.traffic==[]
+                        ||
+                        (
+                            this.isInArray(this.ruleForm.traffic,'飞机')
+                            &&
+                            this.ruleForm.plane==''
+                        )
+                        ||
+                        (
+                            this.isInArray(this.ruleForm.traffic,'火车')
+                            &&
+                            this.ruleForm.train==''
+                        )
+                        ||
+                        (
+                            this.isInArray(this.ruleForm.traffic,'客车')
+                            &&
+                            this.ruleForm.bus==''
+                        )
+                        ||
+                        (
+                            this.isInArray(this.ruleForm.traffic,'轮船')
+                            &&
+                            this.ruleForm.ship==''
+                        )
+                        ||
+                        (
+                            this.isInArray(this.ruleForm.traffic,'自驾车')
+                            &&
+                            this.ruleForm.car==''
+                        )
+                        ||
+                        (
+                            this.isInArray(this.ruleForm.traffic,'其他')
+                            &&
+                            this.ruleForm.other==''
+                        )
+                    )
+                )
+                ||
+                (
+                    this.ruleForm.isolation=='是'
+                    &&
+                    this.ruleForm.isolationplace==''
+                )
+                ||
+                (
+                    this.ruleForm.like=='是'
+                    &&
+                    this.ruleForm.likeinf==''
+                )
+                ||
+                (
+                    this.ruleForm.like2=='是'
+                    &&
+                    this.ruleForm.like2inf==''
+                )
+                ||
+                (
+                    this.ruleForm.touch=='是'
+                    &&
+                    this.ruleForm.touchinf==''
+                )
+                ||
+                (
+                    this.ruleForm.gotorisk=='是'
+                    &&
+                    this.ruleForm.gotoriskinf==''
+                )
+                ||
+                (
+                    this.backfrom=='是'
+                    &&
+                    (
+                        this.ruleForm.backfromtime==''
+                        ||
+                        this.ruleForm.country==''
+                        ||
+                        this.ruleForm.traffic2==[]
+                        ||
+                        (
+                            this.isInArray(this.ruleForm.traffic2,'飞机')
+                            &&
+                            this.ruleForm.plane2==''
+                        )
+                        ||
+                        (
+                            this.isInArray(this.ruleForm.traffic2,'火车')
+                            &&
+                            this.ruleForm.train2==''
+                        )
+                        ||
+                        (
+                            this.isInArray(this.ruleForm.traffic2,'客车')
+                            &&
+                            this.ruleForm.bus2==''
+                        )
+                        ||
+                        (
+                            this.isInArray(this.ruleForm.traffic2,'轮船')
+                            &&
+                            this.ruleForm.ship2==''
+                        )
+                        ||
+                        (
+                            this.isInArray(this.ruleForm.traffic2,'自驾车')
+                            &&
+                            this.ruleForm.car2==''
+                        )
+                        ||
+                        (
+                            this.isInArray(this.ruleForm.traffic2,'其他')
+                            &&
+                            this.ruleForm.other2==''
+                        )
+                    )
+                )
+            ){
+              this.$message.error('信息不能为空');
+            }
+            else{
+              this.submitForm()
+            }
+          },
+
           isInArray(arr,value){
             for(var i = 0; i < arr.length; i++){
               if(value === arr[i]){
@@ -585,7 +754,6 @@ import Qs from "qs";
                   this.$message.error('请填写正确信息');
                   console.log('error submit!!');
                   return false;
-
                 }
               });
             },
@@ -595,7 +763,12 @@ import Qs from "qs";
           })
               .then(response=>{
                   if(response.data=='今日已经打卡'){
-                    this.$router.push('Yidaka.vue')
+                    this.$message.success('今日已经打卡');
+                    // eslint-disable-next-line no-unused-vars
+                    setTimeout(valid => {
+                      router.replace('/Yidaka')
+                    }, 1000);
+                    console.log(response.data)
                   }
                   else{
                     if (response.status >= 200 && response.status < 300) {
@@ -666,9 +839,9 @@ import Qs from "qs";
               })
         },
 
-            resetForm(formName) {
-                this.$refs[formName].resetFields();
-            },
+        resetForm(){
+          Object.assign(this.$data,this.$options.data())
+        }
           // eslint-disable-next-line vue/no-dupe-keys
 
 

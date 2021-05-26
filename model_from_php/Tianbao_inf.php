@@ -9,12 +9,10 @@ $time=date("Y-m-d H:i:s",time());
 $ID = $_POST['userID'];
 $inf=array();
 
-$sql0="select * from additional_info where ID='$ID' and to_days(apply_date)=to_days('$time')";
+$sql0="select * from additional_info where ID='$ID' and to_days(apply_data)=to_days('$time')";
 $result0 = $conn->query($sql0);
 if($result0->num_rows>0) {
-    while ($row = $result0->fetch_assoc()) {
         echo '今日已经打卡';
-    }
 }
 else{
     $sql1="select * from basis_info where ID='$ID' and to_days(apply_data)=(select max(to_days(apply_date)) from daily_info)";
@@ -27,6 +25,6 @@ else{
     $row2 = $result2->fetch_assoc();
     $row3 = $result3->fetch_assoc();
     $inf=array_merge($row1,$row2,$row3);
+    echo (json_encode($inf,JSON_UNESCAPED_UNICODE));
 }
-//echo $sql0.$sql1.$sql2.$sql3;
-echo (json_encode($inf,JSON_UNESCAPED_UNICODE));
+

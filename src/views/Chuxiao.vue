@@ -140,6 +140,9 @@
         localStorage.setItem('page','/Chuxiao')
       },
       methods: {
+        resetForm(){
+          Object.assign(this.$data,this.$options.data())
+        },
         formateDate:function (datetime) {
           function addDateZero(num) {
             return (num < 10 ? '0' + num : num)

@@ -56,8 +56,14 @@
                                 <p v-if="ruleForm.start[index]>ruleForm.finish[index]">起始时间不能晚于结束时间</p>
 
                             </div>
-                            <el-button @click="add()">增加记录</el-button>
-                            <el-button @click="pop()">删除记录</el-button>
+                            <el-button v-if="this.num.length<3" @click="add()">增加记录</el-button>
+                            <el-button v-if="this.num.length>1" @click="pop()">删除记录</el-button>
+
+                          <el-form-item>
+                            <el-button type="primary" @click="submitForm()">提交</el-button>
+                            <el-button @click="resetForm()">重置</el-button>
+                          </el-form-item>
+
 
                         </el-form>
                     </div>
@@ -107,6 +113,10 @@ import Qs from 'qs'
         localStorage.setItem('page','/TeacherChuxiao')
       },
       methods: {
+          resetForm(){
+            Object.assign(this.$data,this.$options.data())
+          },
+
           add(){
             var number=this.num.length;
             if(number<3){
