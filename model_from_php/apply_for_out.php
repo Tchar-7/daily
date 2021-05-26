@@ -25,20 +25,28 @@ if(strcmp($category,"其他")==0){
     $category=$other;
 }
 
+if(strcmp($left,'是')==0){
+    $sql1="insert into apply_for_out values(ID,'$userID','$name','$sex','$identity','$phone','$start','$finish','$left','$reason','$stay','$color','$time',0)";
+    $conn->query($sql1);
+    $sql2="select max(ID) num from apply_for_out";
+    $result2 = $conn->query($sql2);
+    $row = $result2->fetch_assoc();
+    $ID=$row['num'];
+    $detail="手机:".$phone."<br>"."开始时间:".$start."<br>"."结束时间:".$finish."<br>"."是否离开杭州:".$left."<br>"."外出原因:".$reason."<br>"."是否在外留宿:".$stay."<br>"."健康码:".$color;
+    $sql3="insert into apply_recording values(recordID,$ID,'$userID','$name','外出','$time','$detail',0,'');";
+    $conn->query($sql3);
+}
+else{
+    $sql1="insert into apply_for_out values(ID,'$userID','$name','$sex','$identity','$phone','$start','$finish','$left','$reason','$stay','$color','$time',2)";
+    $conn->query($sql1);
+    $sql2="select max(ID) num from apply_for_out";
+    $result2 = $conn->query($sql2);
+    $row = $result2->fetch_assoc();
+    $ID=$row['num'];
+    $detail="手机:".$phone."<br>"."开始时间:".$start."<br>"."结束时间:".$finish."<br>"."是否离开杭州:".$left."<br>"."外出原因:".$reason."<br>"."是否在外留宿:".$stay."<br>"."健康码:".$color;
+    $sql3="insert into apply_recording values(recordID,$ID,'$userID','$name','外出','$time','$detail',2,'');";
+    $conn->query($sql3);
+}
 
-$sql1="insert into apply_for_out values(ID,'$userID','$name','$sex','$identity','$phone','$start','$finish','$left','$reason','$stay','$color','$time')";
-$conn->query($sql1);
-$sql2="select max(ID) num from apply_for_out";
-$result2 = $conn->query($sql2);
-
-$row = $result2->fetch_assoc();
-$ID=$row['num'];
-
-
-$detail="手机:".$phone."<br>"."开始时间:".$start."<br>"."结束时间:".$finish."<br>"."是否离开杭州:".$left."<br>"."外出原因:".$reason."<br>"."是否在外留宿:".$stay."<br>"."健康码:".$color;
-
-
-$sql3="insert into apply_recording values(recordID,$ID,'$userID','$name','外出','$time','$detail',0,'');";
-$conn->query($sql3);
 $conn->close();
 ?>
