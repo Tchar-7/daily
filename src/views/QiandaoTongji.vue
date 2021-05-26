@@ -117,24 +117,39 @@ export default {
   data() {
     return {
       options1: [{
-        value: '计算机科学与技术学院、软件学院',
-        label: '计算机科学与技术学院、软件学院'
-      }, {
-        value: '人文学院',
-        label: '人文学院'
-      }, {
-        value: '材料科学与工程学院',
-        label: '材料科学与工程学院'
-      }, {
-        value: '药学院',
-        label: '药学院'
-      }, {
-        value: '机械工程学院',
-        label: '机械工程学院 '
-      }, {
-        value: '信息工程学院',
-        label: '信息工程学院 '
-      }
+          value: '计算机科学与技术学院、软件学院',
+          label: '计算机科学与技术学院、软件学院'
+        }, {
+          value: '人文学院',
+          label: '人文学院'
+        }, {
+          value: '机械学院',
+          label: '机械学院'
+        },
+        {value: '材料科学与工程学院',
+          label: '材料科学与工程学院'
+        },{
+          value: '药学院',
+          label: '药学院'
+        },{
+          value: '机械工程学院',
+          label: '机械工程学院 '
+        }, {
+          value: '信息工程学院',
+          label: '信息工程学院 '
+        },{
+          value: '化工学院',
+          label: '化工学院'
+        }, {
+          value: '经济学院',
+          label: '经济学院'
+        }, {
+          value: '理学院',
+          label: '理学院'
+        },{
+          value: '健行学院',
+          label: '健行学院'
+        }
       ],
       options2: [{
         value: '2020',

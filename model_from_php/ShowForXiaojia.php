@@ -6,11 +6,12 @@ if($conn->connect_error){
     die("数据库连接失败".mysqli_connect_error());
 }
 
-$ID = $_POST['userID'];
+$userID = $_POST['userID'];
+
 
 $apply = array();
 
-$sql1 = "select * from apply_out where userID = '$ID'" ;
+$sql1 = "select * from teacher_out where userID = '$userID' and state = 2" ;
 $result = $conn->query($sql1);
 
 $applyNum1 = mysqli_num_rows($result);

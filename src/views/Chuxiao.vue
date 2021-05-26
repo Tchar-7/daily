@@ -4,8 +4,6 @@
         <div class="title">
             <h1 class="returnButton">每日信息填报</h1>
         </div>
-
-        <el-tabs v-model="activeName">
                 <div class="1">
 
                     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" label-position ="top">
@@ -100,11 +98,12 @@
                     </el-form>
 
                 </div>
-        </el-tabs>
     </div>
 </template>
 
 <script>
+    import router from "@/router";
+
     export default {
         name: "Chuxiao",
         data() {
@@ -127,7 +126,7 @@
                 rules: {
                     name: [
                         {required: true, message: '请输入姓名', trigger: 'blur'},
-                        {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+                        {min: 2, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
                     ],
                     userID: [
                         {required: true, message: '请输入学号/工号', trigger: 'blur'},
@@ -167,7 +166,7 @@
                   'sex':this.ruleForm.sex,
                   'userID':this.ruleForm.userID,
                   'start':this.formateDate(this.ruleForm.start),
-                  'finish':this.ruleForm.finish,
+                  'finish':this.formateDate(this.ruleForm.finish),
                   'category':this.ruleForm.category,
                   'left':this.ruleForm.left,
                   'reason':this.ruleForm.reason,
@@ -180,7 +179,8 @@
               })
                   // eslint-disable-next-line no-unused-vars
                   .then((valid) => {
-
+                    this.$message.success('填报成功');
+                      router.push('/Menr')
                   })
             }else {
               this.$message.error('请填写正确信息');

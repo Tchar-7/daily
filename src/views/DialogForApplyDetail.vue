@@ -26,8 +26,8 @@
         <p class="info">{{dialogInfo.applyTime}}</p>
       </el-form-item>
 
-      <el-form-item v-show="dialogInfo.state == 1">
-        <h4>申请失败反馈：</h4>
+      <el-form-item v-show="dialogInfo.comment">
+        <h4>申请反馈：</h4>
         <p class="info">{{dialogInfo.comment}}</p>
       </el-form-item>
     </el-form>

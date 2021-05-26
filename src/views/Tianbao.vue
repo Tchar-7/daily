@@ -312,12 +312,27 @@ import Qs from "qs";
         data() {
             return {
                 options: [{
-                    value: '计算机学院',
-                    label: '计算机学院'
+                    value: '计算机科学与技术学院、软件学院',
+                    label: '计算机科学与技术学院、软件学院'
+                }, {
+                  value: '人文学院',
+                  label: '人文学院'
                 }, {
                     value: '机械学院',
                     label: '机械学院'
-                }, {
+                },
+                  {value: '材料科学与工程学院',
+                    label: '材料科学与工程学院'
+                },{
+                    value: '药学院',
+                    label: '药学院'
+                  },{
+                    value: '机械工程学院',
+                    label: '机械工程学院 '
+                  }, {
+                    value: '信息工程学院',
+                    label: '信息工程学院 '
+                  },{
                     value: '化工学院',
                     label: '化工学院'
                 }, {
@@ -326,7 +341,10 @@ import Qs from "qs";
                 }, {
                     value: '理学院',
                     label: '理学院'
-                }],
+                },{
+                    value: '健行学院',
+                    label: '健行学院'
+                  }],
                 value: '',
                 value3: '',
 
@@ -396,7 +414,7 @@ import Qs from "qs";
                 rules: {
                     name: [
                         {required: true, message: '请输入姓名', trigger: 'blur'},
-                        {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+                        {min: 2, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
                     ],
                     userID: [
                         {required: true, message: '请输入学号/工号', trigger: 'blur'},
@@ -747,7 +765,7 @@ import Qs from "qs";
                         this.$message.success('提交成功');
                         // eslint-disable-next-line no-unused-vars
                         setTimeout(valid => {
-                          router.replace('/')
+                          router.replace('/Menu')
                         }, 600);
                         console.log(valid.data)
                       })

@@ -110,10 +110,10 @@ $sql2="insert into back_info values('$userID','$backfrom',$backfromtime,'$countr
 $sql3="insert into additional_info values('$userID','$name2','$phone2','$address','$risk','$isolation','$isolationplace','$confirm','$like','$likeinf','$test','$like2','$like2inf','$touch','$touchinf','$gotorisk','$gotoriskinf','$time')";
 $sql4="insert into daily_info values('$userID','$inside','$health','$healthinf','$temperature','$color',$back,'$traffic1','$time',$state,'$abnormal')";
 
-//$result1 = $conn->query($sql1);
-//$result2 = $conn->query($sql2);
-//$result3 = $conn->query($sql3);
-//$result4 = $conn->query($sql4);
+$result1 = $conn->query($sql1);
+$result2 = $conn->query($sql2);
+$result3 = $conn->query($sql3);
+$result4 = $conn->query($sql4);
 
 echo $sql1.$sql2.$sql3.$sql4;
 

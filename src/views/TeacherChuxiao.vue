@@ -113,7 +113,7 @@ import router from "@/router";
 
       created() {
         this.check()
-        localStorage.setItem('page','/TeacherChuxiao')
+        // localStorage.setItem('page','/TeacherChuxiao')
       },
       methods: {
         check() {
@@ -126,7 +126,7 @@ import router from "@/router";
                   this.$message.error('正在假期中，请先销假');
                   // eslint-disable-next-line no-unused-vars
                   setTimeout(valid => {
-                    router.replace('/TeacherXiaojia')
+                    router.replace('/Menu')
                   }, 1000);
 
                 }
@@ -199,6 +199,8 @@ import router from "@/router";
                   // eslint-disable-next-line no-unused-vars
                   .then((valid) => {
                     console.log(valid.data)
+                    this.$message.success('填报成功');
+                    router.push('/Menr')
                   })
             }else {
               this.$message.error('请填写正确信息');

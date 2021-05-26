@@ -1,12 +1,11 @@
 <template>
 
     <div class="table">
-        <el-tabs v-model="activeName">
                 <div class="1">
                     <div class="title">
                         <h1>销假申请</h1>
                     </div>
-                    <div class="history">
+                    <div class="xiaojia">
                         <el-table :data="tableData" style="width: 100%" max-height="250">
 
                             <el-table-column prop="jilu" label="请假记录ID" width="100%">
@@ -35,14 +34,12 @@
 
                             <el-table-column label="操作" width="100%">
                                 <template slot-scope="scope">
-                                  <el-button @click="check(scope.row)">申请销假</el-button>
+                                  <el-button @click="xiaojia(scope.row.ID)">申请销假</el-button>
                                 </template>
                             </el-table-column>
                         </el-table>
                     </div>
-
                 </div>
-        </el-tabs>
     </div>
 </template>
 
@@ -61,12 +58,43 @@ import Qs from 'qs'
 
         },
       created() {
-        localStorage.setItem('page','/TeacherXiaojia')
+        // localStorage.setItem('page','/TeacherXiaojia')
+        this.show()
       },
       methods: {
-          delect()
-          {
-
+          xiaojia(val){
+            var data = Qs.stringify({'ID': val,'userID':localStorage.getItem('userID')})
+            console.log(data)
+            this.axios.post('/daily/model_from_php/DoXiaojia.php',data,{
+              headers:{'Content-Type':'application/x-www-form-urlencoded'}
+            })
+                .then(response=>{
+                  if (response.status >= 200 && response.status < 300) {
+                        console.log(response.data)
+                  } else {
+                    console.log(response.message);
+                  }
+                })
+                .catch(function (error) {
+                  console.log(error);
+                })
+          },
+          show(){
+            var data = Qs.stringify({'userID': localStorage.getItem('userID')})
+            this.axios.post('/daily/model_from_php/ShowForXiaojia.php',data,{
+                headers:{'Content-Type':'application/x-www-form-urlencoded'}
+              })
+                  .then(response=>{
+                    if (response.status >= 200 && response.status < 300) {
+                        console.log(response.data)
+                      this.tableData=response.data
+                    } else {
+                      console.log(response.message);
+                    }
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                  })
           }
       }
     }
@@ -83,7 +111,7 @@ import Qs from 'qs'
     .title{
         padding-left: 45%;
     }
-    .history{
+    .xiaojia{
         padding-left: 30%;
     }
     .table{

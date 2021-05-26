@@ -8,7 +8,7 @@ if($conn->connect_error){
 $time=date("Y-m-d",time());
 $ID = $_POST['userID'];
 
-$sql="select * from teacher_out where state<>4 and userID='$ID'";
+$sql="select * from teacher_out where state not in (1,4) and userID='$ID'";
 $result = $conn->query($sql);
 if($result->num_rows>0) {
     echo "正在假期中，请先销假";
