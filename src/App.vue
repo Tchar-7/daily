@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view ></router-view>
+    <keep-alive>
+      <router-view ></router-view>
+    </keep-alive>
   </div>
 </template>
 <script>
@@ -8,7 +10,6 @@ import router from "@/router";
 
 export default {
   name: 'App',
-
   created:function () {
     var ID = localStorage.getItem('userID')
 

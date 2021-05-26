@@ -3,9 +3,8 @@
     <div class="title">
       <h1>申请审批</h1>
     </div>
-    <div class="info">
-      <el-table :data="tableData" style="width: 100%">
-
+    <div class="info" >
+      <el-table :data="tableData" style="width: 100%" >
         <el-table-column prop="name" label="流水号" width="180">
           <template slot-scope="scope">
             <span>{{scope.row.recordID}}</span>
@@ -58,9 +57,11 @@ import componentDialog from './DialogForShenpi'
 
 export default {
   name: "Shenpi",
+
   components: {
     componentDialog
   },
+
   data() {
     return {
       tableData: [],
@@ -78,6 +79,10 @@ export default {
     this.getdata(this.currentPage, this.pagesize)
   },
   methods: {
+    reflush() {
+      this.getdata(this.currentPage, this.pagesize)
+      // this.$forceUpdate()
+    },
     getdata(pagenum, pagesize) {
       this.axios.post('/daily/model_from_php/ShowApply.php',{
         headers:{'Content-Type':'application/x-www-form-urlencoded'}

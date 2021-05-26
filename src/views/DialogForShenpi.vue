@@ -74,6 +74,8 @@ export default {
     cancelDialog() {
       // console.log(this.dialogInfo)
       this.$emit('update:dialogVisible', false)
+      //this.$router.go(0);
+      this.$parent.reflush();//调用父类方法
     },
     doShenpi(){
       var data
