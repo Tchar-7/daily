@@ -290,7 +290,7 @@
                     this.tableData0 = response.data
                     this.totals0 = this.tableData0.length
                     this.tableData0 = this.tableData0.slice((pagenum - 1) * pagesize, pagenum * pagesize)
-                    // console.log(this.tableData0)
+                    console.log(response.data)
                   } else {
                     console.log(response.message);
                   }

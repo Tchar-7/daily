@@ -7,15 +7,13 @@ if($conn->connect_error){
 }
 
 $apply = array();
-
-$sql1 = "select *  from apply_recording where state = 0 " ;
+$recordID = $_POST['recordID'];
+$sql1 = "select *  from apply_recording where recordID='$recordID'" ;
 $result = $conn->query($sql1);
 
-$applyNum1 = mysqli_num_rows($result);
-for($t = 0;$t<$applyNum1;$t++){
-    $row=mysqli_fetch_assoc($result);
-    $apply[$t]=$row;
-}
+$row=mysqli_fetch_assoc($result);
+$apply=$row;
+
 echo (json_encode($apply,JSON_UNESCAPED_UNICODE));
 $conn->close();
 ?>
