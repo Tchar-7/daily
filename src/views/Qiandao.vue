@@ -2,6 +2,11 @@
     <div class="whole">
         <div align="center">
             <h2>本月签到统计</h2>
+
+            <dic class = "return">
+                <el-button type="text" @click="Menu()">返回个人界面</el-button>
+            </dic>
+
         </div>
         <div class="message">
             <el-row>
@@ -70,6 +75,11 @@
         this.getKaoqinInfo()
       },
       methods: {
+
+          Menu() {
+              this.$router.push('/Menu');
+          },
+
           getInfo:function () {
             this.axios.post('/daily/model_from_php/getKaoQin.php',this.urldata,{
               headers:{'Content-Type':'application/x-www-form-urlencoded'}
@@ -132,5 +142,6 @@
         height: 100%;
         background:url("../assets/img/bg.png");
         background-size: 100%;
+        background-attachment: fixed;
     }
 </style>

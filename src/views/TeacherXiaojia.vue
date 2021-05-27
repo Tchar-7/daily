@@ -4,6 +4,11 @@
                 <div class="1">
                     <div class="title">
                         <h1>销假申请</h1>
+
+                        <dic class = "return">
+                            <el-button type="text" @click="Menu()">返回个人界面</el-button>
+                        </dic>
+
                     </div>
                     <div class="xiaojia">
                         <el-table :data="tableData" style="width: 100%" max-height="250">
@@ -61,6 +66,9 @@ import Qs from 'qs'
         this.show()
       },
       methods: {
+          Menu() {
+              this.$router.push('/Menu');
+          },
           xiaojia(val){
             var data = Qs.stringify({'ID': val,'userID':localStorage.getItem('userID')})
             console.log(data)
@@ -119,6 +127,7 @@ import Qs from 'qs'
         height: 100%;
         background:url("../assets/img/bg.png");
         background-size: 100%;
+        background-attachment: fixed;
     }
     .el-table{
         background-color: transparent;

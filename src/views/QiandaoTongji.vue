@@ -3,6 +3,11 @@
     <div class="table1">
       <div class="title1">
         <h1>请选择学院和年级</h1>
+
+        <dic class = "return">
+          <el-button type="text" @click="Menu()">返回个人界面</el-button>
+        </dic>
+
       </div>
       <div class="input1">
         <el-select v-model="value1" multiple placeholder="请选择学院">
@@ -38,7 +43,7 @@
         <el-tab-pane v-bind:label="'已签到'+number1" name="1">
           <el-table
               :data="tableData1"
-              style="width: 100%">
+              style="width: 40%">
             <el-table-column
                 prop="ID"
                 label="学/工号"
@@ -88,12 +93,12 @@
             <el-table-column
                 prop="ID"
                 label="学/工号"
-                width="180">
+                width="250">
             </el-table-column>
             <el-table-column
                 prop="name"
                 label="姓名"
-                width="180">
+                width="80">
             </el-table-column>
           </el-table>
           <div class="block">
@@ -173,10 +178,15 @@ export default {
       tableData1:[],
       tableData2:[],
       tableData3:[],
-      activeName1:'2',
+      activeName1:'1',
     }
   },
   methods:{
+
+    Menu() {
+      this.$router.push('/Menu');
+    },
+
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
@@ -313,8 +323,15 @@ export default {
   }
   .table{
     width: 100%;
-    height: 100%;
+    height: 600px;
     background:url("../assets/img/bg.png");
     background-size: 100%;
+    background-attachment: fixed;
+  }
+  .return{
+    padding-left: 10%;
+  }
+  .el-table{
+    ackground-color: transparent;
   }
 </style>

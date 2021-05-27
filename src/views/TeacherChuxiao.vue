@@ -6,6 +6,11 @@
                 <div class="1">
                     <div class="title">
                         <h1>出差申请</h1>
+
+                        <dic class = "return">
+                            <el-button type="text" @click="Menu()">返回个人界面</el-button>
+                        </dic>
+
                     </div>
                     <div class="chuchai">
                         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" label-position ="top">
@@ -116,6 +121,11 @@ import router from "@/router";
         // localStorage.setItem('page','/TeacherChuxiao')
       },
       methods: {
+
+          Menu() {
+              this.$router.push('/Menu');
+          },
+
         check() {
           this.axios.post('/daily/model_from_php/Teacher_out_check.php',this.ruleForm.urldata,{
             headers:{'Content-Type':'application/x-www-form-urlencoded'}
@@ -223,7 +233,10 @@ import router from "@/router";
         height:5px;
     }
     .title{
-        padding-left: 45%;
+        padding-left: 48%;
+    }
+    .return{
+        padding-left: 4%;
     }
     .chuchai{
         padding-left: 35%;
@@ -233,5 +246,6 @@ import router from "@/router";
         height: 100%;
         background:url("../assets/img/bg.png");
         background-size: 100%;
+        background-attachment: fixed;
     }
 </style>

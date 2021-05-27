@@ -2,6 +2,11 @@
   <div class="whole">
     <div align="center">
       <h2>本月签到统计</h2>
+
+      <dic class = "return">
+        <el-button type="text" @click="Menu()">返回个人界面</el-button>
+      </dic>
+
     </div>
     <div class="message">
       <el-row>
@@ -73,6 +78,11 @@ export default {
     this.getKaoqinInfo()
   },
   methods: {
+
+    Menu() {
+      this.$router.push('/Menu');
+    },
+
     checkID:function (){
       if(this.$route.params.num !=null){
         this.urldata = Qs.stringify({'userID': this.$route.params.num})
@@ -151,5 +161,6 @@ export default {
     height: 100%;
     background:url("../assets/img/bg.png");
     background-size: 100%;
+    background-attachment: fixed;
   }
 </style>

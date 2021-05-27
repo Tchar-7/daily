@@ -1,7 +1,15 @@
 <template>
 
     <div class="table">
-      <h1 class="title">每日信息填报</h1>
+      <div class="title">
+          <h1>每日信息填报</h1>
+
+          <dic class = "return">
+              <el-button type="text" @click="Menu()">返回个人界面</el-button>
+          </dic>
+
+      </div>
+
 
         <el-tabs v-model="activeName" @tab-click="handleClick">
             <el-tab-pane label="基础信息" name="first">
@@ -428,6 +436,11 @@ import Qs from "qs";
           this.getInfo();
         },
       methods: {
+
+          Menu() {
+              this.$router.push('/Menu');
+          },
+
           check(){
             if(
                 this.ruleForm.name=='' ||
@@ -869,11 +882,16 @@ import Qs from "qs";
 </script>
 
 <style scoped>
+    .return{
+        margin-left: 7%;
+    }
+
     .table{
         width: 100%;
         height: 100%;
         background:url("../assets/img/bg.png");
         background-size: 100%;
+        background-attachment: fixed;
     }
     .title {
         margin-left: 45%;

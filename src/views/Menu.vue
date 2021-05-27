@@ -515,8 +515,9 @@
 }
     .menu{
         width: 100%;
-        height: 100%;
+        height: 800px;
         background:url("../assets/img/bg.png");
         background-size: 100%;
+        background-attachment: fixed;
     }
 </style>

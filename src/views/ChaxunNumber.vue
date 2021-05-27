@@ -1,19 +1,20 @@
 <template>
     <div class="table">
-                <div class="table2">
-                    <div class="title2">
-                        <h1>请输入学号</h1>
-                    </div>
-                    <div class="input2">
-                        <el-input v-model="idInput" placeholder="请输入学号"></el-input>
-                    </div>
+        <div class="title2">
+            <h1>请输入学号</h1>
+        </div>
+        <div class = "return">
+            <el-button type="text" @click="Menu()">返回个人界面</el-button>
+        </div>
+        <div class="input2">
+            <el-input v-model="idInput" placeholder="请输入学号"></el-input>
+        </div>
 
-                <div class="button2">
-                    <router-link :to=chaxun2url replace><el-button icon="el-icon-search" type="primary" v-on:click="showInfo">查询</el-button>
-                    </router-link>
-                </div>
-                </div>
-          <router-view :key="$route.fullPath"></router-view>
+        <div class="button2">
+            <router-link :to=chaxun2url replace><el-button icon="el-icon-search" circle v-on:click="showInfo"></el-button>
+            </router-link>
+        </div>
+        <router-view :key="$route.fullPath"></router-view>
     </div>
 
 </template>
@@ -27,6 +28,11 @@
           localStorage.setItem('page','/Tongji')
         },
         methods: {
+
+            Menu() {
+                this.$router.push('/Menu');
+            },
+
           checkname:async function (){
             var temp = false;
               this.urldata = Qs.stringify({'userID': this.idInput})
@@ -67,6 +73,7 @@
             })
           }
         },
+
         data() {
             return {
                 idInput: '',
@@ -79,43 +86,42 @@
 
 <style scoped>
     .table{
-        padding-top: 5%;
-        padding-left: 15%;
+        margin-top: -2%;
         width: 100%;
-        height: 100%;
+        height: 650px;
         background:url("../assets/img/bg.png");
         background-size: 100%;
-    }
-    .el-button{
-        margin-left: 40%;
-        margin-top: 15%;
+        background-attachment: fixed;
     }
     .table1{
-        padding-top: 5%;
+        padding-top: 0%;
         padding-left: 20%;
         float:left;
     }
     .table2{
-        padding-top: 5%;
+        padding-top: 0%;
         padding-left: 20%;
     }
     .el-input{
         width:30%;
         padding-left: 2%;
     }
-    .title1{
-        padding-left: 10%;
-    }
+
     .title2{
-        padding-left: 10%;
-    }
-    .show{
-        padding-top: 30%;
-        padding-left: 20%;
+        padding-top: 2%;
+        padding-left: 43%;
     }
     .button2{
-        margin-left: 15%;
-        margin-top: -16%;
+        margin-top: -3%;
+        margin-left: 60%;
+
+    }
+    .return{
+        padding-left: 45%;
+    }
+    .input2{
+        padding-top: 4%;
+        padding-left: 38%;
     }
 
 </style>

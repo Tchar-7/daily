@@ -3,8 +3,14 @@
     <div class="table">
         <div class="title">
             <h1 class="returnButton">每日信息填报</h1>
+
+            <dic class = "return">
+                <el-button type="text" @click="Menu()">返回个人界面</el-button>
+            </dic>
+
         </div>
-                <div class="1">
+
+                <div class="table2">
 
                     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" label-position ="top">
                         <el-form-item label="姓名" prop="name">
@@ -142,6 +148,11 @@
         localStorage.setItem('page','/Chuxiao')
       },
       methods: {
+
+          Menu() {
+              this.$router.push('/Menu');
+          },
+
         check() {
           this.axios.post('/daily/model_from_php/Chuxiao_check.php',this.ruleForm.urldata,{
             headers:{'Content-Type':'application/x-www-form-urlencoded'}
@@ -224,9 +235,12 @@
         width:500px;
         height:5px;
     }
-    .el-tabs {
+    .table2 {
       margin-left: 35%;
       margin-right: 30%;
+    }
+    .return{
+        margin-left: 40%;
     }
 
     .title{
@@ -240,5 +254,6 @@
         height: 100%;
         background:url("../assets/img/bg.png");
         background-size: 100%;
+        background-attachment: fixed;
     }
 </style>

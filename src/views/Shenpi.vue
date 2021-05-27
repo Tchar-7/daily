@@ -2,6 +2,9 @@
   <div class="shenpi">
     <div class="title">
       <h1>申请审批</h1>
+      <dic class = "return">
+        <el-button type="text" @click="Menu()">返回个人界面</el-button>
+      </dic>
     </div>
     <div class="info" >
       <el-table :data="tableData" style="width: 100%" >
@@ -29,7 +32,7 @@
           </template>
         </el-table-column>
 
-        <el-table-column label="操作">
+        <el-table-column label="操作" width="60">
           <template slot-scope="scope">
             <el-button @click="check(scope.row)">查看</el-button>
           </template>
@@ -79,6 +82,9 @@ export default {
     this.getdata(this.currentPage, this.pagesize)
   },
   methods: {
+    Menu() {
+      this.$router.push('/Menu');
+    },
     reflush() {
       this.getdata(this.currentPage, this.pagesize)
       // this.$forceUpdate()
@@ -137,10 +143,13 @@ export default {
   height: 100%;
   background:url("../assets/img/bg.png");
   background-size: 100%;
+  background-attachment: fixed;
 }
 .el-table{
   background-color: transparent;
 }
-
+.return{
+  padding-left: 3%;
+}
 
 </style>
