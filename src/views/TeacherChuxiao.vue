@@ -61,8 +61,14 @@
                                 <p v-if="ruleForm.start[index]>ruleForm.finish[index]">起始时间不能晚于结束时间</p>
 
                             </div>
-                            <el-button v-if="this.num.length<3" @click="add()">增加记录</el-button>
-                            <el-button v-if="this.num.length>1" @click="pop()">删除记录</el-button>
+
+                            <el-form-item>
+                                    <el-button type="success" icon="el-icon-check" circle v-if="this.num.length<3" @click="add()"></el-button>
+                                    <!--<el-button v-if="this.num.length<3" @click="add()">增加记录</el-button>-->
+                                    <!--<el-button v-if="this.num.length>1" @click="pop()">删除记录</el-button>-->
+                                    <el-button type="danger" icon="el-icon-delete" circle v-if="this.num.length>1" @click="pop()"></el-button>
+
+                            </el-form-item>
 
                           <el-form-item>
                             <el-button type="primary" @click="submitForm()">提交</el-button>
@@ -233,7 +239,9 @@ import router from "@/router";
         height:5px;
     }
     .title{
+        padding-top: -1%;
         padding-left: 48%;
+        font-family: 幼圆;
     }
     .return{
         padding-left: 4%;

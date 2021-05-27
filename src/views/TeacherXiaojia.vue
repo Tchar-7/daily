@@ -117,14 +117,21 @@ import Qs from 'qs'
         height:5px;
     }
     .title{
-        padding-left: 45%;
+        padding-top: 2%;
+        padding-left: 43%;
+        font-family: 幼圆;
+    }
+    .return{
+        padding-left: 2%;
     }
     .xiaojia{
+        margin-top: 2%;
         padding-left: 30%;
     }
     .table{
+        margin-top: -1.5%;
         width: 100%;
-        height: 100%;
+        height: 650px;
         background:url("../assets/img/bg.png");
         background-size: 100%;
         background-attachment: fixed;

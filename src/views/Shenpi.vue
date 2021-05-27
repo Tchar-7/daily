@@ -133,6 +133,8 @@ export default {
 <style scoped>
 .title{
   padding-left: 43%;
+  font-family: 幼圆;
+  padding-top: 1.5%;
 }
 .info{
   padding-left:20%;
@@ -140,7 +142,8 @@ export default {
 }
 .shenpi{
   width: 100%;
-  height: 100%;
+  height: 650px;
+  margin-top: -1.5%;
   background:url("../assets/img/bg.png");
   background-size: 100%;
   background-attachment: fixed;
@@ -151,5 +154,9 @@ export default {
 .return{
   padding-left: 3%;
 }
+  .block{
+    padding-top: 10%;
+    padding-left: 15%;
+  }
 
 </style>

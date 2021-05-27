@@ -34,7 +34,7 @@
         </el-select>
       </div>
       <div class="button">
-        <el-button icon="el-icon-search" type="primary" v-on:click="chaxun">查询</el-button>
+        <el-button icon="el-icon-search" circle v-on:click="chaxun"></el-button>
       </div>
     </div>
 
@@ -47,12 +47,12 @@
             <el-table-column
                 prop="ID"
                 label="学/工号"
-                width="180">
+                width="250">
             </el-table-column>
             <el-table-column
                 prop="name"
                 label="姓名"
-                width="180">
+                width="80">
             </el-table-column>
           </el-table>
           <div class="block">
@@ -66,16 +66,16 @@
         <el-tab-pane v-bind:label="'未签到'+number2" name="2">
           <el-table
               :data="tableData2"
-              style="width: 100%">
+              style="width: 40%">
             <el-table-column
                 prop="ID"
                 label="学/工号"
-                width="180">
+                width="250">
             </el-table-column>
             <el-table-column
                 prop="name"
                 label="姓名"
-                width="180">
+                width="80">
             </el-table-column>
           </el-table>
           <div class="block">
@@ -89,7 +89,7 @@
         <el-tab-pane v-bind:label="'签到有异常'+number3" name="3">
           <el-table
               :data="tableData3"
-              style="width: 100%">
+              style="width: 40%">
             <el-table-column
                 prop="ID"
                 label="学/工号"
@@ -302,28 +302,33 @@ export default {
 </script>
 
 <style scoped>
-.table{
-  align: center;
-}
   .title1{
-    padding-left: 40%;
+    padding-top: 2%;
+    padding-left: 35%;
+    font-family: 幼圆;
   }
   .input1{
     padding-left: 30%;
     padding-top: 3%;
   }
   .button{
+    padding-top: -15%;
+    margin-top: -3%;
     padding-left: 63%;
   }
   .show{
-    padding-left: 30%;
+    margin-top: 5%;
+    padding-left: 33%;
   }
   .block{
-    padding-left: 8%;
+    padding-left: 5%;
+    padding-top: 8%;
   }
   .table{
+    margin-top: -1.5%;
+    align: center;
     width: 100%;
-    height: 600px;
+    height: 650px;
     background:url("../assets/img/bg.png");
     background-size: 100%;
     background-attachment: fixed;
@@ -332,6 +337,6 @@ export default {
     padding-left: 10%;
   }
   .el-table{
-    ackground-color: transparent;
+    background-color: transparent;
   }
 </style>

@@ -4,9 +4,9 @@
         <div class="title">
             <h1 class="returnButton">每日信息填报</h1>
 
-            <dic class = "return">
+            <div class = "return">
                 <el-button type="text" @click="Menu()">返回个人界面</el-button>
-            </dic>
+            </div>
 
         </div>
 
@@ -244,12 +244,15 @@
     }
 
     .title{
+        padding-top: 2%;
         margin-left: 15%;
+        font-family: 幼圆;
     }
     .returnButton {
       margin-left: 35%;
     }
     .table{
+        margin-top: -1.5%;
         width: 100%;
         height: 100%;
         background:url("../assets/img/bg.png");

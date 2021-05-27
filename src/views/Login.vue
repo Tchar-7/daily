@@ -128,13 +128,14 @@ export default {
   font-size: 35px;
   color: #000099;
   border-bottom: 1px solid #ddd;
-  font-family: 黑体;
+  font-family: 幼圆;
 }
 .ms-logo {
   display: inline-block;
   margin-left: 15%;
   font-size: 40px;
-  font-family: 黑体;
+  font-family: 幼圆;
+  font-weight: bold;
 }
 .ms-login {
   display: inline-block;

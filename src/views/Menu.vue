@@ -520,4 +520,8 @@
         background-size: 100%;
         background-attachment: fixed;
     }
+    .el-table
+    {
+        background-color: transparent;
+    }
 </style>

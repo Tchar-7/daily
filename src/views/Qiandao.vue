@@ -1,13 +1,15 @@
 <template>
     <div class="whole">
-        <div align="center">
-            <h2>本月签到统计</h2>
+
+        <div align="center" class="title">
+            <h1>本月签到统计</h1>
 
             <dic class = "return">
                 <el-button type="text" @click="Menu()">返回个人界面</el-button>
             </dic>
 
         </div>
+
         <div class="message">
             <el-row>
                 <el-col><div class="text">姓名</div></el-col>
@@ -126,8 +128,14 @@
         padding-left: 35%;
         padding-top: 3%;
     }
+    .title{
+        padding-top: 2%;
+        font-family: 幼圆;
+    }
     .message{
         margin: 0 auto;
+        font-family: 幼圆;
+
     }
     .cal{
         padding-top: 5%;
@@ -138,6 +146,7 @@
       margin-left: 20%;
     }
     .whole{
+        margin-top: -1.5%;
         width: 100%;
         height: 100%;
         background:url("../assets/img/bg.png");

@@ -110,6 +110,7 @@
     .title2{
         padding-top: 2%;
         padding-left: 43%;
+        font-family: 幼圆;
     }
     .button2{
         margin-top: -3%;

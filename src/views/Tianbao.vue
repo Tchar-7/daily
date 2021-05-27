@@ -245,6 +245,8 @@
                     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" label-position ="top">
 
 
+                        <div class="huiguo1">
+
                         <el-form-item label="是否14天内从境外回国">
                             <el-radio-group v-model="ruleForm.backfrom">
                                 <el-radio label="是"></el-radio>
@@ -252,7 +254,12 @@
                             </el-radio-group>
                         </el-form-item>
 
+                        </div>
+
+                        <div class = "huiguo2" v-if="ruleForm.backfrom=='是'">
+
                       <el-form-item v-if="ruleForm.backfrom=='是'">
+
                         <el-form-item label="境外回国时间">
                           <el-date-picker
                               v-model="ruleForm.backfromtime"
@@ -285,6 +292,8 @@
 
                       </el-form-item>
 
+                        </div>
+
                     </el-form>
 
                 </div>
@@ -293,15 +302,23 @@
             <el-tab-pane label="承诺书" name="fifth">
                 <div class = "4">
                     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" label-position ="top">
-                        <h1>承诺书</h1>
-                        <p>我承诺：严格遵照学校在防疫期间的规定和要求，认真填写每日一报，数据真实可信</p>
+                        <div class="chengnuo">
+                            <h1>承诺书</h1>
+                        </div>
+                        <div class="neirong">
+                            <p>我承诺：严格遵照学校在防疫期间的规定和要求，认真填写每日一报，数据真实可信.</p>
+                            <p>I promise strictly abide by the school's regulations and requirements during the epidemic prevention period,and submin my health daily report seriously and truthfully.</p>
+                        </div>
+                        <div class="check">
+                            <el-checkbox v-model="ruleForm.agree" label="同意签订承诺书"></el-checkbox>
+                        </div>
 
-                        <el-checkbox v-model="ruleForm.agree" label="同意签订承诺书"></el-checkbox>
-
-                        <el-form-item>
-                            <el-button type="primary" @click="check">提交</el-button>
-                            <el-button @click="resetForm()">重置</el-button>
-                        </el-form-item>
+                        <div class="buttongr">
+                            <el-form-item>
+                                <el-button type="primary" @click="check">提交</el-button>
+                                <el-button @click="resetForm()">重置</el-button>
+                            </el-form-item>
+                        </div>
 
                     </el-form>
                 </div>
@@ -887,6 +904,7 @@ import Qs from "qs";
     }
 
     .table{
+        margin-top: -1.5%;
         width: 100%;
         height: 100%;
         background:url("../assets/img/bg.png");
@@ -894,7 +912,9 @@ import Qs from "qs";
         background-attachment: fixed;
     }
     .title {
+        padding-top: 2%;
         margin-left: 45%;
+        font-family: 幼圆;
     }
     .el-form-item{
         font-weight: bold;
@@ -917,4 +937,26 @@ import Qs from "qs";
       margin-top: 5px;
       margin-bottom: 5px;
     }
+    .chengnuo{
+        padding-top: 10%;
+        padding-left: 35%;
+    }
+    .check
+    {
+        padding-top: 10%;
+        padding-left: 20%;
+    }
+    .buttongr
+    {
+        padding-top: 10%;
+        padding-left: 30%;
+    }
+    .huiguo1{
+        height: 500px;
+    }
+    .huiguo2{
+        margin-top: -85%;
+    }
+
+
 </style>
