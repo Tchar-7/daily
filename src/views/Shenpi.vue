@@ -2,9 +2,9 @@
   <div class="shenpi">
     <div class="title">
       <h1>申请审批</h1>
-      <dic class = "return">
+      <div class = "return">
         <el-button type="text" @click="Menu()">返回个人界面</el-button>
-      </dic>
+      </div>
     </div>
     <div class="info" >
       <el-table :data="tableData" style="width: 100%" >

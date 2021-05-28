@@ -3,9 +3,9 @@
     <div align="center" class="title">
       <h1>本月签到统计</h1>
 
-      <dic class = "return">
+      <div class = "return">
         <el-button type="text" @click="Menu()">返回个人界面</el-button>
-      </dic>
+      </div>
 
     </div>
     <div class="message">

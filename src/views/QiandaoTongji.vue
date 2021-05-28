@@ -4,9 +4,9 @@
       <div class="title1">
         <h1>请选择学院和年级</h1>
 
-        <dic class = "return">
+        <div class = "return">
           <el-button type="text" @click="Menu()">返回个人界面</el-button>
-        </dic>
+        </div>
 
       </div>
       <div class="input1">

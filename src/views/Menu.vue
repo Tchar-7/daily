@@ -48,8 +48,7 @@
     <div class="info">
     <el-tabs  v-model="activeName" @tab-click="handleClick">
         <el-tab-pane label="个人信息" name="first">
-            <div class="show-info"
-                 >
+            <div class="show-info">
                 <div class="pic"> <!--头像-->
                     <div class = "pic1">
                         <img src="../assets/img/img.jpg"/>

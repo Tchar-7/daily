@@ -5,9 +5,9 @@
                     <div class="title">
                         <h1>销假申请</h1>
 
-                        <dic class = "return">
+                        <div class = "return">
                             <el-button type="text" @click="Menu()">返回个人界面</el-button>
-                        </dic>
+                        </div>
 
                     </div>
                     <div class="xiaojia">
