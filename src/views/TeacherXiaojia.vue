@@ -129,12 +129,14 @@ import Qs from 'qs'
         padding-left: 30%;
     }
     .table{
-        margin-top: -1.5%;
+        margin:0;
+        padding: 0;
         width: 100%;
-        height: 650px;
+        height: 100%;
         background:url("../assets/img/bg.png");
-        background-size: 100%;
+        background-size: 100% 100%;
         background-attachment: fixed;
+        position: fixed;
     }
     .el-table{
         background-color: transparent;

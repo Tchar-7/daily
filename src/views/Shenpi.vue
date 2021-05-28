@@ -142,11 +142,13 @@ export default {
 }
 .shenpi{
   width: 100%;
-  height: 650px;
-  margin-top: -1.5%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
   background:url("../assets/img/bg.png");
   background-size: 100%;
   background-attachment: fixed;
+  position: fixed;
 }
 .el-table{
   background-color: transparent;
@@ -155,7 +157,7 @@ export default {
   padding-left: 3%;
 }
   .block{
-    padding-top: 10%;
+    padding-bottom: 0%;
     padding-left: 15%;
   }
 

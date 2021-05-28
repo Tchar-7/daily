@@ -147,6 +147,7 @@ export default {
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.3);
   text-align: center;
+
 }
 .ms-content {
   padding: 40px 30px;

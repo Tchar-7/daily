@@ -101,6 +101,7 @@
                 width="80">
             </el-table-column>
           </el-table>
+
           <div class="block">
             <span class="demonstration"></span>
             <el-pagination
@@ -322,13 +323,15 @@ export default {
   }
   .block{
     padding-left: 5%;
-    padding-top: 8%;
+    padding-bottom: 0%;
   }
   .table{
-    margin-top: -1.5%;
+    margin: 0;
+    padding: 0;
     align: center;
     width: 100%;
-    height: 650px;
+    height: 100%;
+    position: fixed;
     background:url("../assets/img/bg.png");
     background-size: 100%;
     background-attachment: fixed;

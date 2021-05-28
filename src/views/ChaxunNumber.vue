@@ -86,12 +86,14 @@
 
 <style scoped>
     .table{
-        margin-top: -2%;
+        margin:0;
+        padding: 0;
         width: 100%;
-        height: 650px;
+        height: 100%;
         background:url("../assets/img/bg.png");
         background-size: 100%;
         background-attachment: fixed;
+        position: fixed;
     }
     .table1{
         padding-top: 0%;
