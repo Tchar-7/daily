@@ -10,12 +10,16 @@
 
       </div>
       <div class="input1">
-        <el-select v-model="value1" multiple placeholder="请选择学院">
+        <el-select
+                v-model="value1"
+                multiple placeholder="请选择学院"
+                style="width: 26%">
           <el-option
               v-for="item in options1"
               :key="item.value"
               :label="item.label"
-              :value="item.value">
+              :value="item.value"
+          style="width: 130%">
           </el-option>
         </el-select>
 
@@ -305,7 +309,7 @@ export default {
 <style scoped>
   .title1{
     padding-top: 2%;
-    padding-left: 35%;
+    padding-left: 38%;
     font-family: 幼圆;
   }
   .input1{
@@ -315,11 +319,11 @@ export default {
   .button{
     padding-top: -15%;
     margin-top: -3%;
-    padding-left: 63%;
+    padding-left: 67%;
   }
   .show{
     margin-top: 5%;
-    padding-left: 33%;
+    padding-left: 36%;
   }
   .block{
     padding-left: 5%;
@@ -332,6 +336,7 @@ export default {
     align: center;
     width: 100%;
     height: 100%;
+    padding-bottom: 10%;
     background:url("../assets/img/bg.png");
     background-size: 100%;
     background-attachment: fixed;

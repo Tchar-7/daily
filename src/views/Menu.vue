@@ -446,8 +446,9 @@
     padding-left: 200px;
     padding-top: 100px;
 }
-.show-info{
-
+.show-info
+{
+    padding-bottom: 0%;
 }
 
 .button{
@@ -518,6 +519,7 @@
         padding: 0;
         width: 100%;
         height: 100%;
+        padding-bottom: 30%;
         background:url("../assets/img/bg.png");
         background-size: 100%;
         background-attachment: fixed;
@@ -531,5 +533,6 @@
         padding-left: 25%;
         padding-bottom: 30%;
     }
+
 
 </style>

@@ -93,7 +93,7 @@
         background:url("../assets/img/bg.png");
         background-size: 100%;
         background-attachment: fixed;
-        position: fixed;
+        padding-bottom: 100%;
     }
     .table1{
         padding-top: 0%;

@@ -907,6 +907,7 @@ import Qs from "qs";
         margin-top: -1.5%;
         width: 100%;
         height: 100%;
+        padding-bottom: 20%;
         background:url("../assets/img/bg.png");
         background-size: 100%;
         background-attachment: fixed;
@@ -950,7 +951,7 @@ import Qs from "qs";
     .buttongr
     {
         padding-top: 10%;
-        padding-left: 30%;
+        padding-left: 28%;
     }
     .huiguo1{
         height: 500px;

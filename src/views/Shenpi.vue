@@ -32,7 +32,7 @@
           </template>
         </el-table-column>
 
-        <el-table-column label="操作" width="60">
+        <el-table-column label="操作" width="100">
           <template slot-scope="scope">
             <el-button @click="check(scope.row)">查看</el-button>
           </template>
