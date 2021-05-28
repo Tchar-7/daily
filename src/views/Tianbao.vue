@@ -910,6 +910,7 @@ import Qs from "qs";
         background:url("../assets/img/bg.png");
         background-size: 100%;
         background-attachment: fixed;
+
     }
     .title {
         padding-top: 2%;

@@ -148,16 +148,17 @@ export default {
   background:url("../assets/img/bg.png");
   background-size: 100%;
   background-attachment: fixed;
-  position: fixed;
 }
 .el-table{
+  padding-top: 5%;
   background-color: transparent;
 }
 .return{
   padding-left: 3%;
 }
   .block{
-    padding-bottom: 0%;
+    padding-top: 10%;
+    padding-bottom: 20%;
     padding-left: 15%;
   }
 

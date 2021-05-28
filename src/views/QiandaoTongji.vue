@@ -323,7 +323,8 @@ export default {
   }
   .block{
     padding-left: 5%;
-    padding-bottom: 0%;
+    padding-top: 10%;
+    padding-bottom: 10%;
   }
   .table{
     margin: 0;
@@ -331,7 +332,6 @@ export default {
     align: center;
     width: 100%;
     height: 100%;
-    position: fixed;
     background:url("../assets/img/bg.png");
     background-size: 100%;
     background-attachment: fixed;

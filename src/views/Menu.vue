@@ -38,13 +38,13 @@
                 <template slot="title">其他</template>
                 <el-menu-item index="2-1" @click="shenpi()">申请审批</el-menu-item>
             </el-submenu>
-
             </template>
+
         <div class = 'button'>
             <el-button type="text" @click="logOut()">退出登录</el-button>
         </div>
-
     </el-menu>
+
     <div class="info">
     <el-tabs  v-model="activeName" @tab-click="handleClick">
         <el-tab-pane label="个人信息" name="first">
@@ -518,7 +518,6 @@
         padding: 0;
         width: 100%;
         height: 100%;
-        position: fixed;
         background:url("../assets/img/bg.png");
         background-size: 100%;
         background-attachment: fixed;
@@ -530,5 +529,7 @@
     .block
     {
         padding-left: 25%;
+        padding-bottom: 30%;
     }
+
 </style>
