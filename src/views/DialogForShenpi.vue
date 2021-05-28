@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible.sync="dialogVisible" :before-close="cancelDialog">
+  <el-dialog :visible.sync="dialogVisible" :before-close="cancelDialog" append-to-body=“true”>
     <el-form class="form">
 
       <el-form-item>

@@ -142,9 +142,7 @@
         padding-left: 20%;
         padding-right: 20%;
     }
-    .returnButton {
-      margin-left: 20%;
-    }
+
     .whole{
         margin: 0;
         padding: 0;
@@ -153,5 +151,6 @@
         background:url("../assets/img/bg.png");
         background-size: 100%;
         background-attachment: fixed;
+        padding-bottom: 5%;
     }
 </style>

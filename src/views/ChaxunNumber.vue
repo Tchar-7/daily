@@ -93,22 +93,12 @@
         background:url("../assets/img/bg.png");
         background-size: 100%;
         background-attachment: fixed;
-        padding-bottom: 100%;
-    }
-    .table1{
-        padding-top: 0%;
-        padding-left: 20%;
-        float:left;
-    }
-    .table2{
-        padding-top: 0%;
-        padding-left: 20%;
+        padding-bottom: 40%;
     }
     .el-input{
         width:30%;
         padding-left: 2%;
     }
-
     .title2{
         padding-top: 2%;
         padding-left: 43%;
@@ -117,7 +107,6 @@
     .button2{
         margin-top: -3%;
         margin-left: 60%;
-
     }
     .return{
         padding-left: 45%;

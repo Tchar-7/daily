@@ -147,6 +147,7 @@ export default {
   padding: 0;
   background:url("../assets/img/bg.png");
   background-size: 100%;
+  position: fixed;
   background-attachment: fixed;
 }
 .el-table{
@@ -157,7 +158,7 @@ export default {
   padding-left: 3%;
 }
   .block{
-    padding-top: 10%;
+    padding-top: 2%;
     padding-bottom: 20%;
     padding-left: 15%;
   }

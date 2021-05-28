@@ -11,33 +11,33 @@
 
                     </div>
                     <div class="xiaojia">
-                        <el-table :data="tableData" style="width: 100%" max-height="250">
+                        <el-table :data="tableData" style="width: 100%" >
 
-                            <el-table-column prop="jilu" label="请假记录ID" width="100%">
+                            <el-table-column prop="jilu" label="请假记录ID" width="120">
                               <template slot-scope="scope">
                                 <span>{{scope.row.ID}}</span>
                               </template>
                             </el-table-column>
 
-                          <el-table-column prop="address" label="出差地点" width="100%">
+                          <el-table-column prop="address" label="出差地点" width="100">
                             <template slot-scope="scope">
                               <span>{{scope.row.business_address}}</span>
                             </template>
                           </el-table-column>
 
-                          <el-table-column prop="time" label="开始时间" width="100%">
+                          <el-table-column prop="time" label="开始时间" width="120">
                             <template slot-scope="scope">
                               <span>{{scope.row.start_time}}</span>
                             </template>
                           </el-table-column>
 
-                          <el-table-column prop="time" label="结束时间" width="100%">
+                          <el-table-column prop="time" label="结束时间" width="120">
                             <template slot-scope="scope">
                               <span>{{scope.row.end_time}}</span>
                             </template>
                           </el-table-column>
 
-                            <el-table-column label="操作" width="100%">
+                            <el-table-column label="操作" width="120">
                                 <template slot-scope="scope">
                                   <el-button @click="xiaojia(scope.row.ID)">申请销假</el-button>
                                 </template>
@@ -109,13 +109,6 @@ import Qs from 'qs'
 </script>
 
 <style scoped>
-    .el-form-item{
-        font-weight: bold;
-    }
-    .el-input{
-        width:500px;
-        height:5px;
-    }
     .title{
         padding-top: 2%;
         padding-left: 43%;
@@ -127,6 +120,7 @@ import Qs from 'qs'
     .xiaojia{
         margin-top: 2%;
         padding-left: 30%;
+      text-align: center;
     }
     .table{
         margin:0;

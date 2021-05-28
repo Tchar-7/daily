@@ -59,13 +59,18 @@
                 width="80">
             </el-table-column>
           </el-table>
+
           <div class="block">
-            <span class="demonstration"></span>
             <el-pagination
-                layout="prev, pager, next"
-                :total="50">
+                class="page"
+                @current-change="handleCurrentChange1"
+                :current-page="currentPage1"
+                :page-size="pagesize1"
+                layout="total, prev, pager, next, jumper"
+                :total="totals1">
             </el-pagination>
           </div>
+
         </el-tab-pane>
         <el-tab-pane v-bind:label="'未签到'+number2" name="2">
           <el-table
@@ -82,13 +87,18 @@
                 width="80">
             </el-table-column>
           </el-table>
+
           <div class="block">
-            <span class="demonstration"></span>
             <el-pagination
-                layout="prev, pager, next"
-                :total="50">
+                class="page"
+                @current-change="handleCurrentChange2"
+                :current-page="currentPage2"
+                :page-size="pagesize2"
+                layout="total, prev, pager, next, jumper"
+                :total="totals2">
             </el-pagination>
           </div>
+
         </el-tab-pane>
         <el-tab-pane v-bind:label="'签到有异常'+number3" name="3">
           <el-table
@@ -107,12 +117,16 @@
           </el-table>
 
           <div class="block">
-            <span class="demonstration"></span>
             <el-pagination
-                layout="prev, pager, next"
-                :total="50">
+                class="page"
+                @current-change="handleCurrentChange3"
+                :current-page="currentPage3"
+                :page-size="pagesize3"
+                layout="total, prev, pager, next, jumper"
+                :total="totals3">
             </el-pagination>
           </div>
+
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -184,6 +198,15 @@ export default {
       tableData2:[],
       tableData3:[],
       activeName1:'1',
+      totals1: 0, //总条数
+      currentPage1: 1, //当前页数
+      pagesize1: 10, //页大小
+      totals2: 0, //总条数
+      currentPage2: 1, //当前页数
+      pagesize2: 10, //页大小
+      totals3: 0, //总条数
+      currentPage3: 1, //当前页数
+      pagesize3: 10, //页大小
     }
   },
   methods:{
@@ -199,14 +222,14 @@ export default {
       console.log(tab, event);
     },
     chaxun:function (){
-      this.chaxun1()
-      this.chaxun2()
-      this.chaxun3()
+      this.chaxun1(this.currentPage1,this.pagesize1)
+      this.chaxun2(this.currentPage2,this.pagesize2)
+      this.chaxun3(this.currentPage3,this.pagesize3)
       this.chaxun1Num()
       this.chaxun2Num()
       this.chaxun3Num()
     },
-    chaxun1:function (){
+    chaxun1:function (pagenum, pagesize){
       var data = Qs.stringify({'department': this.value1, 'grade':this.value2});
       this.axios.post('/daily/model_from_php/getTotalKaoQin.php',data,{
         headers:{'Content-Type':'application/x-www-form-urlencoded'}
@@ -214,6 +237,8 @@ export default {
           .then(response=>{
             if (response.status >= 200 && response.status < 300) {
               this.tableData1 = response.data;
+              this.totals1 = this.tableData1.length
+              this.tableData1 = this.tableData1.slice((pagenum - 1) * pagesize, pagenum * pagesize)
             } else {
               console.log(response.message);
             }
@@ -222,7 +247,7 @@ export default {
             console.log(error);
           })
     },
-    chaxun2:function (){
+    chaxun2:function (pagenum, pagesize){
       var data = Qs.stringify({'department': this.value1, 'grade':this.value2});
       this.axios.post('/daily/model_from_php/getTotalWeiKaoQin.php',data,{
         headers:{'Content-Type':'application/x-www-form-urlencoded'}
@@ -230,7 +255,8 @@ export default {
           .then(response=>{
             if (response.status >= 200 && response.status < 300) {
               this.tableData2 = response.data;
-              console.log(response.data)
+              this.totals2 = this.tableData2.length
+              this.tableData2 = this.tableData2.slice((pagenum - 1) * pagesize, pagenum * pagesize)
             } else {
               console.log(response.message);
             }
@@ -239,7 +265,7 @@ export default {
             console.log(error);
           })
     },
-    chaxun3:function (){
+    chaxun3:function (pagenum, pagesize){
       var data = Qs.stringify({'department': this.value1, 'grade':this.value2});
       this.axios.post('/daily/model_from_php/getTotalSpecialKaoQin.php',data,{
         headers:{'Content-Type':'application/x-www-form-urlencoded'}
@@ -247,6 +273,9 @@ export default {
           .then(response=>{
             if (response.status >= 200 && response.status < 300) {
               this.tableData3 = response.data;
+              this.totals3 = this.tableData3.length
+              this.tableData3 = this.tableData3.slice((pagenum - 1) * pagesize, pagenum * pagesize)
+              console.log(response.data)
             } else {
               console.log(response.message);
             }
@@ -301,6 +330,18 @@ export default {
           .catch(function (error) {
             console.log(error);
           })
+    },
+    handleCurrentChange1(val) {
+      this.currentPage1 = val
+      this.chaxun1(val, this.pagesize1)
+    },
+    handleCurrentChange2(val) {
+      this.currentPage2 = val
+      this.chaxun2(val, this.pagesize2)
+    },
+    handleCurrentChange3(val) {
+      this.currentPage3 = val
+      this.chaxun3(val, this.pagesize3)
     }
   }
 }
@@ -327,7 +368,7 @@ export default {
   }
   .block{
     padding-left: 5%;
-    padding-top: 10%;
+    padding-top: 2%;
     padding-bottom: 10%;
   }
   .table{
@@ -343,8 +384,5 @@ export default {
   }
   .return{
     padding-left: 10%;
-  }
-  .el-table{
-    background-color: transparent;
   }
 </style>
