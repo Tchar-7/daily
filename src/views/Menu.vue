@@ -514,8 +514,11 @@
     justify-content: flex-start;
 }
     .menu{
+        margin: 0;
+        padding: 0;
         width: 100%;
-        height: 800px;
+        height: 100%;
+        position: fixed;
         background:url("../assets/img/bg.png");
         background-size: 100%;
         background-attachment: fixed;
@@ -523,5 +526,9 @@
     .el-table
     {
         background-color: transparent;
+    }
+    .block
+    {
+        padding-left: 25%;
     }
 </style>
