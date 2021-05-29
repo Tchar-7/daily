@@ -244,19 +244,31 @@
 
                     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" label-position ="top">
 
-
-                        <div class="huiguo1">
+                      <div class="huiguo1" v-if="ruleForm.backfrom=='是'">
 
                         <el-form-item label="是否14天内从境外回国">
-                            <el-radio-group v-model="ruleForm.backfrom">
-                                <el-radio label="是"></el-radio>
-                                <el-radio label="否"></el-radio>
-                            </el-radio-group>
+                          <el-radio-group v-model="ruleForm.backfrom">
+                            <el-radio label="是"></el-radio>
+                            <el-radio label="否"></el-radio>
+                          </el-radio-group>
                         </el-form-item>
 
-                        </div>
+                      </div>
 
-                        <div class = "huiguo2" v-if="ruleForm.backfrom=='是'">
+                      <div class="huiguo2" v-if="ruleForm.backfrom=='否'" >
+
+                        <el-form-item label="是否14天内从境外回国">
+                          <el-radio-group v-model="ruleForm.backfrom">
+                            <el-radio label="是"></el-radio>
+                            <el-radio label="否"></el-radio>
+                          </el-radio-group>
+                        </el-form-item>
+
+                      </div>
+
+
+
+                        <div v-if="ruleForm.backfrom=='是'">
 
                       <el-form-item v-if="ruleForm.backfrom=='是'">
 
@@ -417,7 +429,7 @@ import Qs from "qs";
                     touchinf:'',
                     gotorisk:'',
                     gotoriskinf:'',
-                    backfrom:'',
+                    backfrom:'否',
                     backfromtime:'NULL',
                     country:'',
                     traffic2:[],
@@ -954,10 +966,10 @@ import Qs from "qs";
         padding-left: 28%;
     }
     .huiguo1{
-        height: 500px;
+        height: 100px;
     }
     .huiguo2{
-        margin-top: -85%;
+      height: 500px;
     }
 
 
