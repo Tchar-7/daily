@@ -25,7 +25,6 @@ else{
     $row2 = $result2->fetch_assoc();
     $row3 = $result3->fetch_assoc();
     $inf=array_merge($row1,$row2,$row3);
-    echo $sql1,$sql2,$sql3;
-   // echo (json_encode($inf,JSON_UNESCAPED_UNICODE));
+    echo (json_encode($inf,JSON_UNESCAPED_UNICODE));
 }
 
