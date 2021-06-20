@@ -833,64 +833,64 @@ import Qs from "qs";
                   }
                   else{
                     if (response.status >= 200 && response.status < 300) {
-                      this.ruleForm.name=response.data.name
-                      this.ruleForm.userID=response.data.ID
-                      this.ruleForm.sex=response.data.sex
-                      this.ruleForm.campus=response.data.campus
-                      this.ruleForm.category=response.data.category
-                      this.ruleForm.departments=response.data.department
-                      this.ruleForm.location1=response.data.native_place
-                      this.ruleForm.location2=response.data.registered_place
-                      this.ruleForm.phone=response.data.phone
-                      this.ruleForm.name2=response.data.Emergency_name
-                      this.ruleForm.phone2=response.data.Emergency_phone
-                      this.ruleForm.address=response.data.Current_Residence
-                      this.ruleForm.risk=response.data.risk_areas
-                      this.ruleForm.isolation=response.data.is_isolation
-                      this.ruleForm.isolationplace=response.data.isolation_place
-                      this.ruleForm.confirm=response.data.is_confirmed
-                      this.ruleForm.like=response.data.is_suspected
-                      this.ruleForm.test=response.data.NAT
-                      this.ruleForm.like2=response.data.family
-                      this.ruleForm.touch=response.data.touch_14
-                      this.ruleForm.likeinf=response.data.suspect_inf
-                      this.ruleForm.like2inf=response.data.family_inf
-                      this.ruleForm.touchinf=response.data.touch_inf
-                      this.ruleForm.gotorisk=response.data.go14
-                      this.ruleForm.gotoriskinf=response.data.go_inf
-                      this.ruleForm.backfrom=response.data.is_14back
-                      this.ruleForm.backfromtime=response.data.back_time
-                      this.ruleForm.country=response.data.where_back
-                      this.ruleForm.plane2=response.data.plane_inf
-                      this.ruleForm.train2=response.data.train_inf
-                      this.ruleForm.bus2=response.data.bus_inf
-                      this.ruleForm.ship2=response.data.ship_inf
-                      this.ruleForm.car2=response.data.car_inf
-                      this.ruleForm.other2=response.data.other_inf
-                      this.ruleForm.plane0=response.data.plane
-                      this.ruleForm.train0=response.data.train
-                      this.ruleForm.bus0=response.data.bus
-                      this.ruleForm.ship0=response.data.ship
-                      this.ruleForm.car0=response.data.car
-                      this.ruleForm.other0=response.data.other
-                      if(this.ruleForm.plane0=='飞机'){
-                        this.ruleForm.traffic2.push('飞机')
-                      }
-                      if(this.ruleForm.train0=='火车'){
-                        this.ruleForm.traffic2.push('火车')
-                      }
-                      if(this.ruleForm.bus0=='客车'){
-                        this.ruleForm.traffic2.push('客车')
-                      }
-                      if(this.ruleForm.ship0=='轮船'){
-                        this.ruleForm.traffic2.push('轮船')
-                      }
-                      if(this.ruleForm.car0=='自驾车'){
-                        this.ruleForm.traffic2.push('自驾车')
-                      }
-                      if(this.ruleForm.other0=='其他'){
-                        this.ruleForm.traffic2.push('其他')
-                      }
+                      //this.ruleForm.name=response.data.name
+                      //this.ruleForm.userID=response.data.ID
+                      //this.ruleForm.sex=response.data.sex
+                      //this.ruleForm.campus=response.data.campus
+                      //this.ruleForm.category=response.data.category
+                      //this.ruleForm.departments=response.data.department
+                      //this.ruleForm.location1=response.data.native_place
+                      //this.ruleForm.location2=response.data.registered_place
+                      //this.ruleForm.phone=response.data.phone
+                      //this.ruleForm.name2=response.data.Emergency_name
+                      //this.ruleForm.phone2=response.data.Emergency_phone
+                      //this.ruleForm.address=response.data.Current_Residence
+                      //this.ruleForm.risk=response.data.risk_areas
+                      //this.ruleForm.isolation=response.data.is_isolation
+                      //this.ruleForm.isolationplace=response.data.isolation_place
+                      //this.ruleForm.confirm=response.data.is_confirmed
+                      //this.ruleForm.like=response.data.is_suspected
+                      //this.ruleForm.test=response.data.NAT
+                      //this.ruleForm.like2=response.data.family
+                      //this.ruleForm.touch=response.data.touch_14
+                      //this.ruleForm.likeinf=response.data.suspect_inf
+                      //this.ruleForm.like2inf=response.data.family_inf
+                      //this.ruleForm.touchinf=response.data.touch_inf
+                      //this.ruleForm.gotorisk=response.data.go14
+                      //this.ruleForm.gotoriskinf=response.data.go_inf
+                      //this.ruleForm.backfrom=response.data.is_14back
+                      //this.ruleForm.backfromtime=response.data.back_time
+                      //this.ruleForm.country=response.data.where_back
+                      //this.ruleForm.plane2=response.data.plane_inf
+                      //this.ruleForm.train2=response.data.train_inf
+                      //this.ruleForm.bus2=response.data.bus_inf
+                      //this.ruleForm.ship2=response.data.ship_inf
+                      //this.ruleForm.car2=response.data.car_inf
+                      //this.ruleForm.other2=response.data.other_inf
+                      //this.ruleForm.plane0=response.data.plane
+                      //this.ruleForm.train0=response.data.train
+                      //this.ruleForm.bus0=response.data.bus
+                      //this.ruleForm.ship0=response.data.ship
+                      //this.ruleForm.car0=response.data.car
+                      //this.ruleForm.other0=response.data.other
+                      //if(this.ruleForm.plane0=='飞机'){
+                      //  this.ruleForm.traffic2.push('飞机')
+                      //}
+                      //if(this.ruleForm.train0=='火车'){
+                      //  this.ruleForm.traffic2.push('火车')
+                      //}
+                      //if(this.ruleForm.bus0=='客车'){
+                      //  this.ruleForm.traffic2.push('客车')
+                      //}
+                      //if(this.ruleForm.ship0=='轮船'){
+                      //  this.ruleForm.traffic2.push('轮船')
+                      //}
+                      //if(this.ruleForm.car0=='自驾车'){
+                      //  this.ruleForm.traffic2.push('自驾车')
+                      //}
+                      //if(this.ruleForm.other0=='其他'){
+                      //  this.ruleForm.traffic2.push('其他')
+                      //}
                       console.log(response.data)
                     }
                   }
