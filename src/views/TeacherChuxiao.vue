@@ -63,7 +63,7 @@
                             </div>
 
                             <el-form-item>
-                                    <el-button type="success" icon="el-icon-check" circle v-if="this.num.length<3" @click="add()"></el-button>
+                                    <el-button type="primary" icon="el-icon-edit" circle v-if="this.num.length<3" @click="add()"></el-button>
                                     <!--<el-button v-if="this.num.length<3" @click="add()">增加记录</el-button>-->
                                     <!--<el-button v-if="this.num.length>1" @click="pop()">删除记录</el-button>-->
                                     <el-button type="danger" icon="el-icon-delete" circle v-if="this.num.length>1" @click="pop()"></el-button>
