@@ -14,7 +14,7 @@ $user = array();
 
 $day =date("d",time());
 
-$sql = "select count(*) num_of_day, $day - count(*) num_of_queqin from daily_info where ID = '$ID '";
+$sql = "select count(*) num_of_day, $day - count(*) num_of_queqin from daily_info where ID = '$ID ' and apply_date>'$firstDay'";
 $result = $conn->query($sql);
 
 if(mysqli_num_rows($result)>0){

@@ -15,9 +15,9 @@ if($result0->num_rows>0) {
         echo '今日已经打卡';
 }
 else{
-    $sql1="select * from basis_info where ID='$ID' and to_days(apply_data)=(select max(to_days(apply_date)) from daily_info)";
-    $sql2="select * from back_info where ID='$ID' and to_days(apply_data)=(select max(to_days(apply_date)) from daily_info)";
-    $sql3="select * from additional_info where ID='$ID' and to_days(apply_data)=(select max(to_days(apply_date)) from daily_info)";
+    $sql1="select * from basis_info where ID='$ID' and to_days(apply_data)=(select max(to_days(apply_date)) from daily_info where ID='$ID')";
+    $sql2="select * from back_info where ID='$ID' and to_days(apply_data)=(select max(to_days(apply_date)) from daily_info where ID='$ID')";
+    $sql3="select * from additional_info where ID='$ID' and to_days(apply_data)=(select max(to_days(apply_date)) from daily_info where ID='$ID')";
     $result1 = $conn->query($sql1);
     $result2 = $conn->query($sql2);
     $result3 = $conn->query($sql3);

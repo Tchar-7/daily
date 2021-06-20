@@ -222,6 +222,9 @@ export default {
       console.log(tab, event);
     },
     chaxun:function (){
+      this.currentPage1 =1
+      this.currentPage2 = 1
+      this.currentPage3 = 1
       this.chaxun1(this.currentPage1,this.pagesize1)
       this.chaxun2(this.currentPage2,this.pagesize2)
       this.chaxun3(this.currentPage3,this.pagesize3)

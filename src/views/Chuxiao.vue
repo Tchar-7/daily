@@ -2,7 +2,7 @@
 
     <div class="table">
         <div class="title">
-            <h1 class="returnButton">每日信息填报</h1>
+            <h1 class="returnButton">出校信息填报</h1>
 
             <div class = "return">
                 <el-button type="text" @click="Menu()">返回个人界面</el-button>

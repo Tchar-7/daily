@@ -216,7 +216,7 @@ import router from "@/router";
                   .then((valid) => {
                     console.log(valid.data)
                     this.$message.success('填报成功');
-                    router.push('/Menr')
+                    router.push('/Menu')
                   })
             }else {
               this.$message.error('请填写正确信息');
