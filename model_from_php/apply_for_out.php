@@ -19,6 +19,7 @@ $stay=$_GET["stay"];
 $address=$_GET["address"];
 $phone=$_GET["phone"];
 $color=$_GET["color"];
+date_default_timezone_set('PRC');
 $time=date("Y-m-d H:i:s",time());
 
 if(strcmp($category,"其他")==0){

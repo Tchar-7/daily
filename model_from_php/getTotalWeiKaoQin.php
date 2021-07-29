@@ -8,6 +8,7 @@ if($conn->connect_error){
 
 $department = $_POST['department'];
 $grade = $_POST['grade'];
+date_default_timezone_set('PRC');
 $date=date("Y-m-d",time());
 //$date = '2021-5-22';
 $where1 = '';

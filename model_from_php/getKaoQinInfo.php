@@ -7,8 +7,6 @@ if($conn->connect_error){
 }
 
 $ID = $_POST['userID'];
-$now=date("Y-m-d H:i:s",time());
-$firstDay = date('Y-m-01 00:00:00');
 
 $datetime = array();
 

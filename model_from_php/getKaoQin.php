@@ -6,8 +6,9 @@ if($conn->connect_error){
     die("数据库连接失败".mysqli_connect_error());
 }
 
+date_default_timezone_set('PRC');
 $ID = $_POST['userID'];
-$now=date("Y-m-d H:i:s",time());
+
 $firstDay = date('Y-m-01 00:00:00');
 
 $user = array();

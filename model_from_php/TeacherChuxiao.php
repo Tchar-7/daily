@@ -16,6 +16,7 @@ $categor=$_GET['categor'];
 $left=$_GET['left'];
 $address=$_GET['address'];
 $phone=$_GET['phone'];
+date_default_timezone_set('PRC');
 $time=date("Y-m-d H:i:s",time());
 
 for($i=0;$i<$num;$i++){

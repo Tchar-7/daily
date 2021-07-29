@@ -5,6 +5,7 @@ mysqli_query($conn, "SET NAMES utf8");
 if($conn->connect_error){
     die("数据库连接失败".mysqli_connect_error());
 }
+date_default_timezone_set('PRC');
 $time=date("Y-m-d H:i:s",time());
 $ID = $_POST['userID'];
 $inf=array();

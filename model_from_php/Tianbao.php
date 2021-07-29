@@ -54,6 +54,7 @@ $bus_inf=$_GET['bus_inf'];
 $ship_inf=$_GET['ship_inf'];
 $car_inf=$_GET['car_inf'];
 $other_inf=$_GET['other_inf'];
+date_default_timezone_set('PRC');
 $time=date("Y-m-d H:i:s",time());
 $abnormal='';
 $state=0;
